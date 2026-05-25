@@ -1,0 +1,19 @@
+# Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore Gradle build output directory
+build
+
+# Arquivos de configuração da sua IDE (IntelliJ, Eclipse, NetBeans)
+.idea/
+*.iml
+.settings/
+.classpath
+.project
+
+# Arquivos do sistema operacional
+.DS_Store
+Thumbs.db
+
+# Arquivos de log do sistema
+*.log
