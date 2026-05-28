@@ -12,6 +12,7 @@ dependencies {
     // Importando as ferramentas visuais do JavaFX
     implementation 'org.openjfx:javafx-controls:21'
     implementation 'org.openjfx:javafx-fxml:21'
+    implementation 'com.google.code.gson:gson:2.10.1'
 }
 
 javafx {
