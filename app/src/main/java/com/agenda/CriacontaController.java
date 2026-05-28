@@ -66,8 +66,6 @@ public class CriacontaController {
         
     }
 
-
-
     private boolean verificaFormulario(){
         boolean valido = true;
 
@@ -122,8 +120,6 @@ public class CriacontaController {
 
         return valido;
     }
-
-    
 
     @FXML
     private void initialize(){
