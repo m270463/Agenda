@@ -68,7 +68,7 @@ public class LoginController {
         if (verificaUsuario(usuario, senha)) {
                 try {
                 // 1. Carrega o novo arquivo FXML (Protegido dentro do try)
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("teste2.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("calendario.fxml"));
                 Parent root = loader.load();
 
                 // 2. Pega a janela atual (Stage)
