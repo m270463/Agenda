@@ -92,7 +92,7 @@ public class CriacontaController {
             erroEmail.setVisible(false);
         
 
-        if (campoTelefone.getText().trim().length() != 15){
+        if (campoTelefone.getText().replace(" ","").length() != 14){
             erroTelefone.setVisible(true);
             valido = false;
         }
