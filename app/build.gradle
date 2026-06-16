@@ -13,6 +13,7 @@ dependencies {
     implementation 'org.openjfx:javafx-controls:21'
     implementation 'org.openjfx:javafx-fxml:21'
     implementation 'com.google.code.gson:gson:2.10.1'
+    implementation 'org.controlsfx:controlsfx:11.1.2+' // Use a versão 11.2.1+ se estiver no Java 17+
 }
 
 javafx {
