@@ -1,1 +1,143 @@
-[{"nome":"a","email":"a@gmail.com","telefone":"+55 11 94077 4944","senha":"123"}]
+[
+  {
+    "nome": "a",
+    "email": "a@gmail.com",
+    "telefone": "+55 11 94077 4944",
+    "senha": "123",
+    "agenda": {},
+    "agendaRepetitiva": [
+      {
+        "nome": "",
+        "local": "",
+        "descricao": "",
+        "diaInicio": "2026-06-12",
+        "horaInicio": "10:00:00",
+        "horaFim": "12:00:00",
+        "repeticao": "Semanalmente"
+      },
+      {
+        "nome": "a",
+        "local": "",
+        "descricao": "",
+        "diaInicio": "2026-12-12",
+        "repeticao": "Mensalmente"
+      },
+      {
+        "nome": "a",
+        "local": "",
+        "descricao": "",
+        "diaInicio": "2026-11-12",
+        "horaInicio": "10:10:00",
+        "horaFim": "10:15:00",
+        "repeticao": "Mensalmente"
+      }
+    ]
+  },
+  {
+    "nome": "LUCAS",
+    "email": "luquinhas@gmail.com",
+    "telefone": "+55 19 999999999",
+    "senha": "1234",
+    "agenda": {},
+    "agendaRepetitiva": [
+      {
+        "nome": "pizza party",
+        "local": "sumaré",
+        "descricao": "sao pizzas ",
+        "diaInicio": "2026-06-19",
+        "repeticao": "Nunca"
+      },
+      {
+        "nome": "pizza party",
+        "local": "sumaré",
+        "descricao": "sao pizzas ",
+        "diaInicio": "2026-06-19",
+        "repeticao": "Nunca"
+      },
+      {
+        "nome": "pizza party",
+        "local": "sumaré",
+        "descricao": "sao pizzas ",
+        "diaInicio": "2026-06-19",
+        "repeticao": "Nunca"
+      },
+      {
+        "nome": "pizza party",
+        "local": "sumaré",
+        "descricao": "sao pizzas ",
+        "diaInicio": "2026-06-19",
+        "repeticao": "Nunca"
+      },
+      {
+        "nome": "pizza party",
+        "local": "sumaré",
+        "descricao": "sao pizzas ",
+        "diaInicio": "2026-06-19",
+        "repeticao": "Nunca"
+      },
+      {
+        "nome": "pizza party",
+        "local": "sumaré",
+        "descricao": "sao pizzas ",
+        "diaInicio": "2026-06-19",
+        "repeticao": "Nunca"
+      },
+      {
+        "nome": "pizza party",
+        "local": "sumaré",
+        "descricao": "sao pizzas ",
+        "diaInicio": "2026-06-19",
+        "repeticao": "Nunca"
+      },
+      {
+        "nome": "pizza party",
+        "local": "sumaré",
+        "descricao": "sao pizzas ",
+        "diaInicio": "2026-06-19",
+        "repeticao": "Nunca"
+      },
+      {
+        "nome": "pizza party",
+        "local": "sumaré",
+        "descricao": "sao pizzas ",
+        "diaInicio": "2026-06-19",
+        "repeticao": "Nunca"
+      },
+      {
+        "nome": "pizza party",
+        "local": "sumaré",
+        "descricao": "sao pizzas ",
+        "diaInicio": "2026-06-19",
+        "repeticao": "Nunca"
+      },
+      {
+        "nome": "pizza party",
+        "local": "sumaré",
+        "descricao": "sao pizzas ",
+        "diaInicio": "2026-06-19",
+        "repeticao": "Nunca"
+      },
+      {
+        "nome": "pizza party",
+        "local": "sumaré",
+        "descricao": "sao pizzas ",
+        "diaInicio": "2026-06-19",
+        "repeticao": "Nunca"
+      },
+      {
+        "nome": "pizza party",
+        "local": "sumaré",
+        "descricao": "sao pizzas ",
+        "diaInicio": "2026-06-19",
+        "repeticao": "Nunca"
+      },
+      {
+        "nome": "pizza party",
+        "local": "sumaré",
+        "descricao": "sao pizzas ",
+        "diaInicio": "2026-06-19",
+        "repeticao": "Nunca"
+      }
+    ]
+  }
+]

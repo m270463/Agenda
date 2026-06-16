@@ -43,6 +43,7 @@
                   <Insets right="70.0" />
                </HBox.margin>
             </ComboBox>
+            <Button mnemonicParsing="false" onAction="#botaoAdicionar" text="adicionar" />
             <VBox prefHeight="44.0" prefWidth="50.0" style="-fx-background-color: #1c1d22;">
                <children>
                   <ImageView fitHeight="37.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">

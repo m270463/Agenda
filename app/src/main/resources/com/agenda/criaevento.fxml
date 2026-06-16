@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.ToggleSwitch?>
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="449.0" prefWidth="631.0" spacing="15.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.agenda.CriaeventoController">
+   <children>
+      <HBox prefHeight="1.0" prefWidth="631.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#botaoVoltar" text="voltar">
+               <HBox.margin>
+                  <Insets right="150.0" />
+               </HBox.margin>
+            </Button>
+            <Label text="Novo Evento">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox alignment="TOP_CENTER" prefHeight="0.0" prefWidth="631.0">
+         <children>
+            <TextField fx:id="titulo" maxWidth="330.0" prefHeight="26.0" prefWidth="546.0" promptText="Título">
+               <HBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </HBox.margin>
+            </TextField>
+            <Label fx:id="erroTitulo" textFill="RED" />
+         </children>
+         <VBox.margin>
+            <Insets left="25.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="TOP_CENTER" prefHeight="10.0" prefWidth="631.0">
+         <children>
+            <TextField fx:id="local" maxWidth="338.0" prefHeight="26.0" prefWidth="324.0" promptText="Local (opcional)">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </TextField>
+         </children>
+      </HBox>
+      <HBox alignment="TOP_CENTER" prefHeight="11.0" prefWidth="600.0">
+         <children>
+            <TextField fx:id="diaInicio" maxWidth="349.0" prefHeight="26.0" prefWidth="348.0" promptText="DD/MM/AAAA">
+               <HBox.margin>
+                  <Insets left="35.0" right="10.0" />
+               </HBox.margin>
+            </TextField>
+            <Label fx:id="erroDiaInicio" textFill="RED" />
+         </children>
+      </HBox>
+      <HBox alignment="TOP_CENTER" prefHeight="22.0" prefWidth="600.0">
+         <children>
+            <TextField fx:id="horaInicio" maxWidth="330.0" prefHeight="26.0" prefWidth="546.0" promptText="hh:mm">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </TextField>
+            <Label fx:id="erroHoraInicio" textFill="RED">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+      <ToggleSwitch fx:id="btnInterruptor" onMouseClicked="#interruptor" prefHeight="20.0" prefWidth="112.0" text="Dia Inteiro:">
+         <VBox.margin>
+            <Insets left="-220.0" />
+         </VBox.margin>
+      </ToggleSwitch>
+      <HBox alignment="TOP_CENTER" prefHeight="7.0" prefWidth="600.0">
+         <children>
+            <TextField fx:id="horaFim" maxWidth="330.0" prefHeight="26.0" prefWidth="546.0" promptText="hh:mm">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </TextField>
+            <Label fx:id="erroHoraFim" textFill="RED" />
+         </children>
+      </HBox>
+      <HBox alignment="TOP_CENTER" prefHeight="17.0" prefWidth="631.0">
+         <children>
+            <ComboBox fx:id="Comborepeticao" prefHeight="26.0" prefWidth="158.0" promptText="Repetição">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </ComboBox>
+            <Label fx:id="erroComboRepeticao" textFill="RED" />
+         </children>
+      </HBox>
+      <TextField fx:id="descricao" maxWidth="341.0" prefHeight="26.0" prefWidth="309.0" promptText="Descrição (opcional)" />
+      <Button mnemonicParsing="false" onAction="#botaoCadastro" text="Criar" />
+   </children>
+</VBox>

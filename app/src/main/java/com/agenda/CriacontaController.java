@@ -127,12 +127,11 @@ public class CriacontaController {
 
         campoNome.setOnKeyPressed((KeyEvent event) -> {
         if (event.getCode() == KeyCode.ENTER) {
-                campoEmail.requestFocus(); // Dá o foco (joga o cursor) para o campo de senha
-                event.consume(); // Avisa o JavaFX que o Enter já foi tratado aqui
+                campoEmail.requestFocus(); 
+                event.consume(); 
             }
         });
 
-        // 2. Quando apertar Enter no campo de Senha, aí sim dispara o Login
         campoEmail.setOnKeyPressed((KeyEvent event) -> {
         if (event.getCode() == KeyCode.ENTER) {
             campoTelefone.requestFocus();
@@ -142,29 +141,29 @@ public class CriacontaController {
 
         campoEmail.setOnKeyPressed((KeyEvent event) -> {
         if (event.getCode() == KeyCode.ENTER) {
-                campoTelefone.requestFocus(); // Dá o foco (joga o cursor) para o campo de senha
-                event.consume(); // Avisa o JavaFX que o Enter já foi tratado aqui
+                campoTelefone.requestFocus(); 
+                event.consume(); 
             }
         });
 
         campoTelefone.setOnKeyPressed((KeyEvent event) -> {
         if (event.getCode() == KeyCode.ENTER) {
-                campoSenha.requestFocus(); // Dá o foco (joga o cursor) para o campo de senha
-                event.consume(); // Avisa o JavaFX que o Enter já foi tratado aqui
+                campoSenha.requestFocus(); 
+                event.consume(); 
             }
         });
 
         campoSenha.setOnKeyPressed((KeyEvent event) -> {
         if (event.getCode() == KeyCode.ENTER) {
-                campoconfirmaSenha.requestFocus(); // Dá o foco (joga o cursor) para o campo de senha
-                event.consume(); // Avisa o JavaFX que o Enter já foi tratado aqui
+                campoconfirmaSenha.requestFocus(); 
+                event.consume(); 
             }
         });
 
         campoconfirmaSenha.setOnKeyPressed((KeyEvent event) -> {
         if (event.getCode() == KeyCode.ENTER) {
                 aoClicarbotaoCadastrar();
-                event.consume(); // Avisa o JavaFX que o Enter já foi tratado aqui
+                event.consume(); 
             }
         });
     } 
@@ -186,24 +185,19 @@ public class CriacontaController {
 
         pausa.setOnFinished(event ->{
             try {
-            // 1. Carrega o novo arquivo FXML (Protegido dentro do try)
             FXMLLoader loader = new FXMLLoader(getClass().getResource("teste.fxml"));
             Parent root = loader.load();
 
-            // 2. Pega a janela atual (Stage)
             Stage stage = (Stage) campoSenha.getScene().getWindow();
 
-            // 3. Cria a nova cena (Garante que Scene está com 'C')
             Scene novaCena = new Scene(root);
 
-            // 4. Configura e mostra a nova janela
             stage.setScene(novaCena);
             stage.setTitle("Agenda - Login");
             stage.centerOnScreen();
             stage.show();
 
             } catch (IOException e) {
-                // Se o arquivo teste2.fxml sumir ou estiver com erro, o Java avisa aqui sem travar o programa
                 System.err.println("Erro crítico ao carregar o arquivo da nova cena!");
                 e.printStackTrace();
             }
@@ -215,24 +209,19 @@ public class CriacontaController {
     @FXML
     private void aoClicarBotaoVoltar(){
         try {
-        // 1. Carrega o novo arquivo FXML (Protegido dentro do try)
         FXMLLoader loader = new FXMLLoader(getClass().getResource("prelogin.fxml"));
         Parent root = loader.load();
 
-        // 2. Pega a janela atual (Stage)
         Stage stage = (Stage) botaoVoltar.getScene().getWindow();
 
-        // 3. Cria a nova cena (Garante que Scene está com 'C')
         Scene novaCena = new Scene(root);
 
-        // 4. Configura e mostra a nova janela
         stage.setScene(novaCena);
         stage.setTitle("Agenda - Início");
         stage.centerOnScreen();
         stage.show();
 
         } catch (IOException e) {
-            // Se o arquivo teste2.fxml sumir ou estiver com erro, o Java avisa aqui sem travar o programa
             System.err.println("Erro crítico ao carregar o arquivo da nova cena!");
             e.printStackTrace();
         }
