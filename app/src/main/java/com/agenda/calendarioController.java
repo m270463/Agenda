@@ -57,8 +57,8 @@ public class calendarioController {
         comboMes.setItems(FXCollections.observableArrayList(meses));
         comboMes.getSelectionModel().select(mesAtual.getMonthValue() - 1);
 
-        comboMes.setButtonCell(criarCelulaCustomizada()); 
-        comboMes.setCellFactory(lv -> criarCelulaCustomizada()); 
+        comboMes.setButtonCell(criarCelulaCustomizada(false)); 
+        comboMes.setCellFactory(lv -> criarCelulaCustomizada(true)); 
 
         List<String> anos = new ArrayList<>();
         for (int i = 1970; i <= 2050; i++){
@@ -68,27 +68,26 @@ public class calendarioController {
         comboAno.setItems(FXCollections.observableArrayList(anos));
         comboAno.setValue(String.valueOf(mesAtual.getYear()));
 
-        comboAno.setButtonCell(criarCelulaCustomizada());
-        comboAno.setCellFactory(lv -> criarCelulaCustomizada());
-        comboAno.setStyle("-fx-faint-focus-color: transparent; -fx-focus-color: transparent;");
+        comboAno.setButtonCell(criarCelulaCustomizada(false));
+        comboAno.setCellFactory(lv -> criarCelulaCustomizada(true));
 
         Platform.runLater(() -> {
             Node arrowButton = comboMes.lookup(".arrow-button");
             if (arrowButton != null) {
-                arrowButton.setStyle("-fx-padding: 0; -fx-width: 0; -fx-max-width: 0; -fx-min-width: 0;");
+                arrowButton.setStyle("-fx-background-color: #1c1d22; -fx-border-color:  white white white transparent");
             }
             Node arrow = comboMes.lookup(".arrow");
             if (arrow != null) {
-                arrow.setStyle("-fx-shape: ''; -fx-padding: 0;");
+                arrow.setStyle("-fx-background-color: white;");
             }
 
             Node arrowButton1 = comboAno.lookup(".arrow-button");
             if (arrowButton1 != null) {
-                arrowButton1.setStyle("-fx-padding: 0; -fx-width: 0; -fx-max-width: 0; -fx-min-width: 0;");
+                arrowButton1.setStyle("-fx-background-color: #1c1d22; -fx-border-color:  white white white transparent");
             }
             Node arrow1 = comboAno.lookup(".arrow");
             if (arrow1 != null) {
-                arrow1.setStyle("-fx-shape: ''; -fx-padding: 0;");
+                arrow1.setStyle("-fx-background-color: white;");
             }
         });
 
@@ -111,7 +110,7 @@ public class calendarioController {
         montarCalendario(mesAtual);
     }
 
-    private ListCell<String> criarCelulaCustomizada() {
+    private ListCell<String> criarCelulaCustomizada(boolean celula) {
         return new ListCell<>() {   
             @Override
             protected void updateItem(String item, boolean empty) {
@@ -119,9 +118,13 @@ public class calendarioController {
                 if (empty || item == null) {
                     setText(null);
                     setStyle("-fx-background-color: transparent;");
-                } else {
+                } else if (celula){
                     setText(item);
-                    setStyle("-fx-text-fill: white; -fx-alignment: CENTER; -fx-background-color:  #1c1d22;-fx-control-inner-background: #121212;");
+                    setStyle("-fx-text-fill: white; -fx-alignment: CENTER; -fx-background-color:  #1c1d22;");
+                }
+                else{
+                    setText(item);
+                    setStyle("-fx-text-fill: white; -fx-alignment: CENTER; -fx-background-color:  #1c1d22; -fx-border-color:   white  transparent white white");
                 }
             }
         };

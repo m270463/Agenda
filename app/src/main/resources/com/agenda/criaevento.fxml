@@ -5,99 +5,64 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.ToggleSwitch?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="449.0" prefWidth="631.0" spacing="15.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.agenda.CriaeventoController">
+
+<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="566.0" style="-fx-background-color: #121212; -fx-border-color: #b6b2b2; -fx-border-image-width: 3px;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.agenda.CriaeventoController">
    <children>
-      <HBox prefHeight="1.0" prefWidth="631.0">
+      <VBox alignment="CENTER" layoutX="176.0" layoutY="47.0" spacing="20.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#botaoVoltar" text="voltar">
-               <HBox.margin>
-                  <Insets right="150.0" />
-               </HBox.margin>
-            </Button>
-            <Label text="Novo Evento">
-               <font>
-                  <Font size="32.0" />
-               </font>
-            </Label>
-         </children>
-      </HBox>
-      <HBox alignment="TOP_CENTER" prefHeight="0.0" prefWidth="631.0">
-         <children>
-            <TextField fx:id="titulo" maxWidth="330.0" prefHeight="26.0" prefWidth="546.0" promptText="Título">
-               <HBox.margin>
-                  <Insets left="10.0" right="10.0" />
-               </HBox.margin>
+            <TextField fx:id="titulo" prefHeight="20.0" prefWidth="215.0" promptText="Título" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-text-inner-color: white;" />
+            <TextField fx:id="diaInicio" promptText="Dia (DD/MM/YYYY)" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-text-inner-color: white;" />
+            <TextField fx:id="horaInicio" promptText="Horário de início (HH:MM)" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-text-inner-color: white;" />
+            <HBox alignment="CENTER">
+               <children>
+                  <Label text="Dia inteiro:    " textFill="WHITE">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <ToggleSwitch fx:id="btnInterruptor" onMouseClicked="#interruptor" prefHeight="20.0" prefWidth="34.0" style="-fx-background-image: white;" textFill="WHITE" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="-10.0" />
+               </VBox.margin>
+            </HBox>
+            <TextField fx:id="horaFim" prefWidth="215.0" promptText="Horário de término (HH:MM)" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-text-inner-color: white;">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
             </TextField>
-            <Label fx:id="erroTitulo" textFill="RED" />
-         </children>
-         <VBox.margin>
-            <Insets left="25.0" />
-         </VBox.margin>
-      </HBox>
-      <HBox alignment="TOP_CENTER" prefHeight="10.0" prefWidth="631.0">
-         <children>
-            <TextField fx:id="local" maxWidth="338.0" prefHeight="26.0" prefWidth="324.0" promptText="Local (opcional)">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </TextField>
-         </children>
-      </HBox>
-      <HBox alignment="TOP_CENTER" prefHeight="11.0" prefWidth="600.0">
-         <children>
-            <TextField fx:id="diaInicio" maxWidth="349.0" prefHeight="26.0" prefWidth="348.0" promptText="DD/MM/AAAA">
-               <HBox.margin>
-                  <Insets left="35.0" right="10.0" />
-               </HBox.margin>
-            </TextField>
-            <Label fx:id="erroDiaInicio" textFill="RED" />
-         </children>
-      </HBox>
-      <HBox alignment="TOP_CENTER" prefHeight="22.0" prefWidth="600.0">
-         <children>
-            <TextField fx:id="horaInicio" maxWidth="330.0" prefHeight="26.0" prefWidth="546.0" promptText="hh:mm">
-               <HBox.margin>
-                  <Insets right="10.0" />
-               </HBox.margin>
-            </TextField>
-            <Label fx:id="erroHoraInicio" textFill="RED">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </Label>
-         </children>
-      </HBox>
-      <ToggleSwitch fx:id="btnInterruptor" onMouseClicked="#interruptor" prefHeight="20.0" prefWidth="112.0" text="Dia Inteiro:">
-         <VBox.margin>
-            <Insets left="-220.0" />
-         </VBox.margin>
-      </ToggleSwitch>
-      <HBox alignment="TOP_CENTER" prefHeight="7.0" prefWidth="600.0">
-         <children>
-            <TextField fx:id="horaFim" maxWidth="330.0" prefHeight="26.0" prefWidth="546.0" promptText="hh:mm">
-               <HBox.margin>
-                  <Insets right="10.0" />
-               </HBox.margin>
-            </TextField>
-            <Label fx:id="erroHoraFim" textFill="RED" />
-         </children>
-      </HBox>
-      <HBox alignment="TOP_CENTER" prefHeight="17.0" prefWidth="631.0">
-         <children>
-            <ComboBox fx:id="Comborepeticao" prefHeight="26.0" prefWidth="158.0" promptText="Repetição">
-               <HBox.margin>
-                  <Insets right="10.0" />
-               </HBox.margin>
+            <ComboBox fx:id="Comborepeticao" prefHeight="26.0" prefWidth="215.0" promptText="Repetição" style="-fx-background-color: #333333;">
+               <VBox.margin>
+                  <Insets bottom="-10.0" />
+               </VBox.margin>
             </ComboBox>
-            <Label fx:id="erroComboRepeticao" textFill="RED" />
+            <TextField fx:id="descricao" prefHeight="17.0" prefWidth="215.0" promptText="Descrição" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-text-inner-color: white;" />
+            <Button mnemonicParsing="false" onAction="#botaoCadastro" style="-fx-background-color: #333333;" text="Criar" textFill="#e8e8e8" />
          </children>
-      </HBox>
-      <TextField fx:id="descricao" maxWidth="341.0" prefHeight="26.0" prefWidth="309.0" promptText="Descrição (opcional)" />
-      <Button mnemonicParsing="false" onAction="#botaoCadastro" text="Criar" />
+      </VBox>
+      <Label layoutX="151.0" layoutY="4.0" prefHeight="34.0" prefWidth="293.0" text="Crie um novo evento" textFill="WHITE">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Label fx:id="erroTitulo" layoutX="406.0" layoutY="62.0" prefHeight="18.0" prefWidth="161.0" text="Label" visible="false" />
+      <Label fx:id="erroDiaInicio" layoutX="406.0" layoutY="108.0" prefHeight="18.0" prefWidth="161.0" text="Label" visible="false" />
+      <Label fx:id="erroHoraInicio" layoutX="406.0" layoutY="157.0" prefHeight="18.0" prefWidth="161.0" text="Label" visible="false" />
+      <Label fx:id="erroHoraFim" layoutX="399.0" layoutY="235.0" prefHeight="18.0" prefWidth="161.0" text="Label" visible="false" />
+      <Label fx:id="erroComboRepeticao" layoutX="399.0" layoutY="279.0" prefHeight="18.0" prefWidth="161.0" text="Label" visible="false" />
+      <ImageView fitHeight="42.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../Downloads/line_start_arrow_41dp_WHITE_FILL1_wght500_GRAD200_opsz40.png" />
+         </image>
+      </ImageView>
+      <Button layoutY="1.0" mnemonicParsing="false" onAction="#botaoVoltar" prefHeight="42.0" prefWidth="48.0" style="-fx-background-color: transparent;" />
    </children>
-</VBox>
+</AnchorPane>

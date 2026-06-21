@@ -1,68 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="20.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.agenda.LoginController">
+<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="566.0" style="-fx-background-color: #121212; -fx-border-color: #b6b2b2; -fx-border-image-width: 3px;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.agenda.LoginController">
    <children>
-      <HBox prefHeight="100.0" prefWidth="602.0">
+      <Label layoutX="207.0" layoutY="14.0" prefHeight="59.0" prefWidth="129.0" text="AGENDA" textFill="WHITE">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <VBox alignment="CENTER" fillWidth="false" layoutX="42.0" layoutY="51.0" maxWidth="486.0" prefHeight="321.0" prefWidth="486.0" spacing="25.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="51.0">
          <children>
-            <ImageView fitHeight="62.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../../../../../Downloads/line_start_arrow_41dp_000000_FILL1_wght700_GRAD0_opsz40.png" />
-               </image>
-            </ImageView>
-            <Button mnemonicParsing="false" onAction="#aoClicarBotaoVoltar" prefHeight="59.0" prefWidth="65.0" style="-fx-background-color: transparent;">
-               <HBox.margin>
-                  <Insets left="-65.0" />
-               </HBox.margin>
+            <TextField fx:id="campoUsuario" maxWidth="1.7976931348623157E308" prefHeight="28.0" prefWidth="265.0" promptText="Email" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-border-width: 1px; -fx-text-inner-color: white;" />
+            <PasswordField fx:id="campoSenha" maxWidth="1.7976931348623157E308" prefHeight="28.0" prefWidth="270.0" promptText="Senha" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-text-inner-color: white;" />
+          <Button mnemonicParsing="false" onAction="#aoClicarBotaoLogin" style="-fx-background-color: #333333;" text="Entrar" textFill="#e8e8e8">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
-            <Label text="Login">
-               <font>
-                  <Font size="53.0" />
-               </font>
-               <HBox.margin>
-                  <Insets left="160.0" />
-               </HBox.margin>
-            </Label>
+            <Button mnemonicParsing="false" onAction="#aoClicarBotaoCriarConta" prefHeight="26.0" prefWidth="161.0" style="-fx-background-color: transparent;" text="Não tenho uma conta" textFill="WHITE" underline="true" />
+            <Label fx:id="textoErro" prefHeight="18.0" prefWidth="183.0" text="Usuário e/ou senha inválidos!" textFill="#a4a0a0" visible="false" />
          </children>
-      </HBox>
-      <HBox prefHeight="45.0" prefWidth="599.0">
-         <children>
-            <Label text="Email:">
-               <HBox.margin>
-                  <Insets left="90.0" right="10.0" />
-               </HBox.margin>
-            </Label>
-            <TextField fx:id="campoUsuario" prefHeight="26.0" prefWidth="322.0">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </TextField>
-         </children>
-      </HBox>
-      <HBox prefHeight="59.0" prefWidth="600.0">
-         <children>
-            <Label text="Senha:">
-               <HBox.margin>
-                  <Insets left="85.0" right="10.0" />
-               </HBox.margin>
-            </Label>
-            <PasswordField fx:id="campoSenha" prefHeight="26.0" prefWidth="324.0" />
-         </children>
-      </HBox>
-      <Button defaultButton="true" mnemonicParsing="false" onAction="#aoClicarBotaoLogin" text="Entrar">
-         <VBox.margin>
-            <Insets right="15.0" />
-         </VBox.margin></Button>
-      <Label fx:id="textoErro" text="Usuário e/ou senha incorretos" textFill="#f80707" visible="false" />
+         <padding>
+            <Insets bottom="50.0" left="100.0" right="100.0" top="50.0" />
+         </padding>
+      </VBox>
    </children>
-</VBox>
+</AnchorPane>

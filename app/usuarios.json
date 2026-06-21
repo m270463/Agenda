@@ -8,7 +8,6 @@
     "agendaRepetitiva": [
       {
         "nome": "",
-        "local": "",
         "descricao": "",
         "diaInicio": "2026-06-12",
         "horaInicio": "10:00:00",
@@ -17,14 +16,12 @@
       },
       {
         "nome": "a",
-        "local": "",
         "descricao": "",
         "diaInicio": "2026-12-12",
         "repeticao": "Mensalmente"
       },
       {
         "nome": "a",
-        "local": "",
         "descricao": "",
         "diaInicio": "2026-11-12",
         "horaInicio": "10:10:00",
@@ -42,98 +39,84 @@
     "agendaRepetitiva": [
       {
         "nome": "pizza party",
-        "local": "sumaré",
         "descricao": "sao pizzas ",
         "diaInicio": "2026-06-19",
         "repeticao": "Nunca"
       },
       {
         "nome": "pizza party",
-        "local": "sumaré",
         "descricao": "sao pizzas ",
         "diaInicio": "2026-06-19",
         "repeticao": "Nunca"
       },
       {
         "nome": "pizza party",
-        "local": "sumaré",
         "descricao": "sao pizzas ",
         "diaInicio": "2026-06-19",
         "repeticao": "Nunca"
       },
       {
         "nome": "pizza party",
-        "local": "sumaré",
         "descricao": "sao pizzas ",
         "diaInicio": "2026-06-19",
         "repeticao": "Nunca"
       },
       {
         "nome": "pizza party",
-        "local": "sumaré",
         "descricao": "sao pizzas ",
         "diaInicio": "2026-06-19",
         "repeticao": "Nunca"
       },
       {
         "nome": "pizza party",
-        "local": "sumaré",
         "descricao": "sao pizzas ",
         "diaInicio": "2026-06-19",
         "repeticao": "Nunca"
       },
       {
         "nome": "pizza party",
-        "local": "sumaré",
         "descricao": "sao pizzas ",
         "diaInicio": "2026-06-19",
         "repeticao": "Nunca"
       },
       {
         "nome": "pizza party",
-        "local": "sumaré",
         "descricao": "sao pizzas ",
         "diaInicio": "2026-06-19",
         "repeticao": "Nunca"
       },
       {
         "nome": "pizza party",
-        "local": "sumaré",
         "descricao": "sao pizzas ",
         "diaInicio": "2026-06-19",
         "repeticao": "Nunca"
       },
       {
         "nome": "pizza party",
-        "local": "sumaré",
         "descricao": "sao pizzas ",
         "diaInicio": "2026-06-19",
         "repeticao": "Nunca"
       },
       {
         "nome": "pizza party",
-        "local": "sumaré",
         "descricao": "sao pizzas ",
         "diaInicio": "2026-06-19",
         "repeticao": "Nunca"
       },
       {
         "nome": "pizza party",
-        "local": "sumaré",
         "descricao": "sao pizzas ",
         "diaInicio": "2026-06-19",
         "repeticao": "Nunca"
       },
       {
         "nome": "pizza party",
-        "local": "sumaré",
         "descricao": "sao pizzas ",
         "diaInicio": "2026-06-19",
         "repeticao": "Nunca"
       },
       {
         "nome": "pizza party",
-        "local": "sumaré",
         "descricao": "sao pizzas ",
         "diaInicio": "2026-06-19",
         "repeticao": "Nunca"
