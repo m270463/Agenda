@@ -40,10 +40,20 @@
             </ComboBox>
             <ComboBox fx:id="comboAno" prefWidth="150.0">
                <HBox.margin>
-                  <Insets right="70.0" />
+                  <Insets right="50.0" />
                </HBox.margin>
             </ComboBox>
-            <Button mnemonicParsing="false" onAction="#botaoAdicionar" text="adicionar" />
+            <Button mnemonicParsing="false" onAction="#botaoAdicionar" prefWidth="72.0" style="-fx-background-color: transparent;">
+               <graphic>
+                  <ImageView fitHeight="31.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../../../Downloads/add_2_40dp_FFFFFF_FILL0_wght700_GRAD200_opsz40.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin></Button>
             <VBox prefHeight="44.0" prefWidth="50.0" style="-fx-background-color: #1c1d22;">
                <children>
                   <ImageView fitHeight="37.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">

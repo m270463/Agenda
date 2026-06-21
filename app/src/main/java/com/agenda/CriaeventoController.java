@@ -12,14 +12,18 @@ import java.util.ArrayList;
 
 import org.controlsfx.control.ToggleSwitch;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class CriaeventoController {
@@ -63,7 +67,11 @@ public class CriaeventoController {
     private Label erroComboRepeticao;
 
     @FXML
+    private AnchorPane anchor;
+
+    @FXML
     private void initialize(){
+        Platform.runLater(() -> anchor.requestFocus());
         ArrayList<String> repeticoes = new ArrayList<>();
         repeticoes.add("Nunca");
         repeticoes.add("Diariamente");
@@ -71,8 +79,39 @@ public class CriaeventoController {
         repeticoes.add("Mensalmente");
         repeticoes.add("Anualmente");
         Comborepeticao.setItems(FXCollections.observableArrayList(repeticoes));
+        Comborepeticao.setButtonCell(criarCelulaCustomizada()); 
+        Comborepeticao.setCellFactory(lv -> criarCelulaCustomizada()); 
+        Comborepeticao.setStyle("-fx-prompt-text-fill: white;");
+        Platform.runLater(() -> {
+        Node arrowButton = Comborepeticao.lookup(".arrow-button");
+        if (arrowButton != null) {
+            arrowButton.setStyle("-fx-background-color: #1c1d22; -fx-border-color: white white white transparent");
+        }
+        Node arrow = Comborepeticao.lookup(".arrow");
+        if (arrow != null) {
+            arrow.setStyle("-fx-background-color: white;");
+            }
+        });
 
     }
+
+   private ListCell<String> criarCelulaCustomizada() {
+        return new ListCell<>() {   
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setStyle("-fx-text-fill: white;  -fx-background-color:  #1c1d22; -fx-border-color: white transparent white white;");
+                } else {
+                    setText(item);
+                    setStyle("-fx-text-fill: white; -fx-alignment: CENTER; -fx-background-color:  #1c1d22;-fx-control-inner-background: #121212;");
+                }
+            }
+        };
+    }
+
+
+
 
     @FXML
     private void interruptor(){
@@ -139,8 +178,6 @@ public class CriaeventoController {
             erroTitulo.setVisible(false);
             title = titulo.getText();
         }
-
-        String lugar = local.getText();
 
         DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         if (diaInicio.getText().isBlank()){
@@ -210,7 +247,7 @@ public class CriaeventoController {
         String desc = descricao.getText();
 
         if (valido){
-            Evento evento = new Evento(title,lugar, desc, repeticao, diaComeco, horaComeco, horaTermino);
+            Evento evento = new Evento(title, desc, repeticao, diaComeco, horaComeco, horaTermino);
             LocalDate dataAtual = diaComeco;
             if (evento.getRepeticao().equals("NUNCA")){
                 App.usuarioaAtivo.getAgenda().putIfAbsent(diaComeco, new ArrayList<>());
@@ -225,7 +262,7 @@ public class CriaeventoController {
     
     @FXML
     private void botaoVoltar(){
-                    try {
+            try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("calendario.fxml"));
             Parent root = loader.load();
 

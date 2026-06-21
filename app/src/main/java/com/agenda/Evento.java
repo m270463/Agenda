@@ -5,15 +5,13 @@ import java.time.LocalTime;
 
 public class Evento {
     private String nome;
-    private String local;
     private String descricao;
     private LocalDate diaInicio;
     private LocalTime horaInicio;
     private LocalTime horaFim;
     private String repeticao;
-    public Evento(String nome, String local, String descricao, String repeticao,LocalDate diaInicio,  LocalTime horaInicio, LocalTime horaFim) {
+    public Evento(String nome,  String descricao, String repeticao,LocalDate diaInicio,  LocalTime horaInicio, LocalTime horaFim) {
         this.nome = nome;
-        this.local = local;
         this.descricao = descricao;
         this.diaInicio = diaInicio;
         this.horaInicio = horaInicio;
@@ -29,14 +27,6 @@ public class Evento {
         this.nome = nome;
     }
 
-    public String getLocal() {
-        return local;
-    }
-
-    public void setLocal(String local) {
-        this.local = local;
-    }
-    
 
     public String getDescricao() {
         return descricao;

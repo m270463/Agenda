@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -54,6 +55,9 @@ public class CriacontaController {
     @FXML
     private Label confirmaCadastro;
 
+    @FXML
+    private AnchorPane anchor;
+
     private boolean validaEmail(String email) {
         if (email == null) {
             return false;
@@ -70,6 +74,7 @@ public class CriacontaController {
         boolean valido = true;
 
         if (campoNome.getText().trim().isEmpty()){
+            erroNome.setText("*Campo obrigatório!");
             erroNome.setVisible(true);
             valido = false;
         }
@@ -93,6 +98,12 @@ public class CriacontaController {
         
 
         if (campoTelefone.getText().replace(" ","").length() != 14){
+            erroTelefone.setText("*Telefone inválido!");
+            erroTelefone.setVisible(true);
+            valido = false;
+        }
+        else if (campoTelefone.getText().isBlank()){
+            erroTelefone.setText("Campo obrigatório!");
             erroTelefone.setVisible(true);
             valido = false;
         }
@@ -111,6 +122,7 @@ public class CriacontaController {
             erroSenha.setVisible(false);
 
         if (!senha.equals(confirmaSenha)){
+            erroconfirmaSenha.setText("Senhas incompativeis!");
             erroconfirmaSenha.setVisible(true);
             valido = false;
         }
@@ -123,7 +135,7 @@ public class CriacontaController {
 
     @FXML
     private void initialize(){
-        Platform.runLater(() ->campoNome.requestFocus());
+        Platform.runLater(() ->anchor.requestFocus());
 
         campoNome.setOnKeyPressed((KeyEvent event) -> {
         if (event.getCode() == KeyCode.ENTER) {
@@ -209,7 +221,7 @@ public class CriacontaController {
     @FXML
     private void aoClicarBotaoVoltar(){
         try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("prelogin.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("teste.fxml"));
         Parent root = loader.load();
 
         Stage stage = (Stage) botaoVoltar.getScene().getWindow();

@@ -17,7 +17,7 @@ public class App extends Application {
     public void start(Stage stage) {
         try {
             
-            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("prelogin.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("teste.fxml"));
             
             Scene scene = new Scene(fxmlLoader.load(), 600, 400);
             

@@ -1,111 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 
-<VBox alignment="CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="496.0" prefWidth="784.0" spacing="15.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.agenda.CriacontaController">
+<AnchorPane fx:id="anchor" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="558.0" style="-fx-background-color: #121212; -fx-border-color: #b6b2b2; -fx-border-image-width: 3px;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.agenda.CriacontaController">
    <children>
-      <HBox prefHeight="62.0" prefWidth="755.0">
+      <VBox layoutX="143.0" layoutY="63.0" prefHeight="230.0" prefWidth="262.0" spacing="20.0">
          <children>
-            <ImageView fitHeight="46.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../../../../../Downloads/line_start_arrow_41dp_000000_FILL1_wght700_GRAD0_opsz40.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="botaoVoltar" mnemonicParsing="false" onAction="#aoClicarBotaoVoltar" prefHeight="48.0" prefWidth="43.0" style="-fx-background-color: transparent;">
-               <HBox.margin>
-                  <Insets left="-45.0" />
-               </HBox.margin>
-            </Button>
-            <Label text="NOVA CONTA">
-               <font>
-                  <Font size="31.0" />
-               </font>
-               <HBox.margin>
-                  <Insets left="200.0" top="10.0" />
-               </HBox.margin>
-            </Label>
+            <TextField fx:id="campoNome" promptText="Nome" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-text-inner-color: white;" />
+            <TextField fx:id="campoEmail" promptText="Email" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-text-inner-color: white;" />
+            <TextField fx:id="campoTelefone" promptText="Telefone" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-text-inner-color: white;" />
+            <TextField fx:id="campoSenha" promptText="Senha" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-text-inner-color: white;" />
+            <TextField fx:id="campoconfirmaSenha" prefHeight="0.0" prefWidth="164.0" promptText="Confirmar senha" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-text-inner-color: white;" />
          </children>
-         <VBox.margin>
-            <Insets top="-70.0" />
-         </VBox.margin>
-      </HBox>
-      <HBox prefHeight="43.0" prefWidth="654.0" spacing="90.0">
-         <children>
-            <Label text="Nome:" />
-            <TextField fx:id="campoNome" />
-            <Label fx:id="erroNome" prefHeight="18.0" prefWidth="229.0" text="*Campo Obrigatório!" textFill="RED" visible="false">
-               <HBox.margin>
-                  <Insets left="-90.0" />
-               </HBox.margin>
-            </Label>
-         </children>
-      </HBox>
-      <HBox prefHeight="48.0" prefWidth="654.0" spacing="95.0">
-         <children>
-            <Label text="Email:" />
-            <TextField fx:id="campoEmail" />
-            <Label fx:id="erroEmail" prefHeight="18.0" prefWidth="148.0" text="*Email inválido!" textFill="#ff0400" visible="false">
-               <HBox.margin>
-                  <Insets left="-95.0" />
-               </HBox.margin>
-            </Label>
-         </children>
-      </HBox>
-      <HBox prefHeight="38.0" prefWidth="670.0" spacing="77.0">
-         <children>
-            <Label prefHeight="18.0" prefWidth="65.0" text="Telefone:" />
-            <TextField fx:id="campoTelefone" prefHeight="26.0" prefWidth="163.0" text="+55 " />
-            <Label fx:id="erroTelefone" prefHeight="18.0" prefWidth="138.0" text="*Telefone Inválido!" textFill="RED" visible="false">
-               <HBox.margin>
-                  <Insets left="-77.0" />
-               </HBox.margin>
-            </Label>
-         </children>
-      </HBox>
-      <HBox prefHeight="39.0" prefWidth="654.0" spacing="92.0">
-         <children>
-            <Label text="Senha:" />
-            <PasswordField fx:id="campoSenha" />
-            <Label fx:id="erroSenha" prefHeight="18.0" prefWidth="132.0" textFill="RED" visible="false">
-               <HBox.margin>
-                  <Insets left="-92.0" />
-               </HBox.margin>
-            </Label>
-         </children>
-      </HBox>
-      <HBox prefHeight="40.0" prefWidth="668.0" spacing="30.0">
-         <children>
-            <Label text="Confirme a senha:" />
-            <PasswordField fx:id="campoconfirmaSenha" />
-            <Label fx:id="erroconfirmaSenha" text="*Senhas incompatíveis!" textFill="RED" visible="false">
-               <HBox.margin>
-                  <Insets left="-28.0" />
-               </HBox.margin>
-            </Label>
-         </children>
-      </HBox>
-      <Button mnemonicParsing="false" onAction="#aoClicarbotaoCadastrar" text="Cadastrar">
-         <VBox.margin>
-            <Insets bottom="10.0" />
-         </VBox.margin>
-      </Button>
-      <Label fx:id="confirmaCadastro" text="Cadastro bem sucedido!" textFill="#069a24" visible="false">
-         <VBox.margin>
-            <Insets />
-         </VBox.margin>
+      </VBox>
+      <Button layoutX="250.0" layoutY="316.0" mnemonicParsing="false" onAction="#aoClicarbotaoCadastrar" style="-fx-background-color: #333333;" text="Criar" textFill="#e8e8e8" />
+      <Label fx:id="confirmaCadastro" layoutX="211.0" layoutY="359.0" prefHeight="18.0" prefWidth="136.0" text="Label" textAlignment="CENTER" visible="false" />
+      <Label fx:id="erroNome" layoutX="408.0" layoutY="82.0" prefHeight="18.0" prefWidth="136.0" text="Label" textAlignment="JUSTIFY" textFill="#a4a0a0" visible="false" />
+      <Label fx:id="erroEmail" layoutX="408.0" layoutY="130.0" prefHeight="18.0" prefWidth="136.0" text="Label" textFill="#a4a0a0" visible="false" />
+      <Label fx:id="erroTelefone" layoutX="408.0" layoutY="178.0" prefHeight="18.0" prefWidth="136.0" text="Label" textFill="#a4a0a0" visible="false" />
+      <Label fx:id="erroSenha" layoutX="406.0" layoutY="227.0" prefHeight="18.0" prefWidth="128.0" text="Label" textFill="#a4a0a0" visible="false" />
+      <Label fx:id="erroconfirmaSenha" layoutX="408.0" layoutY="275.0" prefHeight="18.0" prefWidth="136.0" text="Label" textFill="#a4a0a0" visible="false" />
+      <ImageView fitHeight="45.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../Downloads/line_start_arrow_41dp_WHITE_FILL1_wght500_GRAD200_opsz40.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="botaoVoltar" layoutY="1.0" mnemonicParsing="false" onAction="#aoClicarBotaoVoltar" prefHeight="45.0" prefWidth="45.0" style="-fx-background-color: transparent;" />
+      <Label layoutX="169.0" layoutY="3.0" text="Crie uma conta" textFill="WHITE">
          <font>
-            <Font size="17.0" />
+            <Font size="30.0" />
          </font>
       </Label>
    </children>
-</VBox>
+</AnchorPane>

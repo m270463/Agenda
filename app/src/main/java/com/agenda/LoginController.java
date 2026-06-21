@@ -11,6 +11,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class LoginController {
@@ -24,11 +25,15 @@ public class LoginController {
     @FXML
     private Label textoErro;
 
-
+    @FXML
+    private AnchorPane anchor;
+    
 
     @FXML
     public void initialize() {
-        Platform.runLater(() ->campoUsuario.requestFocus());
+
+
+        Platform.runLater(() -> anchor.requestFocus());
         campoUsuario.setOnKeyPressed((KeyEvent event) -> {
             if (event.getCode() == KeyCode.ENTER) {
                 campoSenha.requestFocus(); 
@@ -55,7 +60,6 @@ public class LoginController {
         }
         return false;
     }
-
 
     @FXML
     private void aoClicarBotaoLogin() {
@@ -87,9 +91,9 @@ public class LoginController {
     }
 
     @FXML
-    private void aoClicarBotaoVoltar(){
+    private void aoClicarBotaoCriarConta(){
         try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("prelogin.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("criarconta.fxml"));
         Parent root = loader.load();
 
         Stage stage = (Stage) campoUsuario.getScene().getWindow();
