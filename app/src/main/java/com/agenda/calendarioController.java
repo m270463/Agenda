@@ -11,13 +11,16 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class calendarioController {
@@ -56,8 +59,8 @@ public class calendarioController {
         comboMes.setItems(FXCollections.observableArrayList(meses));
         comboMes.getSelectionModel().select(mesAtual.getMonthValue() - 1);
 
-        comboMes.setButtonCell(criarCelulaCustomizada()); 
-        comboMes.setCellFactory(lv -> criarCelulaCustomizada()); 
+        comboMes.setButtonCell(criarCelulaCustomizada(false)); 
+        comboMes.setCellFactory(lv -> criarCelulaCustomizada(true)); 
 
         List<String> anos = new ArrayList<>();
         for (int i = 1970; i <= 2050; i++){
@@ -67,27 +70,26 @@ public class calendarioController {
         comboAno.setItems(FXCollections.observableArrayList(anos));
         comboAno.setValue(String.valueOf(mesAtual.getYear()));
 
-        comboAno.setButtonCell(criarCelulaCustomizada());
-        comboAno.setCellFactory(lv -> criarCelulaCustomizada());
-        comboAno.setStyle("-fx-faint-focus-color: transparent; -fx-focus-color: transparent;");
+        comboAno.setButtonCell(criarCelulaCustomizada(false));
+        comboAno.setCellFactory(lv -> criarCelulaCustomizada(true));
 
         Platform.runLater(() -> {
             Node arrowButton = comboMes.lookup(".arrow-button");
             if (arrowButton != null) {
-                arrowButton.setStyle("-fx-padding: 0; -fx-width: 0; -fx-max-width: 0; -fx-min-width: 0;");
+                arrowButton.setStyle("-fx-background-color: #1c1d22; -fx-border-color:  white white white transparent");
             }
             Node arrow = comboMes.lookup(".arrow");
             if (arrow != null) {
-                arrow.setStyle("-fx-shape: ''; -fx-padding: 0;");
+                arrow.setStyle("-fx-background-color: white;");
             }
 
             Node arrowButton1 = comboAno.lookup(".arrow-button");
             if (arrowButton1 != null) {
-                arrowButton1.setStyle("-fx-padding: 0; -fx-width: 0; -fx-max-width: 0; -fx-min-width: 0;");
+                arrowButton1.setStyle("-fx-background-color: #1c1d22; -fx-border-color:  white white white transparent");
             }
             Node arrow1 = comboAno.lookup(".arrow");
             if (arrow1 != null) {
-                arrow1.setStyle("-fx-shape: ''; -fx-padding: 0;");
+                arrow1.setStyle("-fx-background-color: white;");
             }
         });
 
@@ -110,7 +112,7 @@ public class calendarioController {
         montarCalendario(mesAtual);
     }
 
-    private ListCell<String> criarCelulaCustomizada() {
+    private ListCell<String> criarCelulaCustomizada(boolean celula) {
         return new ListCell<>() {   
             @Override
             protected void updateItem(String item, boolean empty) {
@@ -118,10 +120,13 @@ public class calendarioController {
                 if (empty || item == null) {
                     setText(null);
                     setStyle("-fx-background-color: transparent;");
-                } else {
+                } else if (celula){
                     setText(item);
-                    // Centraliza o texto, muda para branco e mantém o fundo dark
-                    setStyle("-fx-text-fill: white; -fx-alignment: CENTER; -fx-background-color:  #1c1d22;-fx-control-inner-background: #121212;");
+                    setStyle("-fx-text-fill: white; -fx-alignment: CENTER; -fx-background-color:  #1c1d22;");
+                }
+                else{
+                    setText(item);
+                    setStyle("-fx-text-fill: white; -fx-alignment: CENTER; -fx-background-color:  #1c1d22; -fx-border-color:   white  transparent white white");
                 }
             }
         };
@@ -140,24 +145,19 @@ public class calendarioController {
     @FXML 
     private void botaovoltarInicio(){
         try {
-        // 1. Carrega o novo arquivo FXML (Protegido dentro do try)
         FXMLLoader loader = new FXMLLoader(getClass().getResource("teste.fxml"));
         Parent root = loader.load();
 
-        // 2. Pega a janela atual (Stage)
         Stage stage = (Stage) avancar.getScene().getWindow();
 
-        // 3. Cria a nova cena (Garante que Scene está com 'C')
         Scene novaCena = new Scene(root);
 
-        // 4. Configura e mostra a nova janela
         stage.setScene(novaCena);
         stage.setTitle("Agenda - Login");
         stage.centerOnScreen();
         stage.show();
 
         } catch (IOException e) {
-            // Se o arquivo teste2.fxml sumir ou estiver com erro, o Java avisa aqui sem travar o programa
             System.err.println("Erro crítico ao carregar o arquivo da nova cena!");
             e.printStackTrace();
         }
@@ -174,7 +174,6 @@ public class calendarioController {
 
 
     private void montarCalendario(YearMonth mesAtual){
-
         
         calendario.getChildren().removeIf(node -> {
             Integer rowIndex = GridPane.getRowIndex(node);
@@ -193,8 +192,12 @@ public class calendarioController {
 
         int linha = 1;
         int coluna = colunaInicial;
-
         for (int dia = 1; dia <= totalDias; dia++){
+            HBox hbox = new HBox(38);
+            hbox.setAlignment(Pos.CENTER_LEFT);
+            hbox.setMaxHeight(Double.MAX_VALUE);
+            hbox.setMaxWidth(Double.MAX_VALUE);
+            hbox.setStyle("-fx-background-color: #121212;-fx-border-color: #333333");
             Button botaoDia = new Button(String.valueOf(dia));
 
             botaoDia.setMaxWidth(Double.MAX_VALUE);
@@ -202,9 +205,9 @@ public class calendarioController {
 
             // Define a cor da borda (linha do grid), a espessura, o fundo do botão e a cor do texto
             botaoDia.setStyle(
-                "-fx-border-color: #333333; " +    // Cor da linha (um cinza elegante para contrastar com o preto)
+                "-fx-border-color: transparent; " +    // Cor da linha (um cinza elegante para contrastar com o preto)
                 "-fx-border-width: 0.5px; " +       // Espessura da linha
-                "-fx-background-color: #121212; " + // Cor de fundo do botão (um preto levemente mais claro que o fundo)
+                "-fx-background-color: transparent; " + // Cor de fundo do botão (um preto levemente mais claro que o fundo)
                 "-fx-text-fill: white;"  +           // Cor do número do dia (branco)
                 "-fx-alignment: top-left; " +       // Alinha o texto no canto superior esquerdo
                 "-fx-padding: 4px 0px 0px 6px;"     // Dá uma folga de 4px do topo e 6px da esquerda
@@ -213,22 +216,54 @@ public class calendarioController {
             LocalDate dataBotao = mesAtual.atDay(dia);
 
             if (dataBotao.isEqual(LocalDate.now())) {
-                botaoDia.setStyle(
-                    "-fx-border-color: #00adb5; " +    // Borda azul neon para destacar o dia de hoje!
+                hbox.setStyle(
+                    "-fx-border-color: #00adb5; " +    
                     "-fx-border-width: 1.5px; " +       
-                    "-fx-background-color: #1a1a1a; " + 
-                    "-fx-text-fill: white; " +
-                    "-fx-alignment: top-left; " +
-                    "-fx-padding: 4px 0px 0px 6px;"
+                    "-fx-background-color: #1a1a1a; " 
                 );
         }
+            hbox.getChildren().add(botaoDia);
+            ArrayList<Evento> eventosDia = new ArrayList<>();
+            if (App.usuarioaAtivo.getAgenda().get(dataBotao) != null)
+                eventosDia.addAll(App.usuarioaAtivo.getAgenda().get(dataBotao));
+            
 
+            for (Evento evento: App.usuarioaAtivo.getAgendaRepetitiva()){
+                if (dataBotao.isAfter(evento.getDiaInicio())){
+
+                    if (evento.getRepeticao().equals("Diariamente"))
+                        eventosDia.add(evento);
+
+                    else if (evento.getRepeticao().equals("Semanalmente") && dataBotao.getDayOfWeek() == evento.getDiaInicio().getDayOfWeek())
+                        eventosDia.add(evento);
+                    else if (evento.getRepeticao().equals("Mensalmente") && evento.getDiaInicio().getDayOfMonth() == dia)  
+                        eventosDia.add(evento);
+                        
+                }
+            }
+
+            if (!eventosDia.isEmpty()){
+                Label badgeContador = new Label(String.valueOf(eventosDia.size()));
+                badgeContador.setStyle(
+                    "-fx-background-color: #FF0000; " + 
+                    "-fx-text-fill: white; " +         
+                    "-fx-font-size: 9px; " +           
+                    "-fx-font-weight: bold; " +
+                    "-fx-padding: 2px 5px 2px 5px; " +  
+                    "-fx-background-radius: 10px;"+
+                    "fx-alignment: top-right"      
+                );
+                badgeContador.setTranslateY(-8);
+                hbox.getChildren().add(badgeContador);    
+            }
+            
+            final ArrayList<Evento> eventosNoDia = eventosDia;
             final int diaSelecionado = dia;
             botaoDia.setOnAction(event ->{
                 System.out.println(diaSelecionado); 
             });
 
-            calendario.add(botaoDia, coluna, linha);
+            calendario.add(hbox, coluna, linha);
 
             coluna++;
 
@@ -239,4 +274,25 @@ public class calendarioController {
         }
 
     }
+    @FXML
+    private void botaoAdicionar(){
+            try {
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("criaevento.fxml"));
+    Parent root = loader.load();
+
+    Stage stage = (Stage) comboAno.getScene().getWindow();
+
+    Scene novaCena = new Scene(root);
+
+    stage.setScene(novaCena);
+    stage.setTitle("Agenda - Login");
+    stage.centerOnScreen();
+    stage.show();
+
+    } catch (IOException e) {
+        System.err.println("Erro crítico ao carregar o arquivo da nova cena!");
+        e.printStackTrace();
+    }
+    }
+
 }
