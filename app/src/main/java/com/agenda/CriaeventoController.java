@@ -81,17 +81,17 @@ public class CriaeventoController {
         Comborepeticao.setItems(FXCollections.observableArrayList(repeticoes));
         Comborepeticao.setButtonCell(criarCelulaCustomizada()); 
         Comborepeticao.setCellFactory(lv -> criarCelulaCustomizada()); 
-        Comborepeticao.setStyle("-fx-prompt-text-fill: white;");
         Platform.runLater(() -> {
-        Node arrowButton = Comborepeticao.lookup(".arrow-button");
-        if (arrowButton != null) {
-            arrowButton.setStyle("-fx-background-color: #1c1d22; -fx-border-color: white white white transparent");
-        }
-        Node arrow = Comborepeticao.lookup(".arrow");
-        if (arrow != null) {
-            arrow.setStyle("-fx-background-color: white;");
+            Node arrowButton = Comborepeticao.lookup(".arrow-button");
+            if (arrowButton != null) {
+                arrowButton.setStyle("-fx-background-color: #1c1d22; -fx-border-color: transparent");
+            }
+            Node arrow = Comborepeticao.lookup(".arrow");
+            if (arrow != null) {
+                arrow.setStyle("-fx-background-color: white;");
             }
         });
+        Comborepeticao.setStyle("-fx-prompt-text-fill: white; -fx-border-color: white;");
 
     }
 
@@ -101,20 +101,18 @@ public class CriaeventoController {
             protected void updateItem(String item, boolean empty) {
                 super.updateItem(item, empty);
                 if (empty || item == null) {
-                    setStyle("-fx-text-fill: white;  -fx-background-color:  #1c1d22; -fx-border-color: white transparent white white;");
+                    setStyle("-fx-text-fill: white;  -fx-background-color:  #1c1d22; -fx-border-color:  transparent ;");
                 } else {
                     setText(item);
-                    setStyle("-fx-text-fill: white; -fx-alignment: CENTER; -fx-background-color:  #1c1d22;-fx-control-inner-background: #121212;");
+                    setStyle("-fx-text-fill: white; -fx-alignment: CENTER; -fx-background-color:  #1c1d22;-fx-control-inner-background: #121212; ");
                 }
             }
         };
     }
 
-
-
-
     @FXML
     private void interruptor(){
+        boolean ativou = false;
         if (btnInterruptor.isSelected()){
             horaInicio.setManaged(false);
             horaFim.setManaged(false);
@@ -122,12 +120,15 @@ public class CriaeventoController {
             horaFim.setVisible(false);
             erroHoraInicio.setVisible(false);
             erroHoraFim.setVisible(false);
+            ativou = true;
+            erroComboRepeticao.setTranslateY(-100);
         }
         else{
             horaFim.setManaged(true);
             horaInicio.setManaged(true);
             horaInicio.setVisible(true);
             horaFim.setVisible(true);
+            erroComboRepeticao.setTranslateY(0);
         }
     horaInicio.getParent().requestLayout();
     }
@@ -212,7 +213,7 @@ public class CriaeventoController {
 
             else{
                 valido = false;
-                erroHoraInicio.setText("*Data inválida!!");
+                erroHoraInicio.setText("*Data inválida!");
                 erroHoraInicio.setVisible(true);
             }
             

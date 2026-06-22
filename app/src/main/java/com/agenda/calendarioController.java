@@ -11,6 +11,7 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -19,6 +20,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class calendarioController {
@@ -190,8 +192,12 @@ public class calendarioController {
 
         int linha = 1;
         int coluna = colunaInicial;
-
         for (int dia = 1; dia <= totalDias; dia++){
+            HBox hbox = new HBox(38);
+            hbox.setAlignment(Pos.CENTER_LEFT);
+            hbox.setMaxHeight(Double.MAX_VALUE);
+            hbox.setMaxWidth(Double.MAX_VALUE);
+            hbox.setStyle("-fx-background-color: #121212;-fx-border-color: #333333");
             Button botaoDia = new Button(String.valueOf(dia));
 
             botaoDia.setMaxWidth(Double.MAX_VALUE);
@@ -199,9 +205,9 @@ public class calendarioController {
 
             // Define a cor da borda (linha do grid), a espessura, o fundo do botão e a cor do texto
             botaoDia.setStyle(
-                "-fx-border-color: #333333; " +    // Cor da linha (um cinza elegante para contrastar com o preto)
+                "-fx-border-color: transparent; " +    // Cor da linha (um cinza elegante para contrastar com o preto)
                 "-fx-border-width: 0.5px; " +       // Espessura da linha
-                "-fx-background-color: #121212; " + // Cor de fundo do botão (um preto levemente mais claro que o fundo)
+                "-fx-background-color: transparent; " + // Cor de fundo do botão (um preto levemente mais claro que o fundo)
                 "-fx-text-fill: white;"  +           // Cor do número do dia (branco)
                 "-fx-alignment: top-left; " +       // Alinha o texto no canto superior esquerdo
                 "-fx-padding: 4px 0px 0px 6px;"     // Dá uma folga de 4px do topo e 6px da esquerda
@@ -210,15 +216,13 @@ public class calendarioController {
             LocalDate dataBotao = mesAtual.atDay(dia);
 
             if (dataBotao.isEqual(LocalDate.now())) {
-                botaoDia.setStyle(
+                hbox.setStyle(
                     "-fx-border-color: #00adb5; " +    
                     "-fx-border-width: 1.5px; " +       
-                    "-fx-background-color: #1a1a1a; " + 
-                    "-fx-text-fill: white; " +
-                    "-fx-alignment: top-left; " +
-                    "-fx-padding: 4px 0px 0px 6px;"
+                    "-fx-background-color: #1a1a1a; " 
                 );
         }
+            hbox.getChildren().add(botaoDia);
             ArrayList<Evento> eventosDia = new ArrayList<>();
             if (App.usuarioaAtivo.getAgenda().get(dataBotao) != null)
                 eventosDia.addAll(App.usuarioaAtivo.getAgenda().get(dataBotao));
@@ -247,18 +251,19 @@ public class calendarioController {
                     "-fx-font-weight: bold; " +
                     "-fx-padding: 2px 5px 2px 5px; " +  
                     "-fx-background-radius: 10px;"+
-                    "fx-alignment: top-right"     
-                );    
-                botaoDia.setGraphic(badgeContador);
+                    "fx-alignment: top-right"      
+                );
+                badgeContador.setTranslateY(-8);
+                hbox.getChildren().add(badgeContador);    
             }
-
+            
             final ArrayList<Evento> eventosNoDia = eventosDia;
             final int diaSelecionado = dia;
             botaoDia.setOnAction(event ->{
                 System.out.println(diaSelecionado); 
             });
 
-            calendario.add(botaoDia, coluna, linha);
+            calendario.add(hbox, coluna, linha);
 
             coluna++;
 

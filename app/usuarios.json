@@ -36,8 +36,6 @@
     "telefone": "+55 19 999999999",
     "senha": "1234",
     "agenda": {},
-    "agendaRepetitiva": [
-      
-    ]
+    "agendaRepetitiva": []
   }
 ]

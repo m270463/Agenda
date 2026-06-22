@@ -13,7 +13,6 @@
 <?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.ToggleSwitch?>
 
-
 <AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="566.0" style="-fx-background-color: #121212; -fx-border-color: #b6b2b2; -fx-border-image-width: 3px;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.agenda.CriaeventoController">
    <children>
       <VBox alignment="CENTER" layoutX="176.0" layoutY="47.0" spacing="20.0">
@@ -53,11 +52,11 @@
             <Font size="25.0" />
          </font>
       </Label>
-      <Label fx:id="erroTitulo" layoutX="406.0" layoutY="62.0" prefHeight="18.0" prefWidth="161.0" text="Label" visible="false" />
-      <Label fx:id="erroDiaInicio" layoutX="406.0" layoutY="108.0" prefHeight="18.0" prefWidth="161.0" text="Label" visible="false" />
-      <Label fx:id="erroHoraInicio" layoutX="406.0" layoutY="157.0" prefHeight="18.0" prefWidth="161.0" text="Label" visible="false" />
-      <Label fx:id="erroHoraFim" layoutX="399.0" layoutY="235.0" prefHeight="18.0" prefWidth="161.0" text="Label" visible="false" />
-      <Label fx:id="erroComboRepeticao" layoutX="399.0" layoutY="279.0" prefHeight="18.0" prefWidth="161.0" text="Label" visible="false" />
+      <Label fx:id="erroTitulo" layoutX="406.0" layoutY="62.0" prefHeight="18.0" prefWidth="161.0" text="Label" textFill="WHITE" visible="false" />
+      <Label fx:id="erroDiaInicio" layoutX="406.0" layoutY="108.0" prefHeight="18.0" prefWidth="161.0" text="Label" textFill="WHITE" visible="false" />
+      <Label fx:id="erroHoraInicio" layoutX="406.0" layoutY="157.0" prefHeight="18.0" prefWidth="161.0" text="Label" textFill="WHITE" visible="false" />
+      <Label fx:id="erroHoraFim" layoutX="399.0" layoutY="235.0" prefHeight="18.0" prefWidth="161.0" text="Label" textFill="WHITE" visible="false" />
+      <Label fx:id="erroComboRepeticao" layoutX="399.0" layoutY="279.0" prefHeight="18.0" prefWidth="161.0" text="Label" textFill="WHITE" visible="false" />
       <ImageView fitHeight="42.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../../../Downloads/line_start_arrow_41dp_WHITE_FILL1_wght500_GRAD200_opsz40.png" />
