@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane fx:id="anchor" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="558.0" style="-fx-background-color: #121212; -fx-border-color: #b6b2b2; -fx-border-image-width: 3px;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.agenda.CriacontaController">
    <children>
       <VBox layoutX="143.0" layoutY="63.0" prefHeight="230.0" prefWidth="262.0" spacing="20.0">
@@ -22,15 +21,15 @@
          </children>
       </VBox>
       <Button layoutX="250.0" layoutY="316.0" mnemonicParsing="false" onAction="#aoClicarbotaoCadastrar" style="-fx-background-color: #333333;" text="Criar" textFill="#e8e8e8" />
-      <Label fx:id="confirmaCadastro" layoutX="211.0" layoutY="359.0" prefHeight="18.0" prefWidth="136.0" text="Label" textAlignment="CENTER" visible="false" />
-      <Label fx:id="erroNome" layoutX="408.0" layoutY="82.0" prefHeight="18.0" prefWidth="136.0" text="Label" textAlignment="JUSTIFY" textFill="#a4a0a0" visible="false" />
-      <Label fx:id="erroEmail" layoutX="408.0" layoutY="130.0" prefHeight="18.0" prefWidth="136.0" text="Label" textFill="#a4a0a0" visible="false" />
-      <Label fx:id="erroTelefone" layoutX="408.0" layoutY="178.0" prefHeight="18.0" prefWidth="136.0" text="Label" textFill="#a4a0a0" visible="false" />
-      <Label fx:id="erroSenha" layoutX="406.0" layoutY="227.0" prefHeight="18.0" prefWidth="128.0" text="Label" textFill="#a4a0a0" visible="false" />
-      <Label fx:id="erroconfirmaSenha" layoutX="408.0" layoutY="275.0" prefHeight="18.0" prefWidth="136.0" text="Label" textFill="#a4a0a0" visible="false" />
+      <Label fx:id="confirmaCadastro" layoutX="211.0" layoutY="359.0" prefHeight="18.0" prefWidth="136.0" text="Label" textAlignment="CENTER" textFill="WHITE" visible="false" />
+      <Label fx:id="erroNome" layoutX="408.0" layoutY="82.0" prefHeight="18.0" prefWidth="136.0" text="Label" textAlignment="JUSTIFY" textFill="WHITE" visible="false" />
+      <Label fx:id="erroEmail" layoutX="408.0" layoutY="130.0" prefHeight="18.0" prefWidth="136.0" text="Label" textFill="WHITE" visible="false" />
+      <Label fx:id="erroTelefone" layoutX="408.0" layoutY="178.0" prefHeight="18.0" prefWidth="136.0" text="Label" textFill="WHITE" visible="false" />
+      <Label fx:id="erroSenha" layoutX="406.0" layoutY="227.0" prefHeight="18.0" prefWidth="128.0" text="Label" textFill="WHITE" visible="false" />
+      <Label fx:id="erroconfirmaSenha" layoutX="408.0" layoutY="275.0" prefHeight="18.0" prefWidth="136.0" text="Label" textFill="WHITE" visible="false" />
       <ImageView fitHeight="45.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../../Downloads/line_start_arrow_41dp_WHITE_FILL1_wght500_GRAD200_opsz40.png" />
+            <Image url="@../../imagens_agenda/line_start_arrow_41dp_WHITE_FILL1_wght500_GRAD200_opsz40.png" />
          </image>
       </ImageView>
       <Button fx:id="botaoVoltar" layoutY="1.0" mnemonicParsing="false" onAction="#aoClicarBotaoVoltar" prefHeight="45.0" prefWidth="45.0" style="-fx-background-color: transparent;" />
