@@ -70,6 +70,9 @@ public class CriaeventoController {
     private AnchorPane anchor;
 
     @FXML
+    private Label confirmacao;
+
+    @FXML
     private void initialize(){
         Platform.runLater(() -> anchor.requestFocus());
         ArrayList<String> repeticoes = new ArrayList<>();
@@ -122,6 +125,7 @@ public class CriaeventoController {
             erroHoraFim.setVisible(false);
             ativou = true;
             erroComboRepeticao.setTranslateY(-100);
+            confirmacao.setTranslateY(-110);
         }
         else{
             horaFim.setManaged(true);
@@ -129,6 +133,7 @@ public class CriaeventoController {
             horaInicio.setVisible(true);
             horaFim.setVisible(true);
             erroComboRepeticao.setTranslateY(0);
+            confirmacao.setTranslateY(0);
         }
     horaInicio.getParent().requestLayout();
     }
@@ -256,9 +261,15 @@ public class CriaeventoController {
             }
             else
                 App.usuarioaAtivo.getAgendaRepetitiva().add(evento);
+
+            confirmacao.setText("Evento criado!");
+            confirmacao.setVisible(true);
+
         }
-        else
+        else{
+            confirmacao.setVisible(false);
             return;
+        }
     }
     
     @FXML
