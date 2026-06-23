@@ -7,7 +7,7 @@
     "agenda": {},
     "agendaRepetitiva": [
       {
-        "nome": "",
+        "nome": "party",
         "descricao": "",
         "diaInicio": "2026-06-12",
         "horaInicio": "10:00:00",
@@ -27,6 +27,30 @@
         "horaInicio": "10:10:00",
         "horaFim": "10:15:00",
         "repeticao": "Mensalmente"
+      },
+      {
+        "nome": "a",
+        "descricao": "",
+        "diaInicio": "2026-06-24",
+        "repeticao": "Nunca"
+      },
+      {
+        "nome": "abc",
+        "descricao": "",
+        "diaInicio": "2026-06-21",
+        "repeticao": "Nunca"
+      },
+      {
+        "nome": "abc",
+        "descricao": "",
+        "diaInicio": "2027-06-23",
+        "repeticao": "Nunca"
+      },
+      {
+        "nome": "titulo",
+        "descricao": "",
+        "diaInicio": "2026-06-24",
+        "repeticao": "Diariamente"
       }
     ]
   },
