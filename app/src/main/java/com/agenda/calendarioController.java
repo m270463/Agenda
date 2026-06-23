@@ -198,6 +198,7 @@ public class calendarioController {
             hbox.setMaxHeight(Double.MAX_VALUE);
             hbox.setMaxWidth(Double.MAX_VALUE);
             hbox.setStyle("-fx-background-color: #121212;-fx-border-color: #333333");
+            
             Button botaoDia = new Button(String.valueOf(dia));
 
             botaoDia.setMaxWidth(Double.MAX_VALUE);
@@ -258,14 +259,35 @@ public class calendarioController {
             }
             
             final ArrayList<Evento> eventosNoDia = eventosDia;
+            final LocalDate dataDia = dataBotao;
             final int diaSelecionado = dia;
             botaoDia.setOnAction(event ->{
-                System.out.println(diaSelecionado); 
+
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("verevento.fxml"));
+                Parent root = loader.load();
+
+                verEventoController novoController = loader.getController();
+                novoController.carregarLista(eventosNoDia,dataDia);
+                Stage stage = (Stage) comboMes.getScene().getWindow();
+
+                Scene novaCena = new Scene(root);
+
+                stage.setScene(novaCena);
+                stage.setTitle("Agenda - Calendário");
+                stage.centerOnScreen();
+                stage.show();
+            
+
+                } catch (IOException e) {
+                    System.err.println("Erro crítico ao carregar o arquivo da nova cena!");
+                    e.printStackTrace();
+                }
             });
 
-            calendario.add(hbox, coluna, linha);
+        calendario.add(hbox, coluna, linha);
 
-            coluna++;
+        coluna++;
 
             if (coluna > 6){
                 coluna = 0;
@@ -285,7 +307,7 @@ public class calendarioController {
     Scene novaCena = new Scene(root);
 
     stage.setScene(novaCena);
-    stage.setTitle("Agenda - Login");
+    stage.setTitle("Agenda - Novo Evento");
     stage.centerOnScreen();
     stage.show();
 

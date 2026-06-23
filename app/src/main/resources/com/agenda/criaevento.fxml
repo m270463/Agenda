@@ -15,7 +15,7 @@
 
 <AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="566.0" style="-fx-background-color: #121212; -fx-border-color: #b6b2b2; -fx-border-image-width: 3px;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.agenda.CriaeventoController">
    <children>
-      <VBox alignment="CENTER" layoutX="176.0" layoutY="47.0" spacing="20.0">
+      <VBox alignment="CENTER" layoutX="176.0" layoutY="47.0" prefHeight="307.0" prefWidth="215.0" spacing="20.0">
          <children>
             <TextField fx:id="titulo" prefHeight="20.0" prefWidth="215.0" promptText="Título" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-text-inner-color: white;" />
             <TextField fx:id="diaInicio" promptText="Dia (DD/MM/YYYY)" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-text-inner-color: white;" />
@@ -44,7 +44,6 @@
                </VBox.margin>
             </ComboBox>
             <TextField fx:id="descricao" prefHeight="17.0" prefWidth="215.0" promptText="Descrição" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-text-inner-color: white;" />
-            <Button mnemonicParsing="false" onAction="#botaoCadastro" style="-fx-background-color: #333333;" text="Criar" textFill="#e8e8e8" />
          </children>
       </VBox>
       <Label layoutX="151.0" layoutY="4.0" prefHeight="34.0" prefWidth="293.0" text="Crie um novo evento" textFill="WHITE">
@@ -63,5 +62,7 @@
          </image>
       </ImageView>
       <Button layoutY="1.0" mnemonicParsing="false" onAction="#botaoVoltar" prefHeight="42.0" prefWidth="48.0" style="-fx-background-color: transparent;" />
+      <Label fx:id="confirmacao" layoutX="327.0" layoutY="371.0" prefHeight="18.0" prefWidth="231.0" text="Label" textFill="WHITE" visible="false" />
+      <Button layoutX="260.0" layoutY="367.0" mnemonicParsing="false" onAction="#botaoCadastro" style="-fx-background-color: #333333;" text="Criar" textFill="#e8e8e8" />
    </children>
 </AnchorPane>
