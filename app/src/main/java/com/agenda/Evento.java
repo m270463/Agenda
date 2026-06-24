@@ -47,7 +47,9 @@ public class Evento {
     public String getRepeticao(){
         return this.repeticao;
     }
-
+    public void setRepeticao(String repeticao){
+        this.repeticao = repeticao;
+    }
 
     public LocalTime getHoraInicio() {
         return horaInicio;

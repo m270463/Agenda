@@ -4,16 +4,20 @@
     "email": "a@gmail.com",
     "telefone": "+55 11 94077 4944",
     "senha": "123",
-    "agenda": {},
+    "agenda": {
+      "2026-06-30": [],
+      "2026-06-24": [
+        {
+          "nome": "Brasil",
+          "descricao": "Neymar",
+          "diaInicio": "2026-06-24",
+          "horaInicio": "07:00:00",
+          "horaFim": "10:00:00",
+          "repeticao": "Diariamente"
+        }
+      ]
+    },
     "agendaRepetitiva": [
-      {
-        "nome": "party",
-        "descricao": "",
-        "diaInicio": "2026-06-12",
-        "horaInicio": "10:00:00",
-        "horaFim": "12:00:00",
-        "repeticao": "Semanalmente"
-      },
       {
         "nome": "a",
         "descricao": "",
@@ -47,10 +51,10 @@
         "repeticao": "Nunca"
       },
       {
-        "nome": "titulo",
+        "nome": "a",
         "descricao": "",
-        "diaInicio": "2026-06-24",
-        "repeticao": "Diariamente"
+        "diaInicio": "2026-06-30",
+        "repeticao": "Nunca"
       }
     ]
   },
