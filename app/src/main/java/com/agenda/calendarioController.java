@@ -20,7 +20,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class calendarioController {
@@ -38,6 +38,8 @@ public class calendarioController {
 
     @FXML
     private ComboBox<String> comboAno;
+
+    
 
     private YearMonth mesAtual;
 
@@ -193,17 +195,16 @@ public class calendarioController {
         int linha = 1;
         int coluna = colunaInicial;
         for (int dia = 1; dia <= totalDias; dia++){
-            HBox hbox = new HBox(38);
-            hbox.setAlignment(Pos.CENTER_LEFT);
-            hbox.setMaxHeight(Double.MAX_VALUE);
-            hbox.setMaxWidth(Double.MAX_VALUE);
-            hbox.setStyle("-fx-background-color: #121212;-fx-border-color: #333333");
+            StackPane stack = new StackPane();
+            stack.setAlignment(Pos.CENTER_LEFT);
+            stack.setMaxHeight(Double.MAX_VALUE);
+            stack.setMaxWidth(Double.MAX_VALUE);
+            stack.setStyle("-fx-background-color: #121212;-fx-border-color: #333333");
             
             Button botaoDia = new Button(String.valueOf(dia));
 
             botaoDia.setMaxWidth(Double.MAX_VALUE);
             botaoDia.setMaxHeight(Double.MAX_VALUE);
-
             // Define a cor da borda (linha do grid), a espessura, o fundo do botão e a cor do texto
             botaoDia.setStyle(
                 "-fx-border-color: transparent; " +    // Cor da linha (um cinza elegante para contrastar com o preto)
@@ -217,20 +218,20 @@ public class calendarioController {
             LocalDate dataBotao = mesAtual.atDay(dia);
 
             if (dataBotao.isEqual(LocalDate.now())) {
-                hbox.setStyle(
+                stack.setStyle(
                     "-fx-border-color: #00adb5; " +    
                     "-fx-border-width: 1.5px; " +       
                     "-fx-background-color: #1a1a1a; " 
                 );
         }
-            hbox.getChildren().add(botaoDia);
+            stack.getChildren().add(botaoDia);
             ArrayList<Evento> eventosDia = new ArrayList<>();
             if (App.usuarioaAtivo.getAgenda().get(dataBotao) != null)
                 eventosDia.addAll(App.usuarioaAtivo.getAgenda().get(dataBotao));
             
 
             for (Evento evento: App.usuarioaAtivo.getAgendaRepetitiva()){
-                if (dataBotao.isAfter(evento.getDiaInicio())){
+                if (!dataBotao.isBefore(evento.getDiaInicio()))   {
 
                     if (evento.getRepeticao().equals("Diariamente"))
                         eventosDia.add(evento);
@@ -254,8 +255,8 @@ public class calendarioController {
                     "-fx-background-radius: 10px;"+
                     "fx-alignment: top-right"      
                 );
-                badgeContador.setTranslateY(-8);
-                hbox.getChildren().add(badgeContador);    
+                stack.getChildren().add(badgeContador);    
+                stack.setAlignment(badgeContador, Pos.TOP_RIGHT);
             }
             
             final ArrayList<Evento> eventosNoDia = eventosDia;
@@ -285,7 +286,7 @@ public class calendarioController {
                 }
             });
 
-        calendario.add(hbox, coluna, linha);
+        calendario.add(stack, coluna, linha);
 
         coluna++;
 
