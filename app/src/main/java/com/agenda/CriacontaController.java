@@ -178,7 +178,10 @@ public class CriacontaController {
                 event.consume(); 
             }
         });
+
+        
     } 
+
 
     @FXML
     private void aoClicarbotaoCadastrar(){
