@@ -15,54 +15,79 @@
 
 <AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="566.0" style="-fx-background-color: #121212; -fx-border-color: #b6b2b2; -fx-border-image-width: 3px;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.agenda.CriaeventoController">
    <children>
-      <VBox alignment="CENTER" layoutX="176.0" layoutY="47.0" prefHeight="307.0" prefWidth="215.0" spacing="20.0">
+      <VBox alignment="CENTER" layoutX="176.0" layoutY="56.0" prefHeight="199.0" prefWidth="528.0" spacing="20.0">
          <children>
-            <TextField fx:id="titulo" prefHeight="20.0" prefWidth="215.0" promptText="Título" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-text-inner-color: white;" />
-            <TextField fx:id="diaInicio" promptText="Dia (DD/MM/YYYY)" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-text-inner-color: white;" />
-            <TextField fx:id="horaInicio" promptText="Horário de início (HH:MM)" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-text-inner-color: white;" />
+            <HBox>
+               <children>
+                  <TextField fx:id="titulo" prefHeight="20.0" prefWidth="215.0" promptText="Título" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-text-inner-color: white;" />
+                  <Label fx:id="erroTitulo" prefHeight="18.0" prefWidth="161.0" text="Label" textFill="WHITE" visible="false" />
+               </children>
+            </HBox>
+            <HBox prefHeight="28.0" prefWidth="433.0">
+               <children>
+                  <TextField fx:id="diaInicio" prefHeight="28.0" prefWidth="220.0" promptText="Dia (DD/MM/YYYY)" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-text-inner-color: white;" />
+                  <Label fx:id="erroDiaInicio" prefHeight="18.0" prefWidth="161.0" text="Label" textFill="WHITE" visible="false" />
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <TextField fx:id="horaInicio" prefHeight="28.0" prefWidth="225.0" promptText="Horário de início (HH:MM)" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-text-inner-color: white;" />
+                  <Label fx:id="erroHoraInicio" prefHeight="18.0" prefWidth="161.0" text="Label" textFill="WHITE" visible="false" />
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <TextField fx:id="horaFim" prefWidth="215.0" promptText="Horário de término (HH:MM)" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-text-inner-color: white;" />
+                  <Label fx:id="erroHoraFim" prefHeight="18.0" prefWidth="161.0" text="Label" textFill="WHITE" visible="false">
+                     <HBox.margin>
+                        <Insets left="7.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <ComboBox fx:id="Comborepeticao" prefHeight="26.0" prefWidth="215.0" promptText="Repetição" style="-fx-background-color: #333333;" />
+                  <Label fx:id="erroComboRepeticao" prefHeight="18.0" prefWidth="161.0" text="Label" textFill="WHITE" visible="false">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
             <HBox alignment="CENTER">
                <children>
                   <Label text="Dia inteiro:    " textFill="WHITE">
                      <HBox.margin>
-                        <Insets />
+                        <Insets left="-290.0" />
                      </HBox.margin>
                   </Label>
                   <ToggleSwitch fx:id="btnInterruptor" onMouseClicked="#interruptor" prefHeight="20.0" prefWidth="34.0" style="-fx-background-image: white;" textFill="WHITE" />
                </children>
-               <VBox.margin>
-                  <Insets bottom="-10.0" />
-               </VBox.margin>
             </HBox>
-            <TextField fx:id="horaFim" prefWidth="215.0" promptText="Horário de término (HH:MM)" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-text-inner-color: white;">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </TextField>
-            <ComboBox fx:id="Comborepeticao" prefHeight="26.0" prefWidth="215.0" promptText="Repetição" style="-fx-background-color: #333333;">
-               <VBox.margin>
-                  <Insets bottom="-10.0" />
-               </VBox.margin>
-            </ComboBox>
-            <TextField fx:id="descricao" prefHeight="17.0" prefWidth="215.0" promptText="Descrição" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-text-inner-color: white;" />
          </children>
       </VBox>
-      <Label layoutX="151.0" layoutY="4.0" prefHeight="34.0" prefWidth="293.0" text="Crie um novo evento" textFill="WHITE">
+      <Label layoutX="147.0" layoutY="4.0" prefHeight="34.0" prefWidth="293.0" text="Crie um novo evento" textFill="WHITE">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
-      <Label fx:id="erroTitulo" layoutX="406.0" layoutY="62.0" prefHeight="18.0" prefWidth="161.0" text="Label" textFill="WHITE" visible="false" />
-      <Label fx:id="erroDiaInicio" layoutX="406.0" layoutY="108.0" prefHeight="18.0" prefWidth="161.0" text="Label" textFill="WHITE" visible="false" />
-      <Label fx:id="erroHoraInicio" layoutX="406.0" layoutY="157.0" prefHeight="18.0" prefWidth="161.0" text="Label" textFill="WHITE" visible="false" />
-      <Label fx:id="erroHoraFim" layoutX="399.0" layoutY="235.0" prefHeight="18.0" prefWidth="161.0" text="Label" textFill="WHITE" visible="false" />
-      <Label fx:id="erroComboRepeticao" layoutX="399.0" layoutY="279.0" prefHeight="18.0" prefWidth="161.0" text="Label" textFill="WHITE" visible="false" />
       <ImageView fitHeight="42.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../imagens_agenda/line_start_arrow_41dp_WHITE_FILL1_wght500_GRAD200_opsz40.png" />
          </image>
       </ImageView>
       <Button layoutY="1.0" mnemonicParsing="false" onAction="#botaoVoltar" prefHeight="42.0" prefWidth="48.0" style="-fx-background-color: transparent;" />
-      <Label fx:id="confirmacao" layoutX="327.0" layoutY="371.0" prefHeight="18.0" prefWidth="231.0" text="Label" textFill="WHITE" visible="false" />
-      <Button layoutX="260.0" layoutY="367.0" mnemonicParsing="false" onAction="#botaoCadastro" style="-fx-background-color: #333333;" text="Criar" textFill="#e8e8e8" />
+      <HBox layoutX="256.0" layoutY="360.0" prefHeight="26.0" prefWidth="347.0" spacing="15.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#botaoCadastro" style="-fx-background-color: #333333;" text="Criar" textFill="#e8e8e8" />
+            <Label fx:id="confirmacao" prefHeight="18.0" prefWidth="190.0" text="Label" textFill="WHITE" visible="false">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+      <TextField fx:id="descricao" layoutX="176.0" layoutY="324.0" prefHeight="17.0" prefWidth="215.0" promptText="Descrição" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-text-inner-color: white;" />
    </children>
 </AnchorPane>

@@ -34,7 +34,8 @@ public class verEventoController {
     @FXML
     private GridPane gridEventos;
 
-
+    @FXML
+    private Label confirmacaoErro;
 
 
     private void montarDados(){
@@ -43,17 +44,17 @@ public class verEventoController {
 
         int linha = 0;
 
-        for (Evento event: eventosDia){
+        for (Evento evento: eventosDia){
             Button botaoDia = new Button();
             Label labelHorario = new Label();
             
-            if (event.getHoraInicio() == null)
+            if (evento.getHoraInicio() == null)
                 labelHorario.setText("Dia inteiro");
             
             else
-                labelHorario.setText(event.getHoraInicio() + " - " + event.getHoraFim());
+                labelHorario.setText(evento.getHoraInicio() + " - " + evento.getHoraFim());
             
-            botaoDia.setText(event.getNome());
+            botaoDia.setText(evento.getNome());
 
             botaoDia.setMaxWidth(Double.MAX_VALUE);
             botaoDia.setMaxHeight(Double.MAX_VALUE);
@@ -63,6 +64,31 @@ public class verEventoController {
             botaoDia.setStyle("-fx-background-color:  #121212; -fx-text-fill: white; -fx-border-color: #333333");
             labelHorario.setStyle("-fx-background-color:  #121212; -fx-text-fill: white; -fx-border-color: #333333;");
             labelHorario.setAlignment(Pos.CENTER);
+
+
+            botaoDia.setOnAction(event-> {
+                try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("editevento.fxml"));
+                Parent root = loader.load();
+
+                EditEventoController novoController = loader.getController();
+                novoController.montarEvento(evento);
+                Stage stage = (Stage) gridEventos.getScene().getWindow();
+
+                Scene novaCena = new Scene(root);
+
+                stage.setScene(novaCena);
+                stage.setTitle("Agenda - Calendário");
+                stage.centerOnScreen();
+                stage.show();
+            
+
+                } catch (IOException e) {
+                    System.err.println("Erro crítico ao carregar o arquivo da nova cena!");
+                    e.printStackTrace();
+                }
+            });
+
             RowConstraints rc = new RowConstraints();
             rc.setMinHeight(75);   
             rc.setPrefHeight(75);  
@@ -87,7 +113,7 @@ public class verEventoController {
             lista.addAll(App.usuarioaAtivo.getAgenda().get(Data));
             
             for (Evento evento: App.usuarioaAtivo.getAgendaRepetitiva()){
-                if (Data.isAfter(evento.getDiaInicio())){
+                if (!Data.isBefore(evento.getDiaInicio())){
 
                     if (evento.getRepeticao().equals("Diariamente"))
                         lista.add(evento);
@@ -133,7 +159,7 @@ public class verEventoController {
             lista.addAll(App.usuarioaAtivo.getAgenda().get(Data));
             
             for (Evento evento: App.usuarioaAtivo.getAgendaRepetitiva()){
-                if (Data.isAfter(evento.getDiaInicio())){
+                if (!Data.isBefore(evento.getDiaInicio())){
 
                     if (evento.getRepeticao().equals("Diariamente"))
                         lista.add(evento);
