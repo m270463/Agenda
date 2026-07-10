@@ -316,34 +316,34 @@ public class EditEventoController {
             PauseTransition pausa = new PauseTransition(Duration.seconds(1));
             pausa.setOnFinished(event ->{
                 try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("verevento.fxml"));
-                Parent root = loader.load();
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("verevento.fxml"));
+                    Parent root = loader.load();
 
-                verEventoController novoController = loader.getController();
-                ArrayList<Evento> lista = new ArrayList<>();
-                if (App.usuarioaAtivo.getAgenda().get(evento.getDiaInicio()) != null){
-                    lista.addAll(App.usuarioaAtivo.getAgenda().get(evento.getDiaInicio()));
-                }
-                for (Evento e: App.usuarioaAtivo.getAgendaRepetitiva()){
-                    if (!e.getDiaInicio().isBefore(evento.getDiaInicio()))   {
-                        if (e.getRepeticao().equals("Diariamente"))
-                            lista.add(e);
-                        else if (e.getRepeticao().equals("Semanalmente") && e.getDiaInicio().getDayOfWeek() == evento.getDiaInicio().getDayOfWeek())
-                            lista.add(e);
-                        else if (e.getRepeticao().equals("Mensalmente") && e.getDiaInicio().getDayOfMonth() == evento.getDiaInicio().getDayOfMonth())  
-                            lista.add(e);
+                    verEventoController novoController = loader.getController();
+                    ArrayList<Evento> lista = new ArrayList<>();
+                    if (App.usuarioaAtivo.getAgenda().get(evento.getDiaInicio()) != null){
+                        lista.addAll(App.usuarioaAtivo.getAgenda().get(evento.getDiaInicio()));
                     }
-                }
+                    for (Evento e: App.usuarioaAtivo.getAgendaRepetitiva()){
+                        if (!e.getDiaInicio().isBefore(evento.getDiaInicio()))   {
+                            if (e.getRepeticao().equals("Diariamente"))
+                                lista.add(e);
+                            else if (e.getRepeticao().equals("Semanalmente") && e.getDiaInicio().getDayOfWeek() == evento.getDiaInicio().getDayOfWeek())
+                                lista.add(e);
+                            else if (e.getRepeticao().equals("Mensalmente") && e.getDiaInicio().getDayOfMonth() == evento.getDiaInicio().getDayOfMonth())  
+                                lista.add(e);
+                        }
+                    }
 
-                novoController.carregarLista(lista,evento.getDiaInicio());
-                Stage stage = (Stage) titulo.getScene().getWindow();
+                    novoController.carregarLista(lista,evento.getDiaInicio());
+                    Stage stage = (Stage) titulo.getScene().getWindow();
 
-                Scene novaCena = new Scene(root);
+                    Scene novaCena = new Scene(root);
 
-                stage.setScene(novaCena);
-                stage.setTitle("Agenda - Calendário");
-                stage.centerOnScreen();
-                stage.show();
+                    stage.setScene(novaCena);
+                    stage.setTitle("Agenda - Calendário");
+                    stage.centerOnScreen();
+                    stage.show();
             
 
                 } catch (IOException e) {
