@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import org.controlsfx.control.ToggleSwitch;
 
+import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -25,6 +26,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class CriaeventoController {
     @FXML
@@ -262,7 +264,27 @@ public class CriaeventoController {
 
             confirmacao.setText("Evento criado!");
             confirmacao.setVisible(true);
+            PauseTransition pausa = new PauseTransition(Duration.seconds(1));
+            pausa.setOnFinished(event -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("calendario.fxml"));
+                Parent root = loader.load();
 
+                Stage stage = (Stage) titulo.getScene().getWindow();
+
+                Scene novaCena = new Scene(root);
+
+                stage.setScene(novaCena);
+                stage.setTitle("Agenda - Login");
+                stage.centerOnScreen();
+                stage.show();
+
+                } catch (IOException e) {
+                    System.err.println("Erro crítico ao carregar o arquivo da nova cena!");
+                    e.printStackTrace();
+                }
+            });
+            pausa.play();
         }
         else{
             confirmacao.setVisible(false);
