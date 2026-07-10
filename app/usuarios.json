@@ -12,6 +12,14 @@
           "diaInicio": "2026-07-21",
           "repeticao": "Nunca"
         }
+      ],
+      "2029-07-22": [
+        {
+          "nome": "ab",
+          "descricao": "",
+          "diaInicio": "2029-07-22",
+          "repeticao": "Nunca"
+        }
       ]
     },
     "agendaRepetitiva": [
