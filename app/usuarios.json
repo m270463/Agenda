@@ -6,16 +6,8 @@
     "senha": "123",
     "agenda": {
       "2026-06-30": [],
-      "2026-06-24": [
-        {
-          "nome": "Brasil",
-          "descricao": "Neymar",
-          "diaInicio": "2026-06-24",
-          "horaInicio": "07:00:00",
-          "horaFim": "10:00:00",
-          "repeticao": "Diariamente"
-        }
-      ]
+      "2026-06-24": [],
+      "2026-07-08": []
     },
     "agendaRepetitiva": [
       {
@@ -55,6 +47,18 @@
         "descricao": "",
         "diaInicio": "2026-06-30",
         "repeticao": "Nunca"
+      },
+      {
+        "nome": "prova mc322",
+        "descricao": "",
+        "diaInicio": "2026-06-30",
+        "repeticao": "Nunca"
+      },
+      {
+        "nome": "pina",
+        "descricao": "",
+        "diaInicio": "2026-07-21",
+        "repeticao": "Semanalmente"
       }
     ]
   },
@@ -64,6 +68,16 @@
     "telefone": "+55 19 999999999",
     "senha": "1234",
     "agenda": {},
+    "agendaRepetitiva": []
+  },
+  {
+    "nome": "Edison Assis",
+    "email": "assis.edison@gmail.com",
+    "telefone": "+5511983493580",
+    "senha": "#nega#",
+    "agenda": {
+      "2026-07-03": []
+    },
     "agendaRepetitiva": []
   }
 ]
