@@ -313,7 +313,45 @@ public class EditEventoController {
             evento.setRepeticao(repeticao);
             confirmacao.setText("Evento editado!");
             confirmacao.setVisible(true);
+            PauseTransition pausa = new PauseTransition(Duration.seconds(1));
+            pausa.setOnFinished(event ->{
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("verevento.fxml"));
+                    Parent root = loader.load();
 
+                    verEventoController novoController = loader.getController();
+                    ArrayList<Evento> lista = new ArrayList<>();
+                    if (App.usuarioaAtivo.getAgenda().get(evento.getDiaInicio()) != null){
+                        lista.addAll(App.usuarioaAtivo.getAgenda().get(evento.getDiaInicio()));
+                    }
+                    for (Evento e: App.usuarioaAtivo.getAgendaRepetitiva()){
+                        if (!e.getDiaInicio().isBefore(evento.getDiaInicio()))   {
+                            if (e.getRepeticao().equals("Diariamente"))
+                                lista.add(e);
+                            else if (e.getRepeticao().equals("Semanalmente") && e.getDiaInicio().getDayOfWeek() == evento.getDiaInicio().getDayOfWeek())
+                                lista.add(e);
+                            else if (e.getRepeticao().equals("Mensalmente") && e.getDiaInicio().getDayOfMonth() == evento.getDiaInicio().getDayOfMonth())  
+                                lista.add(e);
+                        }
+                    }
+
+                    novoController.carregarLista(lista,evento.getDiaInicio());
+                    Stage stage = (Stage) titulo.getScene().getWindow();
+
+                    Scene novaCena = new Scene(root);
+
+                    stage.setScene(novaCena);
+                    stage.setTitle("Agenda - Calendário");
+                    stage.centerOnScreen();
+                    stage.show();
+            
+
+                } catch (IOException e) {
+                    System.err.println("Erro crítico ao carregar o arquivo da nova cena!");
+                    e.printStackTrace();
+                }
+            });
+            pausa.play();
         }
         else{
             confirmacao.setVisible(false);
@@ -323,24 +361,44 @@ public class EditEventoController {
     
     @FXML
     private void botaoVoltar(){
+
             try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("calendario.fxml"));
-            Parent root = loader.load();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("verevento.fxml"));
+                Parent root = loader.load();
 
-            Stage stage = (Stage) titulo.getScene().getWindow();
+                verEventoController novoController = loader.getController();
+                ArrayList<Evento> lista = new ArrayList<>();
+                if (App.usuarioaAtivo.getAgenda().get(evento.getDiaInicio()) != null){
+                    lista.addAll(App.usuarioaAtivo.getAgenda().get(evento.getDiaInicio()));
+                }
+                for (Evento e: App.usuarioaAtivo.getAgendaRepetitiva()){
+                    if (!e.getDiaInicio().isBefore(evento.getDiaInicio()))   {
+                        if (e.getRepeticao().equals("Diariamente"))
+                            lista.add(e);
+                        else if (e.getRepeticao().equals("Semanalmente") && e.getDiaInicio().getDayOfWeek() == evento.getDiaInicio().getDayOfWeek())
+                            lista.add(e);
+                        else if (e.getRepeticao().equals("Mensalmente") && e.getDiaInicio().getDayOfMonth() == evento.getDiaInicio().getDayOfMonth())  
+                            lista.add(e);
+                    }
+                }
 
-            Scene novaCena = new Scene(root);
+                novoController.carregarLista(lista,evento.getDiaInicio());
+                Stage stage = (Stage) titulo.getScene().getWindow();
 
-            stage.setScene(novaCena);
-            stage.setTitle("Agenda - Login");
-            stage.centerOnScreen();
-            stage.show();
+                Scene novaCena = new Scene(root);
 
-            } catch (IOException e) {
-                System.err.println("Erro crítico ao carregar o arquivo da nova cena!");
-                e.printStackTrace();
-            }
+                stage.setScene(novaCena);
+                stage.setTitle("Agenda - Calendário");
+                stage.centerOnScreen();
+                stage.show();
+            
+
+                } catch (IOException e) {
+                    System.err.println("Erro crítico ao carregar o arquivo da nova cena!");
+                    e.printStackTrace();
+                }
     }
+
     @FXML
     private void botaoRemover(){
         anchorRemover.setVisible(true);

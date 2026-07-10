@@ -194,7 +194,7 @@ public class CriacontaController {
         
         Usuario newUser = new Usuario(nome, email, telefone, senha);
         App.listaUsuarios.add(newUser);
-
+        confirmaCadastro.setText("Conta criada!");
         confirmaCadastro.setVisible(true);
         PauseTransition pausa = new PauseTransition(Duration.seconds(1));
 

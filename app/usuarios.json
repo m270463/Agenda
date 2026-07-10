@@ -2,82 +2,25 @@
   {
     "nome": "a",
     "email": "a@gmail.com",
-    "telefone": "+55 11 94077 4944",
+    "telefone": "+55 11 940774944",
     "senha": "123",
     "agenda": {
-      "2026-06-30": [],
-      "2026-06-24": [],
-      "2026-07-08": []
+      "2026-07-21": [
+        {
+          "nome": "a",
+          "descricao": "",
+          "diaInicio": "2026-07-21",
+          "repeticao": "Nunca"
+        }
+      ]
     },
     "agendaRepetitiva": [
       {
-        "nome": "a",
+        "nome": "b",
         "descricao": "",
         "diaInicio": "2026-12-12",
         "repeticao": "Mensalmente"
-      },
-      {
-        "nome": "a",
-        "descricao": "",
-        "diaInicio": "2026-11-12",
-        "horaInicio": "10:10:00",
-        "horaFim": "10:15:00",
-        "repeticao": "Mensalmente"
-      },
-      {
-        "nome": "a",
-        "descricao": "",
-        "diaInicio": "2026-06-24",
-        "repeticao": "Nunca"
-      },
-      {
-        "nome": "abc",
-        "descricao": "",
-        "diaInicio": "2026-06-21",
-        "repeticao": "Nunca"
-      },
-      {
-        "nome": "abc",
-        "descricao": "",
-        "diaInicio": "2027-06-23",
-        "repeticao": "Nunca"
-      },
-      {
-        "nome": "a",
-        "descricao": "",
-        "diaInicio": "2026-06-30",
-        "repeticao": "Nunca"
-      },
-      {
-        "nome": "prova mc322",
-        "descricao": "",
-        "diaInicio": "2026-06-30",
-        "repeticao": "Nunca"
-      },
-      {
-        "nome": "pina",
-        "descricao": "",
-        "diaInicio": "2026-07-21",
-        "repeticao": "Semanalmente"
       }
     ]
-  },
-  {
-    "nome": "LUCAS",
-    "email": "luquinhas@gmail.com",
-    "telefone": "+55 19 999999999",
-    "senha": "1234",
-    "agenda": {},
-    "agendaRepetitiva": []
-  },
-  {
-    "nome": "Edison Assis",
-    "email": "assis.edison@gmail.com",
-    "telefone": "+5511983493580",
-    "senha": "#nega#",
-    "agenda": {
-      "2026-07-03": []
-    },
-    "agendaRepetitiva": []
   }
 ]
