@@ -302,6 +302,14 @@ public class EditEventoController {
             evento.setDiaInicio(diaComeco);
             evento.setHoraInicio(horaComeco);
             evento.setHoraFim(horaTermino);
+            if (evento.getRepeticao().equals("Nunca") && !repeticao.equals(evento.getRepeticao())){
+                App.usuarioaAtivo.getAgendaRepetitiva().add(evento);
+                App.usuarioaAtivo.getAgenda().get(evento.getDiaInicio()).remove(evento);
+            }
+            else if (!evento.getRepeticao().equals("Nunca") && repeticao.equals("Nunca")){
+                App.usuarioaAtivo.getAgenda().get(evento.getDiaInicio()).add(evento);
+                App.usuarioaAtivo.getAgendaRepetitiva().remove(evento);
+            }
             evento.setRepeticao(repeticao);
             confirmacao.setText("Evento editado!");
             confirmacao.setVisible(true);
