@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -136,7 +137,7 @@ public class CriacontaController {
     @FXML
     private void initialize(){
         Platform.runLater(() ->anchor.requestFocus());
-
+        formataTelefone(campoTelefone);
         campoNome.setOnKeyPressed((KeyEvent event) -> {
         if (event.getCode() == KeyCode.ENTER) {
                 campoEmail.requestFocus(); 
@@ -243,7 +244,62 @@ public class CriacontaController {
 
     }
 
+    private void formataTelefone(TextField campoTelefone){
+    campoTelefone.setTextFormatter(new TextFormatter<>(change -> {
+    if (change.isDeleted() || change.getText().isEmpty()) {
+        return change;
+    }
 
+    if (!change.getText().matches("[0-9]*")) {
+        return null;
+    }
+
+    String textoFuturo = change.getControlNewText();
+
+    if (textoFuturo.length() > 15) {
+        return null;
+    }
+
+    if (textoFuturo.length() == 1) {
+        change.setText("(" + change.getText());
+        int novaPosicao = change.getCaretPosition() + 1;
+        change.setCaretPosition(novaPosicao);
+        change.setAnchor(novaPosicao);
+    }
+
+    if (textoFuturo.length() == 3) {
+        change.setText(change.getText() +  ") ");
+        int novaPosicao = change.getCaretPosition() + 2;
+        change.setCaretPosition(novaPosicao);
+        change.setAnchor(novaPosicao);
+    }
+
+    if (textoFuturo.length() == 4) {
+        change.setText(") " + change.getText() );
+        int novaPosicao = change.getCaretPosition() + 2;
+        change.setCaretPosition(novaPosicao);
+        change.setAnchor(novaPosicao);
+    }
+    
+
+
+    if (textoFuturo.length() == 10){
+        change.setText(change.getText() +  "-");
+        int novaPosicao = change.getCaretPosition() + 1;
+        change.setCaretPosition(novaPosicao);
+        change.setAnchor(novaPosicao);
+    }
+
+    if (textoFuturo.length() == 11) {
+        change.setText("-" + change.getText() );
+        int novaPosicao = change.getCaretPosition() + 1;
+        change.setCaretPosition(novaPosicao);
+        change.setAnchor(novaPosicao);
+    }
+
+    return change;
+    }));
+    }
 
 
 
