@@ -20,6 +20,16 @@
           "diaInicio": "2029-07-22",
           "repeticao": "Nunca"
         }
+      ],
+      "2026-07-11": [
+        {
+          "nome": "ab",
+          "descricao": "",
+          "diaInicio": "2026-07-11",
+          "horaInicio": "10:00:00",
+          "horaFim": "11:00:00",
+          "repeticao": "Nunca"
+        }
       ]
     },
     "agendaRepetitiva": [
