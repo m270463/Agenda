@@ -24,6 +24,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -79,6 +80,10 @@ public class CriaeventoController {
     @FXML
     private void initialize(){
         Platform.runLater(() -> anchor.requestFocus());
+        barrasAutomaticas(diaInicio);
+        doisPontosAutomaticos(horaInicio);
+        doisPontosAutomaticos(horaFim);
+
         ArrayList<String> repeticoes = new ArrayList<>();
         repeticoes.add("Nunca");
         repeticoes.add("Diariamente");
@@ -312,5 +317,60 @@ public class CriaeventoController {
                 e.printStackTrace();
             }
     }
+    
+    private void barrasAutomaticas(TextField campoData){
+    campoData.setTextFormatter(new TextFormatter<>(change -> {
+    if (change.isDeleted() || change.getText().isEmpty()) {
+        return change;
+    }
+
+    if (!change.getText().matches("[0-9]*")) {
+        return null;
+    }
+
+    String textoFuturo = change.getControlNewText();
+
+    if (textoFuturo.length() > 10) {
+        return null;
+    }
+
+    if (textoFuturo.length() == 2 || textoFuturo.length() == 5) {
+        change.setText(change.getText() + "/");
+        int novaPosicao = change.getCaretPosition() + 1;
+        change.setCaretPosition(novaPosicao);
+        change.setAnchor(novaPosicao);
+    }
+
+    return change;
+    }));
+    }
+
+private void doisPontosAutomaticos(TextField campoHora){
+    campoHora.setTextFormatter(new TextFormatter<>(change -> {
+    if (change.isDeleted() || change.getText().isEmpty()) {
+        return change;
+    }
+
+    if (!change.getText().matches("[0-9]*")) {
+        return null;
+    }
+
+    String textoFuturo = change.getControlNewText();
+
+    if (textoFuturo.length() > 5) {
+        return null;
+    }
+
+    if (textoFuturo.length() == 2) {
+        change.setText(change.getText() + ":");
+        int novaPosicao = change.getCaretPosition() + 1;
+        change.setCaretPosition(novaPosicao);
+        change.setAnchor(novaPosicao);
+    }
+
+    return change;
+    }));
+    }
+
 }
 
