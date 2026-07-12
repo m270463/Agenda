@@ -30,6 +30,16 @@
           "horaFim": "11:00:00",
           "repeticao": "Nunca"
         }
+      ],
+      "2026-02-22": [
+        {
+          "nome": "a",
+          "descricao": "",
+          "diaInicio": "2026-02-22",
+          "horaInicio": "22:10:00",
+          "horaFim": "11:10:00",
+          "repeticao": "Nunca"
+        }
       ]
     },
     "agendaRepetitiva": [
