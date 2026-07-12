@@ -32,7 +32,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class EditEventoController {
+public class EditEventoController implements Validavel{
     private Evento evento;
     
     @FXML
@@ -211,17 +211,9 @@ public class EditEventoController {
 
     }
 
-
-
-    @FXML
-    private void botaoConfirmacao(){
+    @Override
+    public boolean validar(){
         boolean valido = true;
-        String title = "";
-        LocalDate diaComeco= null;
-        LocalTime horaComeco = null;
-        LocalTime horaTermino = null;
-        String repeticao = "";
-
         if (titulo.getText().isBlank()){
             valido = false;
             erroTitulo.setText("*Campo obrigatório!");
@@ -229,10 +221,8 @@ public class EditEventoController {
         }
         else{
             erroTitulo.setVisible(false);
-            title = titulo.getText();
         }
 
-        DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         if (diaInicio.getText().isBlank()){
             valido = false;
             erroDiaInicio.setText("*Campo obrigatório!");
@@ -240,8 +230,8 @@ public class EditEventoController {
         }
 
         else if (verificaDateTime(diaInicio.getText())){
+            
             erroDiaInicio.setVisible(false);
-            diaComeco = LocalDate.parse(diaInicio.getText(), formatador);
         }
 
         else{
@@ -260,12 +250,11 @@ public class EditEventoController {
 
             else if (verificaLocalTime(horaInicio.getText())){
                 erroHoraInicio.setVisible(false);
-                horaComeco = LocalTime.parse(horaInicio.getText());
             }
 
             else{
                 valido = false;
-                erroHoraInicio.setText("*Data inválida!");
+                erroHoraInicio.setText("*Hora inválida!");
                 erroHoraInicio.setVisible(true);
             }
             
@@ -277,13 +266,25 @@ public class EditEventoController {
 
             else if (verificaLocalTime(horaFim.getText())){
                 erroHoraFim.setVisible(false);
-                horaTermino = LocalTime.parse(horaFim.getText());
             }
 
             else{
                 valido = false;
-                erroHoraFim.setText("*Data inválida!");
+                erroHoraFim.setText("*Hora inválida!");
                 erroHoraFim.setVisible(true);
+            }
+
+            if (!horaInicio.getText().isBlank() && !horaFim.getText().isBlank() 
+                && verificaLocalTime(horaInicio.getText()) && verificaLocalTime(horaFim.getText())){
+
+                LocalTime horaInicial = LocalTime.parse(horaInicio.getText());
+                LocalTime horaFinal = LocalTime.parse(horaFim.getText());
+                if (horaFinal.isBefore(horaInicial)){
+                    valido = false;
+                    erroHoraFim.setText("*Horários incompatíveis!");
+                    erroHoraFim.setVisible(true);
+                }
+
             }
         }
 
@@ -294,12 +295,27 @@ public class EditEventoController {
         }
         else{
             erroComboRepeticao.setVisible(false);
-            repeticao = Comborepeticao.getValue().toString();
         }
+        return valido;
+    }
 
+    @FXML
+    private void botaoConfirmacao(){
+        String title = "";
+        LocalDate diaComeco= null;
+        LocalTime horaComeco = null;
+        LocalTime horaTermino = null;
+        String repeticao = "";
+        DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String desc = descricao.getText();
 
-        if (valido){
+        if (validar()){
+            title = titulo.getText();
+            diaComeco = LocalDate.parse(diaInicio.getText(), formatador);
+            horaComeco = LocalTime.parse(horaInicio.getText());
+            horaTermino = LocalTime.parse(horaFim.getText());
+            repeticao = Comborepeticao.getValue().toString();
+
             evento.setNome(title);
             evento.setDescricao(desc);
             evento.setDiaInicio(diaComeco);

@@ -18,7 +18,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class CriacontaController {
+public class CriacontaController implements Validavel {
 
     @FXML
     private Button botaoVoltar;
@@ -71,7 +71,8 @@ public class CriacontaController {
         
     }
 
-    private boolean verificaFormulario(){
+    @Override
+    public boolean validar(){
         boolean valido = true;
 
         if (campoNome.getText().trim().isEmpty()){
@@ -186,7 +187,7 @@ public class CriacontaController {
 
     @FXML
     private void aoClicarbotaoCadastrar(){
-        if (!verificaFormulario())
+        if (!validar())
             return;
         String nome = campoNome.getText();
         String email = campoEmail.getText();
