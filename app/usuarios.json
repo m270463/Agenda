@@ -40,6 +40,14 @@
           "horaFim": "11:10:00",
           "repeticao": "Nunca"
         }
+      ],
+      "2026-07-23": [
+        {
+          "nome": "a",
+          "descricao": "",
+          "diaInicio": "2026-07-23",
+          "repeticao": "Nunca"
+        }
       ]
     },
     "agendaRepetitiva": [

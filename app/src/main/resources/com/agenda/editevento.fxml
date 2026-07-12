@@ -79,7 +79,7 @@
       </ImageView>
       <Button layoutY="1.0" mnemonicParsing="false" onAction="#botaoVoltar" prefHeight="42.0" prefWidth="48.0" style="-fx-background-color: transparent;" />
       <Label fx:id="confirmacao" layoutX="327.0" layoutY="371.0" prefHeight="18.0" prefWidth="231.0" text="Evento editado!" textFill="WHITE" visible="false" />
-      <Button fx:id="confirmar" layoutX="243.0" layoutY="367.0" mnemonicParsing="false" onAction="#botaoConfirmacao" style="-fx-background-color: #333333;" text="Confirmar" textFill="#e8e8e8" />
+      <Button fx:id="confirmar" layoutX="243.0" layoutY="367.0" mnemonicParsing="false" onAction="#botaoConfirmar" style="-fx-background-color: #333333;" text="Confirmar" textFill="#e8e8e8" />
       <TextField fx:id="descricao" layoutX="159.0" layoutY="324.0" prefHeight="28.0" prefWidth="249.0" promptText="Descrição" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-text-inner-color: white;" />
       <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="443.0" pickOnBounds="true" preserveRatio="true">
          <image>
