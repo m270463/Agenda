@@ -128,7 +128,7 @@ public class verEventoController {
                 }
             }
 
-                     try {
+            try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("verevento.fxml"));
                 Parent root = loader.load();
 
