@@ -48,6 +48,12 @@
         "descricao": "",
         "diaInicio": "2026-12-12",
         "repeticao": "Mensalmente"
+      },
+      {
+        "nome": "aniversário",
+        "descricao": "",
+        "diaInicio": "2006-03-29",
+        "repeticao": "Anualmente"
       }
     ]
   }

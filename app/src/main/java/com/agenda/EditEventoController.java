@@ -312,8 +312,10 @@ public class EditEventoController implements Validavel{
         if (validar()){
             title = titulo.getText();
             diaComeco = LocalDate.parse(diaInicio.getText(), formatador);
-            horaComeco = LocalTime.parse(horaInicio.getText());
-            horaTermino = LocalTime.parse(horaFim.getText());
+            if (!btnInterruptor.isSelected()){
+                horaComeco = LocalTime.parse(horaInicio.getText());
+                horaTermino = LocalTime.parse(horaFim.getText());
+            }
             repeticao = Comborepeticao.getValue().toString();
 
             evento.setNome(title);
@@ -347,9 +349,12 @@ public class EditEventoController implements Validavel{
                         if (!e.getDiaInicio().isBefore(evento.getDiaInicio()))   {
                             if (e.getRepeticao().equals("Diariamente"))
                                 lista.add(e);
-                            else if (e.getRepeticao().equals("Semanalmente") && e.getDiaInicio().getDayOfWeek() == evento.getDiaInicio().getDayOfWeek())
+                            else if (e.getRepeticao().equals("Semanalmente") && e.getDiaInicio().getDayOfWeek().equals(evento.getDiaInicio().getDayOfWeek()))
                                 lista.add(e);
                             else if (e.getRepeticao().equals("Mensalmente") && e.getDiaInicio().getDayOfMonth() == evento.getDiaInicio().getDayOfMonth())  
+                                lista.add(e);
+                            else if (e.getRepeticao().equals("Anualmente") && e.getDiaInicio().getDayOfMonth() == evento.getDiaInicio().getDayOfMonth() 
+                                && e.getDiaInicio().getMonth().equals(evento.getDiaInicio().getMonth()))
                                 lista.add(e);
                         }
                     }
@@ -397,6 +402,9 @@ public class EditEventoController implements Validavel{
                         else if (e.getRepeticao().equals("Semanalmente") && e.getDiaInicio().getDayOfWeek() == evento.getDiaInicio().getDayOfWeek())
                             lista.add(e);
                         else if (e.getRepeticao().equals("Mensalmente") && e.getDiaInicio().getDayOfMonth() == evento.getDiaInicio().getDayOfMonth())  
+                            lista.add(e);
+                        else if (e.getRepeticao().equals("Anualmente") && e.getDiaInicio().getDayOfMonth() == evento.getDiaInicio().getDayOfMonth() 
+                            && e.getDiaInicio().getMonth().equals(evento.getDiaInicio().getMonth()))
                             lista.add(e);
                     }
                 }
@@ -461,7 +469,9 @@ public class EditEventoController implements Validavel{
                         lista.add(e);
                     else if (e.getRepeticao().equals("Mensalmente") && e.getDiaInicio().getDayOfMonth() == evento.getDiaInicio().getDayOfMonth())  
                         lista.add(e);
-                        
+                    else if (e.getRepeticao().equals("Anualmente") && e.getDiaInicio().getDayOfMonth() == evento.getDiaInicio().getDayOfMonth() 
+                        && e.getDiaInicio().getMonth().equals(evento.getDiaInicio().getMonth()))
+                        lista.add(e);
                 }
             }
 
