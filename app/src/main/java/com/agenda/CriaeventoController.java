@@ -3,171 +3,18 @@ package com.agenda;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.chrono.IsoChronology;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
-import java.time.format.DateTimeParseException;
-import java.time.format.ResolverStyle;
 import java.util.ArrayList;
 
-import org.controlsfx.control.ToggleSwitch;
-
 import javafx.animation.PauseTransition;
-import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class CriaeventoController implements Validavel{
-    @FXML
-    private TextField titulo;
-
-    @FXML
-    private Label erroTitulo;
-
-    @FXML
-    private TextField local;
-
-    @FXML
-    private TextField diaInicio;
-
-    @FXML
-    private Label erroDiaInicio;
-
-    @FXML
-    private TextField horaInicio;
-
-    @FXML
-    private Label erroHoraInicio;
-
-    @FXML
-    private TextField horaFim;
-
-    @FXML
-    private Label erroHoraFim;
-
-    @FXML
-    private TextField descricao;
-
-    @FXML
-    private ToggleSwitch btnInterruptor;
-
-    @FXML
-    private ComboBox Comborepeticao;
-
-    @FXML
-    private Label erroComboRepeticao;
-
-    @FXML
-    private AnchorPane anchor;
-
-    @FXML
-    private Label confirmacao;
-
+public class CriaeventoController extends controllerEventos implements Validavel{
     
-
-    @FXML
-    private void initialize(){
-        Platform.runLater(() -> anchor.requestFocus());
-        barrasAutomaticas(diaInicio);
-        doisPontosAutomaticos(horaInicio);
-        doisPontosAutomaticos(horaFim);
-
-        ArrayList<String> repeticoes = new ArrayList<>();
-        repeticoes.add("Nunca");
-        repeticoes.add("Diariamente");
-        repeticoes.add("Semanalmente");
-        repeticoes.add("Mensalmente");
-        repeticoes.add("Anualmente");
-        Comborepeticao.setItems(FXCollections.observableArrayList(repeticoes));
-        Comborepeticao.setButtonCell(criarCelulaCustomizada()); 
-        Comborepeticao.setCellFactory(lv -> criarCelulaCustomizada()); 
-        Platform.runLater(() -> {
-            Node arrowButton = Comborepeticao.lookup(".arrow-button");
-            if (arrowButton != null) {
-                arrowButton.setStyle("-fx-background-color: #1c1d22; -fx-border-color: transparent");
-            }
-            Node arrow = Comborepeticao.lookup(".arrow");
-            if (arrow != null) {
-                arrow.setStyle("-fx-background-color: white;");
-            }
-        });
-        Comborepeticao.setStyle("-fx-prompt-text-fill: white; -fx-border-color: white;");
-
-    }
-
-   private ListCell<String> criarCelulaCustomizada() {
-        return new ListCell<>() {   
-            @Override
-            protected void updateItem(String item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty || item == null) {
-                    setStyle("-fx-text-fill: white;  -fx-background-color:  #1c1d22; -fx-border-color:  transparent ;");
-                } else {
-                    setText(item);
-                    setStyle("-fx-text-fill: white; -fx-alignment: CENTER; -fx-background-color:  #1c1d22;-fx-control-inner-background: #121212; ");
-                }
-            }
-        };
-    }
-
-    @FXML
-    private void interruptor(){
-        boolean ativou = false;
-        if (btnInterruptor.isSelected()){
-            horaInicio.setManaged(false);
-            horaFim.setManaged(false);
-            horaInicio.setVisible(false);
-            horaFim.setVisible(false);
-            erroHoraInicio.setVisible(false);
-            erroHoraFim.setVisible(false);
-            ativou = true;
-        }
-        else{
-            horaFim.setManaged(true);
-            horaInicio.setManaged(true);
-            horaInicio.setVisible(true);
-            horaFim.setVisible(true);
-        }
-    horaInicio.getParent().requestLayout();
-    }
-
-    private boolean verificaDateTime(String dateTime){
-        DateTimeFormatter formatador = new DateTimeFormatterBuilder()
-                .appendPattern("dd/MM/uuuu")
-                .toFormatter()
-                .withChronology(IsoChronology.INSTANCE)
-                .withResolverStyle(ResolverStyle.STRICT);
-        try {
-            LocalDate.parse(dateTime, formatador);
-            return true;
-            
-        } catch (DateTimeParseException e) {
-            return false;
-        }
-    }
-
-    private boolean verificaLocalTime(String localTime){
-        DateTimeFormatter formatador = DateTimeFormatter.ofPattern("HH:mm").withResolverStyle(ResolverStyle.SMART);
-        try{
-            LocalTime.parse(localTime,formatador);
-            return true;
-        }catch(DateTimeParseException e){
-            return false;
-        }
-
-    }
     @Override
     public boolean validar(){
         boolean valido = true;
@@ -254,8 +101,9 @@ public class CriaeventoController implements Validavel{
     }
 
 
-    @FXML
-    private void botaoCadastro(){
+    
+    @Override
+    public void botaoConfirmar(){
         boolean valido = true;
         String title = "";
         LocalDate diaComeco= null;
@@ -312,8 +160,8 @@ public class CriaeventoController implements Validavel{
         }
     }
     
-    @FXML
-    private void botaoVoltar(){
+    @Override
+    public void botaoVoltar(){
             try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("calendario.fxml"));
             Parent root = loader.load();
@@ -333,59 +181,5 @@ public class CriaeventoController implements Validavel{
             }
     }
     
-    private void barrasAutomaticas(TextField campoData){
-    campoData.setTextFormatter(new TextFormatter<>(change -> {
-    if (change.isDeleted() || change.getText().isEmpty()) {
-        return change;
-    }
-
-    if (!change.getText().matches("[0-9]*")) {
-        return null;
-    }
-
-    String textoFuturo = change.getControlNewText();
-
-    if (textoFuturo.length() > 10) {
-        return null;
-    }
-
-    if (textoFuturo.length() == 2 || textoFuturo.length() == 5) {
-        change.setText(change.getText() + "/");
-        int novaPosicao = change.getCaretPosition() + 1;
-        change.setCaretPosition(novaPosicao);
-        change.setAnchor(novaPosicao);
-    }
-
-    return change;
-    }));
-    }
-
-private void doisPontosAutomaticos(TextField campoHora){
-    campoHora.setTextFormatter(new TextFormatter<>(change -> {
-    if (change.isDeleted() || change.getText().isEmpty()) {
-        return change;
-    }
-
-    if (!change.getText().matches("[0-9]*")) {
-        return null;
-    }
-
-    String textoFuturo = change.getControlNewText();
-
-    if (textoFuturo.length() > 5) {
-        return null;
-    }
-
-    if (textoFuturo.length() == 2) {
-        change.setText(change.getText() + ":");
-        int novaPosicao = change.getCaretPosition() + 1;
-        change.setCaretPosition(novaPosicao);
-        change.setAnchor(novaPosicao);
-    }
-
-    return change;
-    }));
-    }
-
 }
 

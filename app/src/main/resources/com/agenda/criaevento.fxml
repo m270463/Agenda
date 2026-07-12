@@ -80,7 +80,7 @@
       <Button layoutY="1.0" mnemonicParsing="false" onAction="#botaoVoltar" prefHeight="42.0" prefWidth="48.0" style="-fx-background-color: transparent;" />
       <HBox layoutX="256.0" layoutY="360.0" prefHeight="26.0" prefWidth="347.0" spacing="15.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#botaoCadastro" style="-fx-background-color: #333333;" text="Criar" textFill="#e8e8e8" />
+            <Button mnemonicParsing="false" onAction="#botaoConfirmar" style="-fx-background-color: #333333;" text="Criar" textFill="#e8e8e8" />
             <Label fx:id="confirmacao" prefHeight="18.0" prefWidth="190.0" text="Label" textFill="WHITE" visible="false">
                <HBox.margin>
                   <Insets left="10.0" />
