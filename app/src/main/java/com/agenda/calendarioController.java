@@ -235,11 +235,13 @@ public class calendarioController {
                     if (evento.getRepeticao().equals("Diariamente"))
                         eventosDia.add(evento);
 
-                    else if (evento.getRepeticao().equals("Semanalmente") && dataBotao.getDayOfWeek() == evento.getDiaInicio().getDayOfWeek())
+                    else if (evento.getRepeticao().equals("Semanalmente") && dataBotao.getDayOfWeek().equals(evento.getDiaInicio().getDayOfWeek()))
                         eventosDia.add(evento);
                     else if (evento.getRepeticao().equals("Mensalmente") && evento.getDiaInicio().getDayOfMonth() == dia)  
                         eventosDia.add(evento);
-                        
+                    else if (evento.getRepeticao().equals("Anualmente") && evento.getDiaInicio().getMonth().equals(dataBotao.getMonth()) 
+                    && evento.getDiaInicio().getDayOfMonth() == dia)
+                        eventosDia.add(evento);       
                 }
             }
 
