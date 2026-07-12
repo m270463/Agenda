@@ -205,14 +205,13 @@ public class calendarioController {
 
             botaoDia.setMaxWidth(Double.MAX_VALUE);
             botaoDia.setMaxHeight(Double.MAX_VALUE);
-            // Define a cor da borda (linha do grid), a espessura, o fundo do botão e a cor do texto
             botaoDia.setStyle(
-                "-fx-border-color: transparent; " +    // Cor da linha (um cinza elegante para contrastar com o preto)
-                "-fx-border-width: 0.5px; " +       // Espessura da linha
-                "-fx-background-color: transparent; " + // Cor de fundo do botão (um preto levemente mais claro que o fundo)
-                "-fx-text-fill: white;"  +           // Cor do número do dia (branco)
-                "-fx-alignment: top-left; " +       // Alinha o texto no canto superior esquerdo
-                "-fx-padding: 4px 0px 0px 6px;"     // Dá uma folga de 4px do topo e 6px da esquerda
+                "-fx-border-color: transparent; " +    
+                "-fx-border-width: 0.5px; " +       
+                "-fx-background-color: transparent; " + 
+                "-fx-text-fill: white;"  +           
+                "-fx-alignment: top-left; " +       
+                "-fx-padding: 4px 0px 0px 6px;"     
             );
 
             LocalDate dataBotao = mesAtual.atDay(dia);

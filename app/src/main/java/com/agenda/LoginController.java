@@ -14,7 +14,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class LoginController {
+public class LoginController implements Validavel{
 
     @FXML
     private TextField campoUsuario;
@@ -49,11 +49,10 @@ public class LoginController {
         });
 }
 
-
-    private boolean verificaUsuario(String email, String senha,boolean login){
+    @Override
+    public boolean validar(){
         for (int i = 0; i < App.listaUsuarios.size(); i++){
-            if (App.listaUsuarios.get(i).getEmail().equals(email) && App.listaUsuarios.get(i).getSenha().equals(senha)){
-                if (login)
+            if (App.listaUsuarios.get(i).getEmail().equals(campoUsuario.getText()) && App.listaUsuarios.get(i).getSenha().equals(campoSenha.getText())){
                     App.usuarioaAtivo = App.listaUsuarios.get(i);
                 return true;
             }
@@ -63,10 +62,7 @@ public class LoginController {
 
     @FXML
     private void aoClicarBotaoLogin() {
-        String usuario = campoUsuario.getText();
-        String senha = campoSenha.getText();
-
-        if (verificaUsuario(usuario, senha,true)) {
+        if (validar()) {
                 try {
                 
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("calendario.fxml"));
