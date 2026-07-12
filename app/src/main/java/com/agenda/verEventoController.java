@@ -118,11 +118,13 @@ public class verEventoController {
                     if (evento.getRepeticao().equals("Diariamente"))
                         lista.add(evento);
 
-                    else if (evento.getRepeticao().equals("Semanalmente") && Data.getDayOfWeek() == evento.getDiaInicio().getDayOfWeek())
+                    else if (evento.getRepeticao().equals("Semanalmente") && Data.getDayOfWeek().equals(evento.getDiaInicio().getDayOfWeek()))
                         lista.add(evento);
                     else if (evento.getRepeticao().equals("Mensalmente") && evento.getDiaInicio().getDayOfMonth() == Data.getDayOfMonth())  
                         lista.add(evento);
-                        
+                    else if (evento.getRepeticao().equals("Anualmente") && Data.getDayOfMonth() == evento.getDiaInicio().getDayOfMonth() 
+                    && evento.getDiaInicio().getMonth().equals(Data.getMonth()))
+                        lista.add(evento);
                 }
             }
 
@@ -168,7 +170,9 @@ public class verEventoController {
                         lista.add(evento);
                     else if (evento.getRepeticao().equals("Mensalmente") && evento.getDiaInicio().getDayOfMonth() == Data.getDayOfMonth())  
                         lista.add(evento);
-                        
+                    else if (evento.getRepeticao().equals("Anualmente") && Data.getDayOfMonth() == evento.getDiaInicio().getDayOfMonth() 
+                    && evento.getDiaInicio().getMonth().equals(Data.getMonth()))
+                        lista.add(evento);
                 }
             }
 

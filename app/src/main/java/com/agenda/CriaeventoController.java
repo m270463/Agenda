@@ -269,8 +269,10 @@ public class CriaeventoController implements Validavel{
             title = titulo.getText();
             diaComeco = LocalDate.parse(diaInicio.getText(), formatador);
             repeticao = Comborepeticao.getValue().toString();
-            horaTermino = LocalTime.parse(horaFim.getText());
-            horaComeco = LocalTime.parse(horaInicio.getText());
+            if (!btnInterruptor.isSelected()){
+                horaTermino = LocalTime.parse(horaFim.getText());
+                horaComeco = LocalTime.parse(horaInicio.getText());
+            }
             Evento evento = new Evento(title, desc, repeticao, diaComeco, horaComeco, horaTermino);
             LocalDate dataAtual = diaComeco;
             if (evento.getRepeticao().equals("Nunca")){
