@@ -230,19 +230,8 @@ public class calendarioController {
             
 
             for (Evento evento: App.usuarioaAtivo.getAgendaRepetitiva()){
-                if (!dataBotao.isBefore(evento.getDiaInicio()))   {
-
-                    if (evento.getRepeticao().equals("Diariamente"))
-                        eventosDia.add(evento);
-
-                    else if (evento.getRepeticao().equals("Semanalmente") && dataBotao.getDayOfWeek().equals(evento.getDiaInicio().getDayOfWeek()))
-                        eventosDia.add(evento);
-                    else if (evento.getRepeticao().equals("Mensalmente") && evento.getDiaInicio().getDayOfMonth() == dia)  
-                        eventosDia.add(evento);
-                    else if (evento.getRepeticao().equals("Anualmente") && evento.getDiaInicio().getMonth().equals(dataBotao.getMonth()) 
-                    && evento.getDiaInicio().getDayOfMonth() == dia)
-                        eventosDia.add(evento);       
-                }
+                if (evento.ocorreEm(dataBotao))
+                    eventosDia.add(evento);
             }
 
             if (!eventosDia.isEmpty()){

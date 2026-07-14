@@ -113,19 +113,8 @@ public class verEventoController {
             lista.addAll(App.usuarioaAtivo.getAgenda().get(Data));
             
             for (Evento evento: App.usuarioaAtivo.getAgendaRepetitiva()){
-                if (!Data.isBefore(evento.getDiaInicio())){
-
-                    if (evento.getRepeticao().equals("Diariamente"))
-                        lista.add(evento);
-
-                    else if (evento.getRepeticao().equals("Semanalmente") && Data.getDayOfWeek().equals(evento.getDiaInicio().getDayOfWeek()))
-                        lista.add(evento);
-                    else if (evento.getRepeticao().equals("Mensalmente") && evento.getDiaInicio().getDayOfMonth() == Data.getDayOfMonth())  
-                        lista.add(evento);
-                    else if (evento.getRepeticao().equals("Anualmente") && Data.getDayOfMonth() == evento.getDiaInicio().getDayOfMonth() 
-                    && evento.getDiaInicio().getMonth().equals(Data.getMonth()))
-                        lista.add(evento);
-                }
+                if (evento.ocorreEm(Data))
+                    lista.add(evento);
             }
 
             try {
@@ -161,20 +150,9 @@ public class verEventoController {
             lista.addAll(App.usuarioaAtivo.getAgenda().get(Data));
             
             for (Evento evento: App.usuarioaAtivo.getAgendaRepetitiva()){
-                if (!Data.isBefore(evento.getDiaInicio())){
-
-                    if (evento.getRepeticao().equals("Diariamente"))
-                        lista.add(evento);
-
-                    else if (evento.getRepeticao().equals("Semanalmente") && Data.getDayOfWeek() == evento.getDiaInicio().getDayOfWeek())
-                        lista.add(evento);
-                    else if (evento.getRepeticao().equals("Mensalmente") && evento.getDiaInicio().getDayOfMonth() == Data.getDayOfMonth())  
-                        lista.add(evento);
-                    else if (evento.getRepeticao().equals("Anualmente") && Data.getDayOfMonth() == evento.getDiaInicio().getDayOfMonth() 
-                    && evento.getDiaInicio().getMonth().equals(Data.getMonth()))
-                        lista.add(evento);
-                }
-            }
+                if (evento.ocorreEm(Data))
+                    lista.add(evento);
+            }       
 
                      try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("verevento.fxml"));

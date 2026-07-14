@@ -204,17 +204,8 @@ public class EditEventoController extends controllerEventos implements Validavel
                         lista.addAll(App.usuarioaAtivo.getAgenda().get(evento.getDiaInicio()));
                     }
                     for (Evento e: App.usuarioaAtivo.getAgendaRepetitiva()){
-                        if (!e.getDiaInicio().isBefore(evento.getDiaInicio()))   {
-                            if (e.getRepeticao().equals("Diariamente"))
-                                lista.add(e);
-                            else if (e.getRepeticao().equals("Semanalmente") && e.getDiaInicio().getDayOfWeek().equals(evento.getDiaInicio().getDayOfWeek()))
-                                lista.add(e);
-                            else if (e.getRepeticao().equals("Mensalmente") && e.getDiaInicio().getDayOfMonth() == evento.getDiaInicio().getDayOfMonth())  
-                                lista.add(e);
-                            else if (e.getRepeticao().equals("Anualmente") && e.getDiaInicio().getDayOfMonth() == evento.getDiaInicio().getDayOfMonth() 
-                                && e.getDiaInicio().getMonth().equals(evento.getDiaInicio().getMonth()))
-                                lista.add(e);
-                        }
+                        if (e.ocorreEm(evento.getDiaInicio()))
+                            lista.add(e);
                     }
 
                     novoController.carregarLista(lista,evento.getDiaInicio());
@@ -254,17 +245,8 @@ public class EditEventoController extends controllerEventos implements Validavel
                     lista.addAll(App.usuarioaAtivo.getAgenda().get(evento.getDiaInicio()));
                 }
                 for (Evento e: App.usuarioaAtivo.getAgendaRepetitiva()){
-                    if (!e.getDiaInicio().isBefore(evento.getDiaInicio()))   {
-                        if (e.getRepeticao().equals("Diariamente"))
-                            lista.add(e);
-                        else if (e.getRepeticao().equals("Semanalmente") && e.getDiaInicio().getDayOfWeek() == evento.getDiaInicio().getDayOfWeek())
-                            lista.add(e);
-                        else if (e.getRepeticao().equals("Mensalmente") && e.getDiaInicio().getDayOfMonth() == evento.getDiaInicio().getDayOfMonth())  
-                            lista.add(e);
-                        else if (e.getRepeticao().equals("Anualmente") && e.getDiaInicio().getDayOfMonth() == evento.getDiaInicio().getDayOfMonth() 
-                            && e.getDiaInicio().getMonth().equals(evento.getDiaInicio().getMonth()))
-                            lista.add(e);
-                    }
+                    if (e.ocorreEm(evento.getDiaInicio()))
+                        lista.add(e);
                 }
 
                 novoController.carregarLista(lista,evento.getDiaInicio());
@@ -296,7 +278,6 @@ public class EditEventoController extends controllerEventos implements Validavel
     @FXML
     private void botaoConfirmarRemocao(){
         
-
         if (evento.getRepeticao().equals("Nunca")){
             App.usuarioaAtivo.getAgenda().get(evento.getDiaInicio()).remove(evento);
         }
@@ -318,20 +299,9 @@ public class EditEventoController extends controllerEventos implements Validavel
                 lista.addAll(App.usuarioaAtivo.getAgenda().get(evento.getDiaInicio()));
             }
             for (Evento e: App.usuarioaAtivo.getAgendaRepetitiva()){
-                if (evento.getDiaInicio().isAfter(e.getDiaInicio())){
-
-                    if (e.getRepeticao().equals("Diariamente"))
-                        lista.add(e);
-
-                    else if (e.getRepeticao().equals("Semanalmente") && evento.getDiaInicio().getDayOfWeek() == e.getDiaInicio().getDayOfWeek())
-                        lista.add(e);
-                    else if (e.getRepeticao().equals("Mensalmente") && e.getDiaInicio().getDayOfMonth() == evento.getDiaInicio().getDayOfMonth())  
-                        lista.add(e);
-                    else if (e.getRepeticao().equals("Anualmente") && e.getDiaInicio().getDayOfMonth() == evento.getDiaInicio().getDayOfMonth() 
-                        && e.getDiaInicio().getMonth().equals(evento.getDiaInicio().getMonth()))
-                        lista.add(e);
-                }
-            }
+                if (e.ocorreEm(evento.getDiaInicio()))
+                    lista.add(e);
+            }       
 
             novoController.carregarLista(lista,evento.getDiaInicio());
 
