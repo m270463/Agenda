@@ -3,7 +3,7 @@ package com.agenda;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class Evento {
+public class Evento implements Repetivel{
     private String nome;
     private String descricao;
     private LocalDate diaInicio;
