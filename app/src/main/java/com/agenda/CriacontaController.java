@@ -137,6 +137,15 @@ public class CriacontaController implements Validavel {
 
     @FXML
     private void initialize(){
+
+        erroNome.managedProperty().bind(erroNome.visibleProperty());
+        erroEmail.managedProperty().bind(erroEmail.visibleProperty());
+        erroTelefone.managedProperty().bind(erroTelefone.visibleProperty());
+        erroSenha.managedProperty().bind(erroSenha.visibleProperty());
+        erroconfirmaSenha.managedProperty().bind(erroconfirmaSenha.visibleProperty());
+        confirmaCadastro.managedProperty().bind(confirmaCadastro.visibleProperty());
+
+
         Platform.runLater(() ->anchor.requestFocus());
         formataTelefone(campoTelefone);
         campoNome.setOnKeyPressed((KeyEvent event) -> {
