@@ -10,104 +10,158 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.ToggleSwitch?>
 
 <AnchorPane fx:id="anchor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="566.0" style="-fx-background-color: #121212; -fx-border-color: #b6b2b2; -fx-border-image-width: 3px;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.agenda.EditEventoController">
    <children>
-      <VBox fx:id="vbox" alignment="CENTER" layoutX="161.0" layoutY="55.0" prefHeight="262.0" prefWidth="385.0" spacing="20.0">
-         <children>
-            <HBox>
-               <children>
-                  <TextField fx:id="titulo" prefHeight="28.0" prefWidth="239.0" promptText="Título" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-text-inner-color: white;" />
-                  <Label fx:id="erroTitulo" prefHeight="18.0" prefWidth="161.0" text="Label" textFill="WHITE" visible="false" />
-               </children>
-            </HBox>
-            <HBox>
-               <children>
-                  <AnchorPane prefHeight="28.0" prefWidth="435.0">
-                     <children>
-                        <TextField fx:id="diaInicio" prefHeight="28.0" prefWidth="237.0" promptText="Dia (DD/MM/YYYY)" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-text-inner-color: white;" />
-                        <Label fx:id="erroDiaInicio" layoutX="247.0" layoutY="5.0" prefHeight="18.0" prefWidth="150.0" text="Label" textFill="WHITE" visible="false" />
-                     </children>
-                  </AnchorPane>
-               </children>
-            </HBox>
-            <HBox>
-               <children>
-                  <TextField fx:id="horaInicio" prefHeight="28.0" prefWidth="240.0" promptText="Horário de início (HH:MM)" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-text-inner-color: white;" />
-                  <Label fx:id="erroHoraInicio" prefHeight="18.0" prefWidth="161.0" text="Label" textFill="WHITE" visible="false" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER">
-               <children>
-                  <Label prefHeight="18.0" prefWidth="83.0" text="Dia inteiro:    " textFill="WHITE">
-                     <HBox.margin>
-                        <Insets left="-150.0" />
-                     </HBox.margin>
-                  </Label>
-                  <ToggleSwitch fx:id="btnInterruptor" onMouseClicked="#interruptor" prefHeight="20.0" prefWidth="34.0" style="-fx-background-image: white;" textFill="WHITE" />
-               </children>
-               <VBox.margin>
-                  <Insets bottom="-10.0" />
-               </VBox.margin>
-            </HBox>
-            <HBox>
-               <children>
-                  <TextField fx:id="horaFim" prefWidth="215.0" promptText="Horário de término (HH:MM)" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-text-inner-color: white;" />
-                  <Label fx:id="erroHoraFim" prefHeight="18.0" prefWidth="161.0" text="Label" textFill="WHITE" visible="false" />
-               </children>
-            </HBox>
-            <HBox>
-               <children>
-                  <ComboBox fx:id="Comborepeticao" prefHeight="26.0" prefWidth="215.0" promptText="Repetição" style="-fx-background-color: #333333;" />
-                  <Label fx:id="erroComboRepeticao" prefHeight="18.0" prefWidth="161.0" text="Label" textFill="WHITE" visible="false" />
-               </children>
-            </HBox>
-         </children>
-      </VBox>
-      <Label layoutX="195.0" layoutY="14.0" prefHeight="36.0" prefWidth="177.0" text="       Evento" textFill="WHITE">
+      <Label alignment="CENTER" layoutY="5.0" text="Editar evento" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
-      <ImageView fitHeight="42.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+
+      <StackPane AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="50.0">
+         <children>
+            <VBox fx:id="vbox" alignment="TOP_CENTER" fillWidth="true" maxWidth="400.0" spacing="10.0" style="-fx-background-color: transparent;">
+               <children>
+                  <VBox alignment="CENTER_LEFT" spacing="1.0">
+                     <children>
+                        <TextField fx:id="titulo" maxWidth="1.7976931348623157E308" prefHeight="28.0" promptText="Título" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-text-inner-color: white;" />
+                        <Label fx:id="erroTitulo" prefHeight="14.0" text="Erro Titulo" textFill="#ff4a4a" visible="false">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+
+                  <VBox alignment="CENTER_LEFT" spacing="1.0">
+                     <children>
+                        <TextField fx:id="diaInicio" maxWidth="1.7976931348623157E308" prefHeight="28.0" promptText="Dia de Início" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-text-inner-color: white;" />
+                        <Label fx:id="erroDiaInicio" prefHeight="14.0" text="Erro Dia" textFill="#ff4a4a" visible="false">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+
+                  <HBox alignment="CENTER_LEFT" spacing="10.0">
+                     <children>
+                        <Label text="Dia inteiro" textFill="WHITE" />
+                        <ToggleSwitch fx:id="btnInterruptor" onMouseClicked="#interruptor" />
+                     </children>
+                  </HBox>
+
+                  <HBox alignment="CENTER" spacing="15.0">
+                     <children>
+                        <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+                           <children>
+                              <TextField fx:id="horaInicio" maxWidth="1.7976931348623157E308" prefHeight="28.0" promptText="Início" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-text-inner-color: white;" />
+                              <Label fx:id="erroHoraInicio" prefHeight="14.0" text="Erro Hora" textFill="#ff4a4a" visible="false">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+                           <children>
+                              <TextField fx:id="horaFim" maxWidth="1.7976931348623157E308" prefHeight="28.0" promptText="Fim" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-text-inner-color: white;" />
+                              <Label fx:id="erroHoraFim" prefHeight="14.0" text="Erro Hora Fim" textFill="#ff4a4a" visible="false">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+
+                  <VBox alignment="CENTER_LEFT" spacing="1.0">
+                     <children>
+                        <ComboBox fx:id="Comborepeticao" maxWidth="1.7976931348623157E308" prefHeight="28.0" promptText="Repetir" style="-fx-background-color: #333333;" />
+                        <Label fx:id="erroComboRepeticao" prefHeight="14.0" text="Erro Repetição" textFill="#ff4a4a" visible="false">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+
+                  <VBox alignment="CENTER_LEFT" spacing="1.0">
+                     <children>
+                        <TextField fx:id="descricao" maxWidth="1.7976931348623157E308" prefHeight="28.0" promptText="Descrição" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-text-inner-color: white;" />
+                     </children>
+                  </VBox>
+
+                  <HBox alignment="CENTER" spacing="15.0">
+                     <children>
+                        <Button fx:id="confirmar" mnemonicParsing="false" onAction="#botaoConfirmar" style="-fx-background-color: #333333; -fx-cursor: hand;" text="Confirmar" textFill="#e8e8e8" />
+                        <Label fx:id="confirmacao" prefHeight="18.0" text="Evento Atualizado!" textFill="#4caf50" visible="false">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets top="15.0" />
+               </padding>
+            </VBox>
+         </children>
+      </StackPane>
+      
+      <ImageView fitHeight="42.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0">
          <image>
             <Image url="@../../imagens_agenda/line_start_arrow_41dp_WHITE_FILL1_wght500_GRAD200_opsz40.png" />
          </image>
       </ImageView>
-      <Button layoutY="1.0" mnemonicParsing="false" onAction="#botaoVoltar" prefHeight="42.0" prefWidth="48.0" style="-fx-background-color: transparent;" />
-      <Label fx:id="confirmacao" layoutX="327.0" layoutY="371.0" prefHeight="18.0" prefWidth="231.0" text="Evento editado!" textFill="WHITE" visible="false" />
-      <Button fx:id="confirmar" layoutX="243.0" layoutY="367.0" mnemonicParsing="false" onAction="#botaoConfirmar" style="-fx-background-color: #333333;" text="Confirmar" textFill="#e8e8e8" />
-      <TextField fx:id="descricao" layoutX="159.0" layoutY="324.0" prefHeight="28.0" prefWidth="249.0" promptText="Descrição" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-text-inner-color: white;" />
-      <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="443.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../imagens_agenda/edit_45dp_FFFFFF_FILL0_wght700_GRAD200_opsz48.png" />
-         </image>
-      </ImageView>
-      <ToggleButton fx:id="botaoEdicao" layoutX="439.0" layoutY="1.0" mnemonicParsing="false" onAction="#interruptorEdicao" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: transparent;" />
-      <ImageView fitHeight="48.0" fitWidth="55.0" layoutX="492.0" layoutY="343.0" pickOnBounds="true" preserveRatio="true">
+      <Button mnemonicParsing="false" onAction="#botaoVoltar" prefHeight="42.0" prefWidth="46.0" style="-fx-background-color: transparent; -fx-cursor: hand;" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
+
+      <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0">
          <image>
             <Image url="@../../imagens_agenda/delete_45dp_FFFFFF_FILL0_wght700_GRAD200_opsz48.png" />
          </image>
       </ImageView>
-      <Button layoutX="495.0" layoutY="346.0" mnemonicParsing="false" onAction="#botaoRemover" prefHeight="42.0" prefWidth="42.0" style="-fx-background-color: transparent;" />
-      <AnchorPane fx:id="anchorRemover" layoutX="92.0" layoutY="52.0" prefHeight="342.0" prefWidth="378.0" style="-fx-background-color: #121212;" visible="false">
+      <Button mnemonicParsing="false" onAction="#botaoRemover" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: transparent; -fx-cursor: hand;" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
+
+      <AnchorPane fx:id="anchorRemover" style="-fx-background-color: rgba(18, 18, 18, 0.95); -fx-border-color: white; -fx-border-radius: 5;" visible="false" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="60.0">
          <children>
-            <Label layoutX="96.0" layoutY="25.0" prefHeight="42.0" prefWidth="215.0" text="Deseja remover esse evento?" textFill="WHITE">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Button layoutX="205.0" layoutY="67.0" mnemonicParsing="false" onAction="#botaoCancelar" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: #1a1a1a; -fx-border-color: white white white transparent;" text="Cancelar" textFill="WHITE" />
-            <Button layoutX="122.0" layoutY="67.0" mnemonicParsing="false" onAction="#botaoConfirmarRemocao" prefHeight="48.0" prefWidth="83.0" style="-fx-background-color: #1a1a1a; -fx-border-color: white;" text="Remover" textFill="WHITE" />
-            <Label fx:id="confirmacaoErro" layoutX="131.0" layoutY="171.0" text="Evento removido!" textFill="WHITE" visible="false">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
+            <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <VBox alignment="CENTER" maxWidth="400.0" spacing="20.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="42.0" text="Deseja remover este evento?" textFill="WHITE">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="CENTER" spacing="20.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#botaoConfirmarRemocao" prefHeight="40.0" prefWidth="110.0" style="-fx-background-color: #ff4a4a; -fx-cursor: hand;" text="Confirmar" textFill="WHITE" />
+                              <Button mnemonicParsing="false" onAction="#botaoCancelar" prefHeight="40.0" prefWidth="110.0" style="-fx-background-color: #333333; -fx-cursor: hand;" text="Cancelar" textFill="WHITE" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </StackPane>
          </children>
       </AnchorPane>
+      
+      <ToggleButton fx:id="botaoEdicao" layoutX="492.0" layoutY="10.0" mnemonicParsing="false" onAction="#interruptorEdicao" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: transparent; -fx-cursor: hand;" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="10.0">
+         <graphic>
+            <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../imagens_agenda/edit_45dp_FFFFFF_FILL0_wght700_GRAD200_opsz48.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </ToggleButton>
    </children>
 </AnchorPane>
