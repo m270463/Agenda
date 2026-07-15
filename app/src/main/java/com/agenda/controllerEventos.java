@@ -77,6 +77,15 @@ public abstract class controllerEventos implements Validavel{
         doisPontosAutomaticos(horaInicio);
         doisPontosAutomaticos(horaFim);
 
+        // Labels de erro só ocupam espaço no layout quando estão visíveis.
+        // Isso evita que o campo de texto pareça "deslocado" quando o erro está escondido.
+        erroTitulo.managedProperty().bind(erroTitulo.visibleProperty());
+        erroDiaInicio.managedProperty().bind(erroDiaInicio.visibleProperty());
+        erroHoraInicio.managedProperty().bind(erroHoraInicio.visibleProperty());
+        erroHoraFim.managedProperty().bind(erroHoraFim.visibleProperty());
+        erroComboRepeticao.managedProperty().bind(erroComboRepeticao.visibleProperty());
+        confirmacao.managedProperty().bind(confirmacao.visibleProperty());
+
         ArrayList<String> repeticoes = new ArrayList<>();
         repeticoes.add("Nunca");
         repeticoes.add("Diariamente");
