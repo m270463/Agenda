@@ -16,29 +16,29 @@
 
 <AnchorPane fx:id="anchor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="566.0" style="-fx-background-color: #121212; -fx-border-color: #b6b2b2; -fx-border-image-width: 3px;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.agenda.CriaeventoController">
    <children>
-      <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
          <children>
-            <VBox alignment="CENTER" prefHeight="260.0" prefWidth="528.0" spacing="20.0">
+            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="260.0" prefWidth="420.0" spacing="20.0">
                <children>
-                  <HBox>
+                  <HBox alignment="CENTER_LEFT">
                      <children>
                         <TextField fx:id="titulo" prefHeight="20.0" prefWidth="215.0" promptText="Título" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-text-inner-color: white;" />
                         <Label fx:id="erroTitulo" prefHeight="18.0" prefWidth="161.0" text="Label" textFill="WHITE" visible="false" />
                      </children>
                   </HBox>
-                  <HBox prefHeight="28.0" prefWidth="433.0">
+                  <HBox alignment="CENTER_LEFT">
                      <children>
                         <TextField fx:id="diaInicio" prefHeight="28.0" prefWidth="220.0" promptText="Dia (DD/MM/YYYY)" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-text-inner-color: white;" />
                         <Label fx:id="erroDiaInicio" prefHeight="18.0" prefWidth="161.0" text="Label" textFill="WHITE" visible="false" />
                      </children>
                   </HBox>
-                  <HBox>
+                  <HBox alignment="CENTER_LEFT">
                      <children>
                         <TextField fx:id="horaInicio" prefHeight="28.0" prefWidth="225.0" promptText="Horário de início (HH:MM)" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-text-inner-color: white;" />
                         <Label fx:id="erroHoraInicio" prefHeight="18.0" prefWidth="161.0" text="Label" textFill="WHITE" visible="false" />
                      </children>
                   </HBox>
-                  <HBox>
+                  <HBox alignment="CENTER_LEFT">
                      <children>
                         <TextField fx:id="horaFim" prefWidth="215.0" promptText="Horário de término (HH:MM)" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-text-inner-color: white;" />
                         <Label fx:id="erroHoraFim" prefHeight="18.0" prefWidth="161.0" text="Label" textFill="WHITE" visible="false">
@@ -48,7 +48,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox>
+                  <HBox alignment="CENTER_LEFT">
                      <children>
                         <ComboBox fx:id="Comborepeticao" prefHeight="26.0" prefWidth="215.0" promptText="Repetição" style="-fx-background-color: #333333;" />
                         <Label fx:id="erroComboRepeticao" prefHeight="18.0" prefWidth="161.0" text="Label" textFill="WHITE" visible="false">
@@ -76,7 +76,7 @@
          </children>
       </StackPane>
 
-      <Label layoutX="147.0" layoutY="4.0" prefHeight="34.0" prefWidth="293.0" text="Crie um novo evento" textFill="WHITE">
+      <Label maxWidth="1.7976931348623157E308" prefHeight="34.0" text="Crie um novo evento" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="4.0" alignment="CENTER">
          <font>
             <Font size="25.0" />
          </font>

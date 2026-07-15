@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #121212; -fx-border-color: white;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.agenda.verEventoController">
@@ -18,7 +19,6 @@
             <Font size="30.0" />
          </font>
       </Label>
-      <Button layoutX="273.0" mnemonicParsing="false" onAction="#botaoVoltar" style="-fx-background-color: transparent;" text="Voltar" textFill="WHITE" AnchorPane.bottomAnchor="10.0" />
       <ImageView fitHeight="42.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
             <Image url="@../../imagens_agenda/line_start_arrow_41dp_WHITE_FILL1_wght500_GRAD200_opsz40.png" />
@@ -44,5 +44,12 @@
             </GridPane>
          </content>
       </ScrollPane>
+
+      <!-- "Voltar" dentro de um StackPane que ocupa a barra inferior inteira: fica sempre centralizado -->
+      <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" prefHeight="40.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#botaoVoltar" style="-fx-background-color: transparent;" text="Voltar" textFill="WHITE" />
+         </children>
+      </StackPane>
    </children>
 </AnchorPane>
