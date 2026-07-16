@@ -19,9 +19,9 @@
    <children>
       <StackPane layoutY="-6.0" prefHeight="670.0" prefWidth="870.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-6.0">
          <children>
-            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="554.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="699.0" prefWidth="554.0" spacing="30.0" style="-fx-background-color: #1a1a1a; -fx-border-color: #333333; -fx-border-width: 1px; -fx-background-radius: 12px; -fx-border-radius: 12px;" StackPane.alignment="CENTER">
+            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="696.0" prefWidth="710.0" spacing="32.0" style="-fx-background-color: #1a1a1a; -fx-border-color: #333333; -fx-border-width: 1px; -fx-background-radius: 12px; -fx-border-radius: 12px;" StackPane.alignment="CENTER">
                <padding>
-                  <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+                  <Insets bottom="60.0" left="40.0" right="40.0" top="60.0" />
                </padding>
                <children>
                   <Label text="Crie um novo evento" textFill="WHITE">
