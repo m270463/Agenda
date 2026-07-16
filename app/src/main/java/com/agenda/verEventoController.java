@@ -122,16 +122,13 @@ public class verEventoController {
                 Parent root = loader.load();
 
                 verEventoController novoController = loader.getController();
-                novoController.carregarLista(lista,Data);
+                novoController.carregarLista(lista, Data);
+
                 Stage stage = (Stage) gridEventos.getScene().getWindow();
 
-                Scene novaCena = new Scene(root);
+                stage.getScene().setRoot(root);
 
-                stage.setScene(novaCena);
                 stage.setTitle("Agenda - Calendário");
-                stage.centerOnScreen();
-                stage.show();
-            
 
                 } catch (IOException e) {
                     System.err.println("Erro crítico ao carregar o arquivo da nova cena!");
@@ -154,21 +151,18 @@ public class verEventoController {
                     lista.add(evento);
             }       
 
-                     try {
+                try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("verevento.fxml"));
                 Parent root = loader.load();
 
                 verEventoController novoController = loader.getController();
-                novoController.carregarLista(lista,Data);
+                novoController.carregarLista(lista, Data);
+
                 Stage stage = (Stage) gridEventos.getScene().getWindow();
 
-                Scene novaCena = new Scene(root);
+                stage.getScene().setRoot(root);
 
-                stage.setScene(novaCena);
                 stage.setTitle("Agenda - Calendário");
-                stage.centerOnScreen();
-                stage.show();
-            
 
                 } catch (IOException e) {
                     System.err.println("Erro crítico ao carregar o arquivo da nova cena!");
@@ -178,13 +172,6 @@ public class verEventoController {
 
 
     }
-
-
-
-
-
-
-
 
     @FXML
     private void botaoVoltar(){
