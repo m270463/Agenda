@@ -73,7 +73,7 @@ public class LoginController implements Validavel{
                 Scene novaCena = new Scene(root);
 
                 stage.setScene(novaCena);
-                stage.setTitle("Agenda - Principal");
+                stage.setTitle("Agenda - Calendário");
                 stage.centerOnScreen();
                 stage.show();
 
@@ -89,26 +89,14 @@ public class LoginController implements Validavel{
     @FXML
     private void aoClicarBotaoCriarConta(){
         try {
-FXMLLoader loader = new FXMLLoader(getClass().getResource("criarconta.fxml"));
-Parent root = loader.load();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("criarconta.fxml"));
+            Parent root = loader.load();
 
-Stage stage = (Stage) campoUsuario.getScene().getWindow();
-Scene cenaAtual = stage.getScene();
+            Stage stage = (Stage) campoSenha.getScene().getWindow();
 
-        if (cenaAtual != null) {
-            cenaAtual.setRoot(root);
-        } else {
-            Scene novaCena = new Scene(root);
-            stage.setScene(novaCena);
-        }
-
-        stage.setTitle("Agenda - Início");
-
-        if (!stage.isFullScreen() && !stage.isMaximized()) {
-            stage.centerOnScreen();
-        }
-
-        stage.show();
+            stage.getScene().setRoot(root);
+            
+            stage.setTitle("Agenda - Criação de Conta");
 
         } catch (IOException e) {
             System.err.println("Erro crítico ao carregar o arquivo da nova cena!");

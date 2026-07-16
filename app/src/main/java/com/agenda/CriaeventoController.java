@@ -122,7 +122,6 @@ public class CriaeventoController extends controllerEventos implements Validavel
                 horaComeco = LocalTime.parse(horaInicio.getText());
             }
             Evento evento = new Evento(title, desc, repeticao, diaComeco, horaComeco, horaTermino);
-            LocalDate dataAtual = diaComeco;
             if (evento.getRepeticao().equals("Nunca")){
                 App.usuarioaAtivo.getAgenda().putIfAbsent(diaComeco, new ArrayList<>());
                 App.usuarioaAtivo.getAgenda().get(diaComeco).add(evento);
@@ -143,7 +142,7 @@ public class CriaeventoController extends controllerEventos implements Validavel
                 Scene novaCena = new Scene(root);
 
                 stage.setScene(novaCena);
-                stage.setTitle("Agenda - Login");
+                stage.setTitle("Agenda - Calendário");
                 stage.centerOnScreen();
                 stage.show();
 
@@ -171,7 +170,7 @@ public class CriaeventoController extends controllerEventos implements Validavel
             Scene novaCena = new Scene(root);
 
             stage.setScene(novaCena);
-            stage.setTitle("Agenda - Login");
+            stage.setTitle("Agenda - Calendário");
             stage.centerOnScreen();
             stage.show();
 

@@ -305,14 +305,12 @@ public class EditEventoController extends controllerEventos implements Validavel
 
             novoController.carregarLista(lista,evento.getDiaInicio());
 
-            Stage stage = (Stage) confirmacao.getScene().getWindow();
+            Stage stage = (Stage) titulo.getScene().getWindow();
 
-            Scene novaCena = new Scene(root);
+            stage.getScene().setRoot(root);
+            
+            stage.setTitle("Agenda - Visualização");
 
-            stage.setScene(novaCena);
-            stage.setTitle("Agenda - Login");
-            stage.centerOnScreen(); 
-            stage.show();
 
             } catch (IOException e) {
                 System.err.println("Erro crítico ao carregar o arquivo da nova cena!");

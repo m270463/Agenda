@@ -20,13 +20,13 @@ public class App extends Application {
 
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("teste.fxml"));
 
-            Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+            Scene scene = new Scene(fxmlLoader.load());
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             gerenciadorDados.salvar(listaUsuarios);
         }));
 
-            stage.setTitle("Agenda - Início");
+            stage.setTitle("Agenda - Login");
             stage.setScene(scene);
             stage.setResizable(true);
             stage.show();

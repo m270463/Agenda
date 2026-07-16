@@ -49,7 +49,6 @@ public class calendarioController {
 
 
         mesAtual = YearMonth.now();
-        // colocar alguns códigos aqui como funções em um outro arquivo, para implementar uma interface.
 
         List<String> meses = new ArrayList<>();
         Locale localBR = new Locale("pt", "BR");
@@ -255,20 +254,21 @@ public class calendarioController {
             botaoDia.setOnAction(event ->{
 
             try {
+                
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("verevento.fxml"));
                 Parent root = loader.load();
 
                 verEventoController novoController = loader.getController();
                 novoController.carregarLista(eventosNoDia,dataDia);
+   
+
                 Stage stage = (Stage) comboMes.getScene().getWindow();
 
-                Scene novaCena = new Scene(root);
+                stage.getScene().setRoot(root);
+                
+                stage.setTitle("Agenda - Visualização");
 
-                stage.setScene(novaCena);
-                stage.setTitle("Agenda - Calendário");
-                stage.centerOnScreen();
-                stage.show();
-            
+
 
                 } catch (IOException e) {
                     System.err.println("Erro crítico ao carregar o arquivo da nova cena!");

@@ -128,7 +128,7 @@ public class verEventoController {
 
                 stage.getScene().setRoot(root);
 
-                stage.setTitle("Agenda - Calendário");
+                stage.setTitle("Agenda - Visualização");
 
                 } catch (IOException e) {
                     System.err.println("Erro crítico ao carregar o arquivo da nova cena!");
@@ -162,7 +162,7 @@ public class verEventoController {
 
                 stage.getScene().setRoot(root);
 
-                stage.setTitle("Agenda - Calendário");
+                stage.setTitle("Agenda - Visualização");
 
                 } catch (IOException e) {
                     System.err.println("Erro crítico ao carregar o arquivo da nova cena!");
