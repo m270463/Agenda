@@ -15,7 +15,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -66,6 +65,7 @@ public class calendarioController {
      */
     @FXML
     private ComboBox<String> comboAno;
+
 
     /**
      * O mês e o ano atualmente selecionados e exibidos na interface do usuário.
@@ -201,12 +201,10 @@ public class calendarioController {
             Parent root = loader.load();
 
             Stage stage = (Stage) avancar.getScene().getWindow();
-            Scene novaCena = new Scene(root);
-
-            stage.setScene(novaCena);
+            stage.getScene().setRoot(root);
+            root.applyCss();
+            root.layout();
             stage.setTitle("Agenda - Login");
-            stage.centerOnScreen();
-            stage.show();
 
         } catch (IOException e) {
             System.err.println("Erro crítico ao carregar o arquivo da nova cena!");
@@ -328,12 +326,10 @@ public class calendarioController {
                     novoController.carregarLista(eventosNoDia, dataDia);
                     
                     Stage stage = (Stage) comboMes.getScene().getWindow();
-                    Scene novaCena = new Scene(root);
-
-                    stage.setScene(novaCena);
+                    stage.getScene().setRoot(root);
+                    root.applyCss();
+                    root.layout();
                     stage.setTitle("Agenda - Calendário");
-                    stage.centerOnScreen();
-                    stage.show();
 
                 } catch (IOException e) {
                     System.err.println("Erro crítico ao carregar o arquivo da nova cena!");
@@ -362,12 +358,10 @@ public class calendarioController {
             Parent root = loader.load();
 
             Stage stage = (Stage) comboAno.getScene().getWindow();
-            Scene novaCena = new Scene(root);
-
-            stage.setScene(novaCena);
+            stage.getScene().setRoot(root);
+            root.applyCss();
+            root.layout();
             stage.setTitle("Agenda - Novo Evento");
-            stage.centerOnScreen();
-            stage.show();
 
         } catch (IOException e) {
             System.err.println("Erro crítico ao carregar o arquivo da nova cena!");

@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -177,12 +176,10 @@ public class CriaeventoController extends controllerEventos implements Validavel
                     Parent root = loader.load();
 
                     Stage stage = (Stage) titulo.getScene().getWindow();
-                    Scene novaCena = new Scene(root);
-
-                    stage.setScene(novaCena);
+                    stage.getScene().setRoot(root);
+                    root.applyCss();
+                    root.layout();
                     stage.setTitle("Agenda - Login");
-                    stage.centerOnScreen();
-                    stage.show();
 
                 } catch (IOException e) {
                     System.err.println("Erro crítico ao carregar o arquivo da nova cena!");
@@ -207,12 +204,10 @@ public class CriaeventoController extends controllerEventos implements Validavel
             Parent root = loader.load();
 
             Stage stage = (Stage) titulo.getScene().getWindow();
-            Scene novaCena = new Scene(root);
-
-            stage.setScene(novaCena);
+            stage.getScene().setRoot(root);
+            root.applyCss();
+            root.layout();
             stage.setTitle("Agenda - Login");
-            stage.centerOnScreen();
-            stage.show();
 
         } catch (IOException e) {
             System.err.println("Erro crítico ao carregar o arquivo da nova cena!");

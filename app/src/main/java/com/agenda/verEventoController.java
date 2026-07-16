@@ -9,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -111,12 +110,10 @@ public class verEventoController {
                     EditEventoController novoController = loader.getController();
                     novoController.montarEvento(evento);
                     Stage stage = (Stage) gridEventos.getScene().getWindow();
-
-                    Scene novaCena = new Scene(root);
-                    stage.setScene(novaCena);
+                    stage.getScene().setRoot(root);
+                    root.applyCss();
+                    root.layout();
                     stage.setTitle("Agenda - Calendário");
-                    stage.centerOnScreen();
-                    stage.show();
 
                 } catch (IOException e) {
                     System.err.println("Erro crítico ao carregar o arquivo da nova cena!");
@@ -164,12 +161,10 @@ public class verEventoController {
             verEventoController novoController = loader.getController();
             novoController.carregarLista(lista, Data);
             Stage stage = (Stage) gridEventos.getScene().getWindow();
-
-            Scene novaCena = new Scene(root);
-            stage.setScene(novaCena);
-            stage.setTitle("Agenda - Calendário");
-            stage.centerOnScreen();
-            stage.show();
+            stage.getScene().setRoot(root);
+            root.applyCss();
+            root.layout();
+            stage.setTitle("Agenda - Visualização");
 
         } catch (IOException e) {
             System.err.println("Erro crítico ao carregar o arquivo da nova cena!");
@@ -203,12 +198,10 @@ public class verEventoController {
             verEventoController novoController = loader.getController();
             novoController.carregarLista(lista, Data);
             Stage stage = (Stage) gridEventos.getScene().getWindow();
-
-            Scene novaCena = new Scene(root);
-            stage.setScene(novaCena);
-            stage.setTitle("Agenda - Calendário");
-            stage.centerOnScreen();
-            stage.show();
+            stage.getScene().setRoot(root);
+            root.applyCss();
+            root.layout();
+            stage.setTitle("Agenda - Visualização");
 
         } catch (IOException e) {
             System.err.println("Erro crítico ao carregar o arquivo da nova cena!");
@@ -227,12 +220,10 @@ public class verEventoController {
             Parent root = loader.load();
 
             Stage stage = (Stage) eventoDia.getScene().getWindow();
-            Scene novaCena = new Scene(root);
-
-            stage.setScene(novaCena);
+            stage.getScene().setRoot(root);
+            root.applyCss();
+            root.layout();
             stage.setTitle("Agenda - Calendário");
-            stage.centerOnScreen();
-            stage.show();
 
         } catch (IOException e) {
             System.err.println("Erro crítico ao carregar o arquivo da nova cena!");
