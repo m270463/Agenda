@@ -7,7 +7,6 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -292,13 +291,10 @@ public class CriacontaController implements Validavel {
                 Parent root = loader.load();
 
                 Stage stage = (Stage) campoSenha.getScene().getWindow();
-
-                Scene novaCena = new Scene(root);
-
-                stage.setScene(novaCena);
+                stage.getScene().setRoot(root);
+                root.applyCss();
+                root.layout();
                 stage.setTitle("Agenda - Login");
-                stage.centerOnScreen();
-                stage.show();
 
             } catch (IOException e) {
                 System.err.println("Erro crítico ao carregar o arquivo da nova cena!");
@@ -319,13 +315,10 @@ public class CriacontaController implements Validavel {
             Parent root = loader.load();
 
             Stage stage = (Stage) botaoVoltar.getScene().getWindow();
-
-            Scene novaCena = new Scene(root);
-
-            stage.setScene(novaCena);
+            stage.getScene().setRoot(root);
+            root.applyCss();
+            root.layout();
             stage.setTitle("Agenda - Início");
-            stage.centerOnScreen();
-            stage.show();
 
         } catch (IOException e) {
             System.err.println("Erro crítico ao carregar o arquivo da nova cena!");

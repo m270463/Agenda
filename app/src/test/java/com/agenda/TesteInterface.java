@@ -1,17 +1,12 @@
 package com.agenda;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.input.KeyCode;
-import javafx.stage.Stage;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -20,6 +15,14 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
+import org.testfx.util.WaitForAsyncUtils;
+
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
+import javafx.stage.Stage;
 
 /**
  * Testes de interface com TestFX: simulam clique/digitação reais do usuário.
@@ -70,6 +73,7 @@ public class TesteInterface {
         robot.clickOn("#campoUsuario").write("usuario_errado@agenda.com");
         robot.clickOn("#campoSenha").write("senha_incorreta");
         robot.press(KeyCode.ENTER).release(KeyCode.ENTER);
+        WaitForAsyncUtils.waitForFxEvents();
 
         Label textoErro = robot.lookup("#textoErro").queryAs(Label.class);
 
@@ -84,6 +88,7 @@ public class TesteInterface {
         robot.clickOn("#campoUsuario").write("teste@agenda.com");
         robot.clickOn("#campoSenha").write("123");
         robot.press(KeyCode.ENTER).release(KeyCode.ENTER);
+        WaitForAsyncUtils.waitForFxEvents();
 
         assertNotNull(App.usuarioaAtivo, "O login falhou: usuário ativo não foi definido.");
         assertEquals("teste@agenda.com", App.usuarioaAtivo.getEmail());
