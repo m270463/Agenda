@@ -14,17 +14,17 @@ dependencies {
     implementation 'org.openjfx:javafx-fxml:21'
     implementation 'com.google.code.gson:gson:2.10.1'
     implementation 'org.controlsfx:controlsfx:11.1.2+' 
+    testImplementation platform('org.junit:junit-bom:5.10.2')
     testImplementation 'org.testfx:testfx-core:4.0.18'
     testImplementation 'org.testfx:testfx-junit5:4.0.18'
     testImplementation 'org.hamcrest:hamcrest:2.2'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
+
 test {
     useJUnitPlatform()
-    systemProperty 'glass.platform', 'Monocle'
-    systemProperty 'monocle.platform', 'Headless'
-    systemProperty 'prism.order', 'sw'
+    modularity.inferModulePath = false
     finalizedBy jacocoTestReport // Gera o relatório depois de rodar os testes
 }
 
@@ -44,4 +44,3 @@ javafx {
 application {
     mainClass = 'com.agenda.App'
 }
-

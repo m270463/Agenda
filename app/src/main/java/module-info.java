@@ -37,8 +37,7 @@ module com.agenda {
      * <li><b>{@code com.google.gson}:</b> Concede ao Gson permissão para ler e gravar dados em campos privados de classes de modelo (como {@link Usuario} e {@link Evento}) sem a necessidade de expor setters públicos para todos os atributos.</li>
      * </ul>
      */
-    opens com.agenda to javafx.fxml, com.google.gson , org.testfx.junit5;
-
+opens com.agenda to javafx.fxml, com.google.gson;
     /**
      * Exporta o pacote {@code com.agenda} para que seja visível a outros módulos do ecossistema Java.
      * Torna as classes públicas deste pacote utilizáveis pela máquina virtual Java (JVM) e pelo ciclo de vida do JavaFX.
