@@ -2,6 +2,7 @@ plugins {
     id 'application'
     // Plugin oficial do JavaFX
     id 'org.openjfx.javafxplugin' version '0.1.0'
+    id 'jacoco'
 }
 
 repositories {
@@ -13,7 +14,27 @@ dependencies {
     implementation 'org.openjfx:javafx-fxml:21'
     implementation 'com.google.code.gson:gson:2.10.1'
     implementation 'org.controlsfx:controlsfx:11.1.2+' 
+    testImplementation platform('org.junit:junit-bom:5.10.2')
+    testImplementation 'org.testfx:testfx-core:4.0.18'
+    testImplementation 'org.testfx:testfx-junit5:4.0.18'
+    testImplementation 'org.hamcrest:hamcrest:2.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
+
+test {
+    useJUnitPlatform()
+    modularity.inferModulePath = false
+    finalizedBy jacocoTestReport // Gera o relatório depois de rodar os testes
+}
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        html.required = true // Vai gerar um site mostrando o que foi testado
+    }
+}
+
 
 javafx {
     version = "21"
@@ -23,4 +44,3 @@ javafx {
 application {
     mainClass = 'com.agenda.App'
 }
-
