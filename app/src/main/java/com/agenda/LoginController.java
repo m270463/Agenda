@@ -89,16 +89,25 @@ public class LoginController implements Validavel{
     @FXML
     private void aoClicarBotaoCriarConta(){
         try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("criarconta.fxml"));
-        Parent root = loader.load();
+FXMLLoader loader = new FXMLLoader(getClass().getResource("criarconta.fxml"));
+Parent root = loader.load();
 
-        Stage stage = (Stage) campoUsuario.getScene().getWindow();
+Stage stage = (Stage) campoUsuario.getScene().getWindow();
+Scene cenaAtual = stage.getScene();
 
-        Scene novaCena = new Scene(root);
+        if (cenaAtual != null) {
+            cenaAtual.setRoot(root);
+        } else {
+            Scene novaCena = new Scene(root);
+            stage.setScene(novaCena);
+        }
 
-        stage.setScene(novaCena);
         stage.setTitle("Agenda - Início");
-        stage.centerOnScreen();
+
+        if (!stage.isFullScreen() && !stage.isMaximized()) {
+            stage.centerOnScreen();
+        }
+
         stage.show();
 
         } catch (IOException e) {
