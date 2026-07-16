@@ -11,30 +11,45 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="566.0" style="-fx-background-color: #121212; -fx-border-color: #b6b2b2; -fx-border-image-width: 3px;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.agenda.LoginController">
+<AnchorPane fx:id="anchor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="632.0" prefWidth="781.0" style="-fx-background-color: #121212; -fx-border-width: 3px;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.agenda.LoginController">
    <children>
-      <StackPane AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+      <StackPane prefHeight="553.0" prefWidth="716.0" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="-3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="-3.0">
          <children>
-            <VBox alignment="TOP_CENTER" fillWidth="true" maxHeight="1.7976931348623157E308" maxWidth="380.0" spacing="20.0" style="-fx-background-color: transparent;">
+            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="493.0" prefHeight="422.0" prefWidth="493.0" spacing="25.0" style="-fx-background-color: #1a1a1a; -fx-border-color: #b6b2b2; -fx-border-width: 2px; -fx-background-radius: 15px; -fx-border-radius: 15px;" StackPane.alignment="CENTER">
+               <padding>
+                  <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+               </padding>
                <children>
-                  <Label text="Entrar" textFill="WHITE">
+                  <Label alignment="CENTER" text="AGENDA" textFill="WHITE">
                      <font>
-                        <Font size="34.0" />
+                        <Font size="29.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="campoUsuario" maxWidth="1.7976931348623157E308" prefHeight="28.0" promptText="Email" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-border-width: 1px; -fx-text-inner-color: white;" />
-                  <PasswordField fx:id="campoSenha" maxWidth="1.7976931348623157E308" prefHeight="28.0" promptText="Senha" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-text-inner-color: white;" />
-                  <Button mnemonicParsing="false" onAction="#aoClicarBotaoLogin" style="-fx-background-color: #333333; -fx-cursor: hand;" text="Entrar" textFill="#e8e8e8">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#aoClicarBotaoCriarConta" prefHeight="26.0" prefWidth="161.0" style="-fx-background-color: transparent; -fx-cursor: hand;" text="Não tenho uma conta" textFill="WHITE" underline="true" />
-                  <Label fx:id="textoErro" prefHeight="18.0" text="Usuário ou senha incorreta!" textFill="#ff4a4a" visible="false" />
+                  <VBox alignment="CENTER" spacing="30.0">
+                     <children>
+                        <TextField fx:id="campoUsuario" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="273.0" promptText="Email" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-border-width: 1px; -fx-text-inner-color: white; -fx-font-size: 14px;" />
+                        <PasswordField fx:id="campoSenha" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="279.0" promptText="Senha" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-border-width: 1px; -fx-text-inner-color: white; -fx-font-size: 14px;" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="130.0" prefWidth="287.0" spacing="15.0">
+                     <children>
+                        <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#aoClicarBotaoLogin" style="-fx-background-color: #333333; -fx-font-size: 14px;" text="Entrar" textFill="#e8e8e8">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#aoClicarBotaoCriarConta" prefHeight="30.0" style="-fx-background-color: transparent; -fx-font-size: 14px;" text="Não tenho uma conta" textFill="WHITE" underline="true">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Label fx:id="textoErro" alignment="CENTER" maxWidth="1.7976931348623157E308" text="Usuário e/ou senha inválidos!" textFill="RED" visible="false" />
+                     </children>
+                  </VBox>
                </children>
-               <padding>
-                  <Insets top="40.0" />
-               </padding>
+               <StackPane.margin>
+                  <Insets left="20.0" right="20.0" />
+               </StackPane.margin>
             </VBox>
          </children>
       </StackPane>
