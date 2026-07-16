@@ -1,4 +1,5 @@
 package com.agenda;
+
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.YearMonth;
@@ -23,34 +24,68 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
+/**
+ * Controller responsável pela visualização e interação com a tela de calendário.
+ * <p>
+ * Gerencia a renderização dos dias do mês selecionado dentro de um {@link GridPane},
+ * a seleção dinâmica de mês/ano por meio de {@link ComboBox}, a transição entre telas 
+ * (detalhes de eventos, criação de novos eventos e login) e a exibição de badges informando 
+ * a quantidade de compromissos de cada dia (incluindo eventos recorrentes).
+ * </p>
+ * * @author Seu Nome
+ * @version 1.0
+ */
 public class calendarioController {
+
+    /**
+     * Grade visual que estrutura o calendário, onde cada célula representará um dia do mês.
+     */
     @FXML
     private GridPane calendario;
 
-    @FXML   
+    /**
+     * Botão para retornar ao mês anterior.
+     */
+    @FXML
     private Button voltar;
 
+    /**
+     * Botão para avançar para o próximo mês.
+     */
     @FXML
     private Button avancar;
 
-    @FXML 
+    /**
+     * Caixa de seleção contendo os nomes dos meses em formato textual.
+     */
+    @FXML
     private ComboBox<String> comboMes;
 
+    /**
+     * Caixa de seleção contendo os anos representados em formato String.
+     */
     @FXML
     private ComboBox<String> comboAno;
 
-    
-
+    /**
+     * O mês e o ano atualmente selecionados e exibidos na interface do usuário.
+     */
     private YearMonth mesAtual;
 
+    /**
+     * Inicializa o controller logo após o carregamento do arquivo FXML.
+     * <p>
+     * Configura a data inicial como o mês corrente, popula as caixas de seleção 
+     * (meses em português e anos de 1970 a 2050), estiliza os botões internos de seta 
+     * dos combos, define os listeners de eventos de seleção e invoca a montagem visual 
+     * do calendário.
+     * </p>
+     */
     @FXML
     public void initialize() {
-
-
-
         mesAtual = YearMonth.now();
-        // colocar alguns códigos aqui como funções em um outro arquivo, para implementar uma interface.
 
+        // Popula a lista com os meses localizados em português do Brasil
         List<String> meses = new ArrayList<>();
         Locale localBR = new Locale("pt", "BR");
         for (int i = 1; i <= 12; i++) {
@@ -61,9 +96,11 @@ public class calendarioController {
         comboMes.setItems(FXCollections.observableArrayList(meses));
         comboMes.getSelectionModel().select(mesAtual.getMonthValue() - 1);
 
+        // Define renderizadores personalizados para a aparência das células do combo
         comboMes.setButtonCell(criarCelulaCustomizada(false)); 
         comboMes.setCellFactory(lv -> criarCelulaCustomizada(true)); 
 
+        // Popula a lista com o intervalo de anos (1970 - 2050)
         List<String> anos = new ArrayList<>();
         for (int i = 1970; i <= 2050; i++){
             anos.add(String.valueOf(i));
@@ -75,6 +112,7 @@ public class calendarioController {
         comboAno.setButtonCell(criarCelulaCustomizada(false));
         comboAno.setCellFactory(lv -> criarCelulaCustomizada(true));
 
+        // Customização CSS das setas de dropdown (arrows) dos ComboBoxes após renderização em tela
         Platform.runLater(() -> {
             Node arrowButton = comboMes.lookup(".arrow-button");
             if (arrowButton != null) {
@@ -95,25 +133,31 @@ public class calendarioController {
             }
         });
 
+        // Configura a alteração automática do calendário ao mudar o mês
         comboMes.setOnAction(event -> {
             int mesSelecionado = comboMes.getSelectionModel().getSelectedIndex() + 1;
             mesAtual = YearMonth.of(mesAtual.getYear(), mesSelecionado);
             montarCalendario(mesAtual);
         });
 
+        // Configura a alteração automática do calendário ao mudar o ano
         comboAno.setOnAction(event -> {
             int anoSelecionado = Integer.parseInt(comboAno.getValue());
             mesAtual = YearMonth.of(anoSelecionado, comboMes.getSelectionModel().getSelectedIndex() + 1);
             montarCalendario(mesAtual);
         });
 
-
-
         comboMes.setVisibleRowCount(12);
         comboAno.setVisibleRowCount(10);
         montarCalendario(mesAtual);
     }
 
+    /**
+     * Cria e formata uma célula customizada de texto para os ComboBoxes do sistema.
+     * * @param celula {@code true} se a célula for renderizada na lista suspensa (dropdown); 
+     * {@code false} se for a célula que exibe o item atualmente selecionado no botão.
+     * @return Uma instância configurada de {@link ListCell} para renderizar itens de texto.
+     */
     private ListCell<String> criarCelulaCustomizada(boolean celula) {
         return new ListCell<>() {   
             @Override
@@ -134,38 +178,46 @@ public class calendarioController {
         };
     }
 
-    
+    /**
+     * Evento acionado pelo botão voltar. Retrocede o calendário em exatamente um mês 
+     * e atualiza os componentes de seleção visual.
+     */
     @FXML
     private void botaoVoltar(){
         mesAtual = mesAtual.minusMonths(1);
         montarCalendario(mesAtual);
         comboMes.getSelectionModel().select(mesAtual.getMonthValue() - 1 % 12);
         comboAno.setValue(String.valueOf(mesAtual.getYear()));
-        
     }
 
-    @FXML 
+    /**
+     * Retorna o fluxo da aplicação para a tela inicial/login.
+     * Carrega a cena definida pelo FXML {@code teste.fxml}.
+     */
+    @FXML
     private void botaovoltarInicio(){
         try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("teste.fxml"));
-        Parent root = loader.load();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("teste.fxml"));
+            Parent root = loader.load();
 
-        Stage stage = (Stage) avancar.getScene().getWindow();
+            Stage stage = (Stage) avancar.getScene().getWindow();
+            Scene novaCena = new Scene(root);
 
-        Scene novaCena = new Scene(root);
-
-        stage.setScene(novaCena);
-        stage.setTitle("Agenda - Login");
-        stage.centerOnScreen();
-        stage.show();
+            stage.setScene(novaCena);
+            stage.setTitle("Agenda - Login");
+            stage.centerOnScreen();
+            stage.show();
 
         } catch (IOException e) {
             System.err.println("Erro crítico ao carregar o arquivo da nova cena!");
             e.printStackTrace();
         }
     }
-    
 
+    /**
+     * Evento acionado pelo botão avançar. Avança o calendário em exatamente um mês 
+     * e atualiza os componentes de seleção visual.
+     */
     @FXML
     private void botaoAvancar(){
         mesAtual = mesAtual.plusMonths(1);
@@ -174,20 +226,31 @@ public class calendarioController {
         comboAno.setValue(String.valueOf(mesAtual.getYear()));
     }
 
-
+    /**
+     * Reconstrói dinamicamente os componentes visuais dos dias no {@link GridPane} com base no mês informado.
+     * <p>
+     * Este método limpa todas as linhas de dias existentes na grade, determina a coluna correta para 
+     * o primeiro dia do mês de acordo com o dia da semana, cria elementos de interface contendo botões 
+     * para cada dia, destaca o dia corrente e anexa badges indicativos caso existam eventos pontuais 
+     * ou repetitivos cadastrados para a data correspondente. Adicionalmente, configura o comportamento de 
+     * clique em cada dia para abrir a tela de visualização de detalhes dos eventos.
+     * </p>
+     *
+     * @param mesAtual O {@link YearMonth} representando o mês que deve ser montado na tela.
+     */
     private void montarCalendario(YearMonth mesAtual){
         
+        // Remove os componentes visuais antigos de dias, mantendo apenas o cabeçalho (linha 0)
         calendario.getChildren().removeIf(node -> {
             Integer rowIndex = GridPane.getRowIndex(node);
             int linhaAtual = (rowIndex == null) ? 0 : rowIndex;
             return linhaAtual > 0;
-            });
-
+        });
 
         LocalDate primeirodiaMes = mesAtual.atDay(1);
         int diaSemana = primeirodiaMes.getDayOfWeek().getValue();
         int colunaInicial = 0;
-        if (diaSemana != 7)
+        if (diaSemana != 7) // Tratamento para que o Domingo (7) comece na coluna 0
             colunaInicial = diaSemana;
         
         int totalDias = mesAtual.lengthOfMonth();
@@ -202,7 +265,6 @@ public class calendarioController {
             stack.setStyle("-fx-background-color: #121212;-fx-border-color: #333333");
             
             Button botaoDia = new Button(String.valueOf(dia));
-
             botaoDia.setMaxWidth(Double.MAX_VALUE);
             botaoDia.setMaxHeight(Double.MAX_VALUE);
             botaoDia.setStyle(
@@ -216,24 +278,28 @@ public class calendarioController {
 
             LocalDate dataBotao = mesAtual.atDay(dia);
 
+            // Destaca a borda da célula caso ela represente a data atual do sistema (Hoje)
             if (dataBotao.isEqual(LocalDate.now())) {
                 stack.setStyle(
                     "-fx-border-color: #00adb5; " +    
                     "-fx-border-width: 1.5px; " +       
                     "-fx-background-color: #1a1a1a; " 
                 );
-        }
+            }
             stack.getChildren().add(botaoDia);
+            
             ArrayList<Evento> eventosDia = new ArrayList<>();
+            // Verifica e adiciona eventos pontuais agendados para a data
             if (App.usuarioaAtivo.getAgenda().get(dataBotao) != null)
                 eventosDia.addAll(App.usuarioaAtivo.getAgenda().get(dataBotao));
             
-
+            // Filtra e adiciona eventos com lógica de repetição que ocorram nesta data
             for (Evento evento: App.usuarioaAtivo.getAgendaRepetitiva()){
                 if (evento.ocorreEm(dataBotao))
                     eventosDia.add(evento);
             }
 
+            // Adiciona um selo visual (badge) vermelho indicando o número de compromissos
             if (!eventosDia.isEmpty()){
                 Label badgeContador = new Label(String.valueOf(eventosDia.size()));
                 badgeContador.setStyle(
@@ -251,24 +317,23 @@ public class calendarioController {
             
             final ArrayList<Evento> eventosNoDia = eventosDia;
             final LocalDate dataDia = dataBotao;
-            final int diaSelecionado = dia;
-            botaoDia.setOnAction(event ->{
-
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("verevento.fxml"));
-                Parent root = loader.load();
-
-                verEventoController novoController = loader.getController();
-                novoController.carregarLista(eventosNoDia,dataDia);
-                Stage stage = (Stage) comboMes.getScene().getWindow();
-
-                Scene novaCena = new Scene(root);
-
-                stage.setScene(novaCena);
-                stage.setTitle("Agenda - Calendário");
-                stage.centerOnScreen();
-                stage.show();
             
+            // Configura o clique no botão do dia para transicionar para a tela de visualização de eventos
+            botaoDia.setOnAction(event ->{
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("verevento.fxml"));
+                    Parent root = loader.load();
+
+                    verEventoController novoController = loader.getController();
+                    novoController.carregarLista(eventosNoDia, dataDia);
+                    
+                    Stage stage = (Stage) comboMes.getScene().getWindow();
+                    Scene novaCena = new Scene(root);
+
+                    stage.setScene(novaCena);
+                    stage.setTitle("Agenda - Calendário");
+                    stage.centerOnScreen();
+                    stage.show();
 
                 } catch (IOException e) {
                     System.err.println("Erro crítico ao carregar o arquivo da nova cena!");
@@ -276,36 +341,37 @@ public class calendarioController {
                 }
             });
 
-        calendario.add(stack, coluna, linha);
-
-        coluna++;
+            calendario.add(stack, coluna, linha);
+            coluna++;
 
             if (coluna > 6){
                 coluna = 0;
                 linha++;
             }
         }
-
     }
+
+    /**
+     * Transiciona a aplicação para a tela de criação de novos eventos.
+     * Carrega a cena definida pelo arquivo FXML {@code criaevento.fxml}.
+     */
     @FXML
     private void botaoAdicionar(){
-            try {
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("criaevento.fxml"));
-    Parent root = loader.load();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("criaevento.fxml"));
+            Parent root = loader.load();
 
-    Stage stage = (Stage) comboAno.getScene().getWindow();
+            Stage stage = (Stage) comboAno.getScene().getWindow();
+            Scene novaCena = new Scene(root);
 
-    Scene novaCena = new Scene(root);
+            stage.setScene(novaCena);
+            stage.setTitle("Agenda - Novo Evento");
+            stage.centerOnScreen();
+            stage.show();
 
-    stage.setScene(novaCena);
-    stage.setTitle("Agenda - Novo Evento");
-    stage.centerOnScreen();
-    stage.show();
-
-    } catch (IOException e) {
-        System.err.println("Erro crítico ao carregar o arquivo da nova cena!");
-        e.printStackTrace();
+        } catch (IOException e) {
+            System.err.println("Erro crítico ao carregar o arquivo da nova cena!");
+            e.printStackTrace();
+        }
     }
-    }
-
 }
