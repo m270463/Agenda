@@ -133,4 +133,4 @@ Durante o desenvolvimento, também foi utilizado apoio de **Inteligência Artifi
 - [Matheus Assis / 270463]
 - [Theo Couto / 172427]
 - [João Neto / 269172]
-- [Theo Couto / 253448]
+- [Caio Veloso/ 253448]
