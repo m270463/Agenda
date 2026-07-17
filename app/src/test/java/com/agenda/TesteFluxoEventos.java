@@ -23,10 +23,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-/**
- * Testes de fluxo completo: login -> calendário -> criar evento.
- * Cobre calendarioController, controllerEventos e CriaeventoController.
- */
+
 @ExtendWith(ApplicationExtension.class)
 public class TesteFluxoEventos {
 
@@ -87,9 +84,9 @@ public class TesteFluxoEventos {
     @DisplayName("Criar evento: deve bloquear submissão com campos obrigatórios vazios")
     public void deveBloquearCriacaoComCamposVazios(FxRobot robot) {
         robot.clickOn("#botaoAdicionar");
-        robot.sleep(200);
+        robot.sleep(1000);
 
-        robot.clickOn("Criar");
+        robot.clickOn("#botaoCriar");
 
         Label erroTitulo = robot.lookup("#erroTitulo").queryAs(Label.class);
         assertNotNull(erroTitulo);
@@ -100,46 +97,44 @@ public class TesteFluxoEventos {
     @DisplayName("Criar evento: deve rejeitar data em formato inválido")
     public void deveRejeitarDataInvalida(FxRobot robot) {
         robot.clickOn("#botaoAdicionar");
-        robot.sleep(200);
+        robot.sleep(1000);
 
         robot.clickOn("#titulo").write("Reunião de Teste");
-        robot.clickOn("#diaInicio").write("31/02/2026");
-        robot.clickOn("Criar");
-
+        robot.clickOn("#diaInicio").write("31022026");
+        robot.clickOn("#botaoCriar");
+        robot.sleep(800);
         Label erroData = robot.lookup("#erroDiaInicio").queryAs(Label.class);
         assertNotNull(erroData);
         assertTrue(erroData.isVisible(), "Deveria rejeitar 31/02, que não existe.");
     }
-
-    @Test
+@Test
     @DisplayName("Criar evento: deve rejeitar horário de fim anterior ao de início")
     public void deveRejeitarHorarioInvalido(FxRobot robot) {
         robot.clickOn("#botaoAdicionar");
-        robot.sleep(200);
+        robot.sleep(1000);
 
         robot.clickOn("#titulo").write("Reunião de Teste");
-        robot.clickOn("#diaInicio").write("20/07/2026");
-        robot.clickOn("#horaInicio").write("1500");
-        robot.clickOn("#horaFim").write("1400");
-        robot.clickOn("#Comborepeticao").clickOn("Nunca");
-        robot.clickOn("Criar");
-
-        Label erroHoraFim = robot.lookup("#erroHoraFim").queryAs(Label.class);
-        assertNotNull(erroHoraFim);
-        assertTrue(erroHoraFim.isVisible(), "Deveria rejeitar horário de fim antes do início.");
+        robot.clickOn("#diaInicio").write("31032026");
+        robot.clickOn("#horaInicio").write("1400");
+        robot.clickOn("#horaFim").write("1200");
+        robot.clickOn("#botaoCriar");
+        robot.sleep(800);
+        Label erroData = robot.lookup("#erroHoraFim").queryAs(Label.class);
+        assertNotNull(erroData);
+        assertTrue(erroData.isVisible(), "Deveria rejeitar horas incompatíveis");
     }
 
     @Test
     @DisplayName("Criar evento: 'Dia inteiro' deve esconder os campos de horário")
     public void deveEsconderHorarioComDiaInteiro(FxRobot robot) {
         robot.clickOn("#botaoAdicionar");
-        robot.sleep(200);
+        robot.sleep(1000);
 
         var toggle = (org.controlsfx.control.ToggleSwitch) robot.lookup("#btnInterruptor").query();
         assertFalse(toggle.isSelected());
 
         robot.clickOn("#btnInterruptor");
-        robot.sleep(200);
+        robot.sleep(1000);
 
         var horaInicio = robot.lookup("#horaInicio").query();
         assertFalse(horaInicio.isVisible(), "O campo de hora de início deveria sumir com 'Dia inteiro' ativado.");

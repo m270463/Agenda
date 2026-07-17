@@ -7,8 +7,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import javafx.animation.PauseTransition;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -41,6 +43,11 @@ public class CriaeventoController extends controllerEventos implements Validavel
      * @return {@code true} se todos os critérios de validação forem satisfeitos; 
      * {@code false} se houver qualquer irregularidade ou inconsistência cronológica.
      */
+
+    /** Botão usado para confirmar a criação do evento. */
+    @FXML
+    private Button botaoCriar;
+
     @Override
     public boolean validar() {
         boolean valido = true;
@@ -99,7 +106,10 @@ public class CriaeventoController extends controllerEventos implements Validavel
             }
 
             // Verifica se a hora de término ocorre antes da hora de início
-            if (!horaInicio.getText().isBlank() && !horaFim.getText().isBlank()){
+            if (!horaInicio.getText().isBlank() && !horaFim.getText().isBlank()
+            && verificaLocalTime(horaInicio.getText()) && verificaLocalTime(horaFim.getText())){
+                
+
                 LocalTime horaInicial = LocalTime.parse(horaInicio.getText());
                 LocalTime horaFinal = LocalTime.parse(horaFim.getText());
                 if (horaFinal.isBefore(horaInicial)){
