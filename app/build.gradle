@@ -20,18 +20,20 @@ dependencies {
     testImplementation 'org.hamcrest:hamcrest:2.2'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testImplementation 'org.testfx:testfx-core:4.0.17'
+    testImplementation 'org.testfx:testfx-junit5:4.0.17'
 }
 
 test {
     useJUnitPlatform()
     modularity.inferModulePath = false
-    finalizedBy jacocoTestReport // Gera o relatório depois de rodar os testes
+    finalizedBy jacocoTestReport
 }
 
 jacocoTestReport {
     dependsOn test
     reports {
-        html.required = true // Vai gerar um site mostrando o que foi testado
+        html.required = true 
     }
 }
 

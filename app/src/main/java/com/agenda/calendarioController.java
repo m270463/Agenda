@@ -55,6 +55,12 @@ public class calendarioController {
     private Button avancar;
 
     /**
+     * Botão para avançar para entrar na tela de adicionar evento.
+     */
+    @FXML
+    private Button botaoAdicionar;
+    
+    /**
      * Caixa de seleção contendo os nomes dos meses em formato textual.
      */
     @FXML

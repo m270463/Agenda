@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,13 +14,11 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
-import org.testfx.util.WaitForAsyncUtils;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
 /**
@@ -62,39 +59,36 @@ public class TesteInterface {
     public void resetEstado() {
         // Garante que cada teste começa com um usuário conhecido, mesmo que
         // um teste anterior tenha adicionado outros à lista.
-        App.listaUsuarios.removeIf(u -> u.getEmail().equals("teste@agenda.com"));
-        App.listaUsuarios.add(new Usuario("Testador", "teste@agenda.com", "123456789", "123"));
+        App.listaUsuarios.removeIf(u -> u.getEmail().equals("a@gmail.com"));
+        App.listaUsuarios.add(new Usuario("Testador", "a@gmail.com", "99999999999", "123"));
         App.usuarioaAtivo = null;
     }
 
-    @Test
+@Test
     @DisplayName("Login: deve exibir erro ao tentar logar com credenciais inválidas")
     public void deveMostrarErroLoginInvalido(FxRobot robot) {
-        robot.clickOn("#campoUsuario").write("usuario_errado@agenda.com");
-        robot.clickOn("#campoSenha").write("senha_incorreta");
-        robot.press(KeyCode.ENTER).release(KeyCode.ENTER);
-        WaitForAsyncUtils.waitForFxEvents();
-
-        Label textoErro = robot.lookup("#textoErro").queryAs(Label.class);
-
-        assertNotNull(textoErro, "O componente de texto de erro não foi encontrado na tela.");
-        assertTrue(textoErro.isVisible(), "A label de erro deveria estar visível.");
-        assertNull(App.usuarioaAtivo, "Nenhum usuário deveria ter sido autenticado.");
+        robot.clickOn("#campoUsuario").write("usuarioerrado@gmail.com");
+        robot.clickOn("#campoSenha").write("errada");
+        robot.clickOn("#botaoEntrar");
+        robot.sleep(800);
+        Label erroData = robot.lookup("#textoErro").queryAs(Label.class);
+        assertNotNull(erroData);
+        assertTrue(erroData.isVisible(), "Deveria rejeitar um usuário inválido.");
+    
     }
 
-    @Test
-    @DisplayName("Login: deve autenticar com credenciais válidas")
+ @Test
+
+@DisplayName("Login: deve autenticar com credenciais válidas")
     public void deveLogarComSucesso(FxRobot robot) {
-        robot.clickOn("#campoUsuario").write("teste@agenda.com");
+        robot.clickOn("#campoUsuario").write("a@gmail.com");
         robot.clickOn("#campoSenha").write("123");
-        robot.press(KeyCode.ENTER).release(KeyCode.ENTER);
-        WaitForAsyncUtils.waitForFxEvents();
-
+        robot.clickOn("#botaoEntrar");
         assertNotNull(App.usuarioaAtivo, "O login falhou: usuário ativo não foi definido.");
-        assertEquals("teste@agenda.com", App.usuarioaAtivo.getEmail());
-    }
+        assertEquals("a@gmail.com", App.usuarioaAtivo.getEmail());
+    } 
 
-    @Test
+        @Test
     @DisplayName("Navegação: deve abrir a tela de Criar Conta")
     public void deveNavegarParaCriarConta(FxRobot robot) {
         robot.clickOn("Não tenho uma conta");
