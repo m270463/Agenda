@@ -33,12 +33,12 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="130.0" prefWidth="287.0" spacing="15.0">
                      <children>
-                        <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#aoClicarBotaoLogin" style="-fx-background-color: #333333; -fx-font-size: 14px;" text="Entrar" textFill="#e8e8e8">
+                        <Button fx:id="botaoEntrar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#aoClicarBotaoLogin" style="-fx-background-color: #333333; -fx-font-size: 14px;" text="Entrar" textFill="#e8e8e8">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#aoClicarBotaoCriarConta" prefHeight="30.0" style="-fx-background-color: transparent; -fx-font-size: 14px;" text="Não tenho uma conta" textFill="WHITE" underline="true">
+                        <Button fx:id="botaoCriaConta" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#aoClicarBotaoCriarConta" prefHeight="30.0" style="-fx-background-color: transparent; -fx-font-size: 14px;" text="Não tenho uma conta" textFill="WHITE" underline="true">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
