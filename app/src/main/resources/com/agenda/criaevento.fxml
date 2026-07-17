@@ -115,7 +115,7 @@
                         <Insets />
                      </VBox.margin>
                      <children>
-                        <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#botaoConfirmar" prefHeight="32.0" prefWidth="107.0" style="-fx-background-color: #333333; -fx-background-radius: 4px; -fx-font-size: 14px; -fx-text-fill: #e8e8e8; -fx-border-color: #555555; -fx-border-radius: 4px;" text="Criar">
+                        <Button fx:id="botaoCriar" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#botaoConfirmar" prefHeight="32.0" prefWidth="107.0" style="-fx-background-color: #333333; -fx-background-radius: 4px; -fx-font-size: 14px; -fx-text-fill: #e8e8e8; -fx-border-color: #555555; -fx-border-radius: 4px;" text="Criar">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>

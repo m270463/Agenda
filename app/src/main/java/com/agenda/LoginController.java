@@ -6,6 +6,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -42,6 +43,14 @@ public class LoginController implements Validavel {
     /** Painel raiz da interface gráfica, utilizado para desviar o foco inicial automático dos campos de texto. */
     @FXML
     private AnchorPane anchor;
+        
+    /** Botão que confirma o login. */
+    @FXML
+    private Button botaoEntrar;
+
+    /** Botão que confirma a mudança para a tela de criar conta. */
+    @FXML
+    private Button botaoCriaConta;
 
     /**
      * Inicializa a tela de login logo após o carregamento do arquivo FXML.
