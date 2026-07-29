@@ -27,6 +27,9 @@ module com.agenda {
      */
     requires com.google.gson; 
 
+    requires jakarta.mail;
+    
+    requires java.naming;
     /**
      * Abre as classes do pacote {@code com.agenda} para acesso reflexivo em tempo de execução.
      * <p>

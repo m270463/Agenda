@@ -149,7 +149,7 @@ public class CriacontaController implements Validavel {
             erroEmail.setVisible(true); 
             valido = false;
         }
-        else if(!validaEmail(email)){
+        else if(!validaEmail(email) || !ValidadorDominio.dominioPossuiServidorEmail(email)){
             erroEmail.setText("*Email inválido!");
             erroEmail.setVisible(true);
             valido = false;

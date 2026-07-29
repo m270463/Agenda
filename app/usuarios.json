@@ -1,0 +1,19 @@
+[
+  {
+    "nome": "matheus",
+    "email": "matheusbit.assis@gmail.com",
+    "telefone": "(11) 94077-4944",
+    "senha": "1234",
+    "agenda": {
+      "2026-07-30": [
+        {
+          "nome": "agendar apple academy",
+          "descricao": "",
+          "diaInicio": "2026-07-30",
+          "repeticao": "Nunca"
+        }
+      ]
+    },
+    "agendaRepetitiva": []
+  }
+]
