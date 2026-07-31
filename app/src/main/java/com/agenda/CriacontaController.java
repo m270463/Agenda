@@ -279,7 +279,7 @@ public class CriacontaController implements Validavel {
         
         Usuario newUser = new Usuario(nome, email, telefone, senha);
         App.listaUsuarios.add(newUser);
-        
+        App.gerenciadorDados.inserirUsuario(newUser);
         confirmaCadastro.setText("Conta criada!");
         confirmaCadastro.setVisible(true);
         

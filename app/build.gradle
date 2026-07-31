@@ -15,6 +15,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.10.1'
     implementation 'org.controlsfx:controlsfx:11.1.2+' 
     implementation 'com.sun.mail:jakarta.mail:2.0.1'
+    implementation 'org.xerial:sqlite-jdbc:3.46.0.0'
     testImplementation platform('org.junit:junit-bom:5.10.2')
     testImplementation 'org.testfx:testfx-core:4.0.18'
     testImplementation 'org.testfx:testfx-junit5:4.0.18'
@@ -34,7 +35,7 @@ test {
 jacocoTestReport {
     dependsOn test
     reports {
-        html.required = true 
+    html.required = true 
     }
 }
 

@@ -58,11 +58,13 @@ public class App extends Application {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("teste.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
 
-            // Adiciona um gancho de encerramento para salvar os dados antes do fechamento
-            Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-                gerenciadorDados.salvar(listaUsuarios);
-                notificar.fechar();
-            }));
+            stage.setOnCloseRequest(event -> {
+                notificar.fechar(); 
+                
+                javafx.application.Platform.exit(); 
+                
+                System.exit(0); 
+            });
 
             stage.setTitle("Agenda - Início");
             stage.setScene(scene);
