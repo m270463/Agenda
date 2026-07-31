@@ -222,18 +222,22 @@ public class EditEventoController extends controllerEventos implements Validavel
             evento.setDiaInicio(diaComeco);
             evento.setHoraInicio(horaComeco);
             evento.setHoraFim(horaTermino);
-
+            Boolean mudouRepeticao = false;
             // Gerencia a transferência de coleções se o tipo de repetição mudar drasticamente
             if (evento.getRepeticao().equals("Nunca") && !repeticao.equals(evento.getRepeticao())){
                 App.usuarioaAtivo.getAgendaRepetitiva().add(evento);
                 App.usuarioaAtivo.getAgenda().get(evento.getDiaInicio()).remove(evento);
+                mudouRepeticao = true;
+                
             }
             else if (!evento.getRepeticao().equals("Nunca") && repeticao.equals("Nunca")){
                 App.usuarioaAtivo.getAgenda().get(evento.getDiaInicio()).add(evento);
                 App.usuarioaAtivo.getAgendaRepetitiva().remove(evento);
+                mudouRepeticao = true;
             }
             evento.setRepeticao(repeticao);
-            
+            App.gerenciadorDados.editarEvento(evento, mudouRepeticao);
+
             confirmacao.setText("Evento editado!");
             confirmacao.setVisible(true);
             
@@ -338,6 +342,7 @@ public class EditEventoController extends controllerEventos implements Validavel
         else{
             App.usuarioaAtivo.getAgendaRepetitiva().remove(evento);
         }
+        App.gerenciadorDados.removerEvento(evento,false);
         confirmacaoErro.setVisible(true);
 
         PauseTransition pausa = new PauseTransition(Duration.seconds(1));

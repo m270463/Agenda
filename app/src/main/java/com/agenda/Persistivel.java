@@ -16,17 +16,7 @@ import java.util.ArrayList;
  */
 public interface Persistivel<T> {
 
-    /**
-     * Persiste (salva) uma coleção de itens em uma mídia de armazenamento permanente.
-     * <p>
-     * A implementação concreta deste método deve lidar com as operações físicas de escrita, 
-     * conversão de objetos (como serialização para JSON usando Gson, gravação em fluxo binário 
-     * ou transações SQL) e o devido tratamento de exceções de entrada e saída (I/O).
-     * </p>
-     *
-     * @param itens Uma {@link ArrayList} contendo os elementos do tipo {@code T} que devem ser gravados.
-     */
-    void salvar(ArrayList<T> itens);
+
 
     /**
      * Recupera (carrega) a coleção de itens previamente armazenada na mídia de persistência.
@@ -45,4 +35,12 @@ public interface Persistivel<T> {
      * ou uma lista vazia se não houver dados salvos ou se ocorrer uma falha na leitura.
      */
     ArrayList<T> carregar();
+
+    void inserirUsuario(Usuario user);
+
+    void inserirEvento(int idUser, Evento evento);
+
+    void editarEvento(Evento evento, boolean mudouRepeticao);
+
+    void removerEvento(Evento evento,boolean  mudouRepeticao);
 }

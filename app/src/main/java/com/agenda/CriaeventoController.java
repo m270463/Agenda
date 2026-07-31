@@ -174,7 +174,7 @@ public class CriaeventoController extends controllerEventos implements Validavel
             else {
                 App.usuarioaAtivo.getAgendaRepetitiva().add(evento);
             }
-
+            App.gerenciadorDados.inserirEvento(App.usuarioaAtivo.getId(), evento);
             confirmacao.setText("Evento criado!");
             confirmacao.setVisible(true);
             

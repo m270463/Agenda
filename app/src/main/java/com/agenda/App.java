@@ -1,6 +1,7 @@
 package com.agenda;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import javafx.application.Application;
@@ -37,6 +38,9 @@ public class App extends Application {
      */
     public static Usuario usuarioaAtivo;
 
+
+    private LocalDate ultimaVarredura = LocalDate.now().minusDays(2);
+
     /**
      * Inicializa o palco (Stage) principal da aplicação JavaFX.
      * <p>
@@ -50,18 +54,26 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         try {
+            Notificador notificar = new Notificador();
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("teste.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
 
-            // Adiciona um gancho de encerramento para salvar os dados antes do fechamento
-            Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-                gerenciadorDados.salvar(listaUsuarios);
-            }));
+            stage.setOnCloseRequest(event -> {
+                notificar.fechar(); 
+                
+                javafx.application.Platform.exit(); 
+                
+                System.exit(0); 
+            });
 
             stage.setTitle("Agenda - Início");
             stage.setScene(scene);
             stage.setResizable(true);
             stage.show();
+            if (!ultimaVarredura.equals(LocalDate.now())){
+                notificar.iniciarVerificacaoDiaria();
+                ultimaVarredura = LocalDate.now();
+            }
 
         } catch (IOException e) {
             System.err.println("Erro ao carregar o arquivo FXML. Verifique se o nome está correto!");
