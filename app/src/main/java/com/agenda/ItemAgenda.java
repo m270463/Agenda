@@ -30,6 +30,7 @@ public abstract class ItemAgenda implements Repetivel {
     /** A regra ou padrão de repetição do compromisso (ex: "Nunca", "Semanalmente"). */
     protected String repeticao;
 
+    protected int id;
     /**
      * Construtor base para inicializar os atributos fundamentais de qualquer item de agenda.
      *
@@ -125,6 +126,15 @@ public abstract class ItemAgenda implements Repetivel {
         this.repeticao = repeticao;
     }
 
+
+    public int getId(){
+        return this.id;
+    }
+
+    public void setId(int id){
+        this.id = id;
+    }
+    
     /**
      * Retorna uma representação textual resumida do horário do compromisso para exibição em tela.
      * <p>

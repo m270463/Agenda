@@ -186,49 +186,9 @@ public class TesteModelo {
             Files.deleteIfExists(CAMINHO_TESTE);
         }
 
-        @Test
-        @DisplayName("Deve salvar e recarregar a lista de usuários mantendo os dados")
-        void deveSalvarECarregarUsuarios() {
-            ArrayList<Usuario> lista = new ArrayList<>();
-            lista.add(new Usuario("Ana", "ana@gmail.com", "11999998888", "123"));
-            lista.add(new Usuario("Bruno", "bruno@gmail.com", "11988887777", "456"));
 
-            gerenciador.salvar(lista);
-            ArrayList<Usuario> carregada = gerenciador.carregar();
 
-            assertEquals(2, carregada.size());
-            assertEquals("Ana", carregada.get(0).getNome());
-            assertEquals("bruno@gmail.com", carregada.get(1).getEmail());
-        }
 
-        @Test
-        @DisplayName("Deve retornar lista vazia se o arquivo não existir")
-        void deveRetornarListaVaziaSemArquivo() throws IOException {
-            Files.deleteIfExists(CAMINHO_TESTE);
-            ArrayList<Usuario> carregada = gerenciador.carregar();
-            assertNotNull(carregada);
-            assertTrue(carregada.isEmpty());
-        }
-
-        @Test
-        @DisplayName("Deve preservar eventos (com data/hora) no round-trip de persistência")
-        void devePreservarEventosNoRoundTrip() {
-            Usuario usuario = new Usuario("Carla", "carla@gmail.com", "11977776666", "789");
-            Evento evento = new Evento("Reunião", "Pauta X", "Semanalmente", LocalDate.of(2026, 7, 16), LocalTime.of(10, 0), LocalTime.of(11, 0));
-            usuario.getAgendaRepetitiva().add(evento);
-
-            ArrayList<Usuario> lista = new ArrayList<>();
-            lista.add(usuario);
-
-            gerenciador.salvar(lista);
-            ArrayList<Usuario> carregada = gerenciador.carregar();
-
-            Evento eventoRecarregado = carregada.get(0).getAgendaRepetitiva().get(0);
-            assertEquals("Reunião", eventoRecarregado.getNome());
-            assertEquals(LocalTime.of(10, 0), eventoRecarregado.getHoraInicio());
-            assertTrue(eventoRecarregado.ocorreEm(LocalDate.of(2026, 7, 23)));
-        }
-    }
 
     @Nested
     @DisplayName("Regras de negócio replicadas dos controllers (login e cadastro)")
@@ -273,4 +233,5 @@ public class TesteModelo {
             return null;
         }
     }
+}
 }

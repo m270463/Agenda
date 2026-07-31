@@ -30,6 +30,11 @@ module com.agenda {
     requires jakarta.mail;
     
     requires java.naming;
+
+
+    requires java.sql;
+    
+    requires org.xerial.sqlitejdbc;
     /**
      * Abre as classes do pacote {@code com.agenda} para acesso reflexivo em tempo de execução.
      * <p>
