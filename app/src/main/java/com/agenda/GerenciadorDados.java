@@ -1,116 +1,294 @@
 package com.agenda;
 
-import java.lang.reflect.Type;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 
-/**
- * Gerenciador responsável pela persistência e leitura de dados dos usuários em formato JSON.
- * <p>
- * Implementa a interface {@link Persistivel} para a classe {@link Usuario}. 
- * Utiliza a biblioteca Gson da Google para converter objetos Java em strings JSON e vice-versa.
- * A classe configura adaptadores de tipos personalizados (<i>Type Adapters</i>) para serializar e desserializar 
- * as classes da API de data e hora do Java 8 ({@link LocalDate}, {@link java.time.LocalTime} e {@link java.time.LocalDateTime}), 
- * utilizando os padrões ISO oficiais.
- * </p>
- * * @author Seu Nome
- * @version 1.0
- */
 public class GerenciadorDados implements Persistivel<Usuario> {
+    private static final String URL_BANCO = "jdbc:sqlite:agenda.db";
 
-    /**
-     * O caminho do arquivo físico onde os dados dos usuários serão persistidos.
-     * O arquivo {@code usuarios.json} é armazenado no diretório de execução da aplicação.
-     */
-    private static final Path CAMINHO = Paths.get("usuarios.json");
+    public GerenciadorDados() {
+        criarTabelas();
+    }
 
-    /**
-     * Instância única pré-configurada do motor Gson.
-     * <p>
-     * Conta com serializadores e desserializadores customizados para:
-     * </p>
-     * <ul>
-     * <li>{@link LocalDate} usando o formato {@link DateTimeFormatter#ISO_LOCAL_DATE} (yyyy-MM-dd)</li>
-     * <li>{@link java.time.LocalTime} usando o formato {@link DateTimeFormatter#ISO_LOCAL_TIME} (HH:mm:ss)</li>
-     * <li>{@link java.time.LocalDateTime} usando o formato {@link DateTimeFormatter#ISO_LOCAL_DATE_TIME} (yyyy-MM-ddTHH:mm:ss)</li>
-     * </ul>
-     * <p>
-     * Também ativa a formatação visual amigável (<i>Pretty Printing</i>) no arquivo gerado.
-     * </p>
-     */
-    private static final Gson gson = new GsonBuilder()
-        .registerTypeAdapter(LocalDate.class, (com.google.gson.JsonSerializer<LocalDate>) (src, typeOfSrc, context) ->
-            new com.google.gson.JsonPrimitive(src.format(DateTimeFormatter.ISO_LOCAL_DATE)))
-        .registerTypeAdapter(LocalDate.class, (com.google.gson.JsonDeserializer<LocalDate>) (json, typeOfT, context) ->
-            LocalDate.parse(json.getAsString(), DateTimeFormatter.ISO_LOCAL_DATE))
 
-        .registerTypeAdapter(java.time.LocalTime.class, (com.google.gson.JsonSerializer<java.time.LocalTime>) (src, typeOfSrc, context) ->
-            new com.google.gson.JsonPrimitive(src.format(DateTimeFormatter.ISO_LOCAL_TIME)))
-        .registerTypeAdapter(java.time.LocalTime.class, (com.google.gson.JsonDeserializer<java.time.LocalTime>) (json, typeOfT, context) ->
-            java.time.LocalTime.parse(json.getAsString(), DateTimeFormatter.ISO_LOCAL_TIME))
+    private void criarTabelas() {
+        String sqlUsuarios = "CREATE TABLE IF NOT EXISTS usuarios (" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "nome VARCHAR(100)," +
+                "email VARCHAR(100)," +
+                "telefone VARCHAR(20)," +
+                "senha VARCHAR(100)" +
+                ");";
 
-        .registerTypeAdapter(java.time.LocalDateTime.class, (com.google.gson.JsonSerializer<java.time.LocalDateTime>) (src, typeOfSrc, context) ->
-            new com.google.gson.JsonPrimitive(src.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)))
-        .registerTypeAdapter(java.time.LocalDateTime.class, (com.google.gson.JsonDeserializer<java.time.LocalDateTime>) (json, typeOfT, context) ->
-            java.time.LocalDateTime.parse(json.getAsString(), DateTimeFormatter.ISO_LOCAL_DATE_TIME))
+        String sqlAgenda = "CREATE TABLE IF NOT EXISTS agenda (" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "nome VARCHAR(150)," +
+                "descricao TEXT," +
+                "repeticao VARCHAR(50)," +
+                "diaInicio VARCHAR(20)," +
+                "horaInicio VARCHAR(10)," +
+                "horaFim VARCHAR(10)," +
+                "usuario_id INTEGER," +
+                "FOREIGN KEY (usuario_id) REFERENCES usuarios(id)" +
+                ");";
 
-        .setPrettyPrinting()
-        .create();
+        String sqlAgendaRepetitiva = "CREATE TABLE IF NOT EXISTS agendaRepetitiva (" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "nome VARCHAR(150)," +
+                "descricao TEXT," +
+                "repeticao VARCHAR(50)," +
+                "diaInicio VARCHAR(20)," +
+                "horaInicio VARCHAR(10)," +
+                "horaFim VARCHAR(10)," +
+                "usuario_id INTEGER," +
+                "FOREIGN KEY (usuario_id) REFERENCES usuarios(id)" +
+                ");";
 
-    /**
-     * Serializa a lista de usuários fornecida e a grava no arquivo JSON configurado.
-     * <p>
-     * Caso ocorra qualquer exceção durante a escrita física do arquivo (como permissões de pasta),
-     * o erro será capturado, impresso no console de erro padrão e a execução continuará de forma segura.
-     * </p>
-     *
-     * @param itens A {@link ArrayList} contendo os objetos do tipo {@link Usuario} que devem ser salvos.
-     */
-    @Override
-    public void salvar(ArrayList<Usuario> itens) {
-        try {
-            String json = gson.toJson(itens);
-            Files.writeString(CAMINHO, json);
-        } catch (Exception e) {
-            System.out.println("Erro ao salvar: " + e.getMessage());
-            e.printStackTrace();
+        try (Connection conexao = DriverManager.getConnection(URL_BANCO);
+             Statement stmt = conexao.createStatement()) {
+            
+            stmt.execute(sqlUsuarios);
+            stmt.execute(sqlAgenda);
+            stmt.execute(sqlAgendaRepetitiva);
+            
+            System.out.println("Banco de dados inicializado e tabelas verificadas com sucesso!");
+
+        } catch (SQLException e) {
+            System.err.println("Erro ao criar as tabelas: " + e.getMessage());
         }
     }
 
-    /**
-     * Lê o arquivo JSON físico e desserializa o seu conteúdo de volta para uma lista de usuários.
-     * <p>
-     * Se o arquivo de persistência ainda não existir (por ser a primeira execução do programa), 
-     * o método retorna silenciosamente uma nova lista vazia. Caso ocorra uma falha crítica de leitura 
-     * ou corrupção de dados, o erro é impresso no console e uma lista vazia é retornada para evitar 
-     * o travamento do sistema.
-     * </p>
-     *
-     * @return Uma {@link ArrayList} contendo os usuários recuperados do arquivo, ou uma lista vazia em caso de falhas ou arquivo inexistente.
-     */
+
     @Override
     public ArrayList<Usuario> carregar() {
-        try {
-            if (!Files.exists(CAMINHO)) return new ArrayList<>();
+        ArrayList<Usuario> listaUsuarios = new ArrayList<>();
 
-            String json = Files.readString(CAMINHO);
+        
 
-            // Define o tipo genérico correto para o Gson reconstruir a lista tipada
-            Type tipoLista = new TypeToken<ArrayList<Usuario>>(){}.getType();
-            return gson.fromJson(json, tipoLista);
+        try (Connection conexao = DriverManager.getConnection(URL_BANCO);
+            Statement stmt = conexao.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM usuarios")) { 
+            while(rs.next()){
+                Usuario user = new Usuario(rs.getString("nome"), rs.getString("email"), rs.getString("telefone"), rs.getString("senha"));
+                user.setId(rs.getInt("id"));
+                user.setAgenda(carregarEventosFixos(user.getId(), conexao));
+                user.setAgendaRepetitiva(carregarEventosRepetitivos(user.getId(), conexao));
+                listaUsuarios.add(user);
+            }
 
-        } catch (Exception e) {
-            System.out.println("Erro ao carregar: " + e.getMessage());
+        }catch(SQLException e){
+            System.err.println("erro!");
+        }
+
+
+
+        return listaUsuarios;
+    }
+
+    private HashMap<LocalDate,ArrayList<Evento>> carregarEventosFixos(int userId,Connection conexao){
+        HashMap<LocalDate,ArrayList<Evento>> hashEventos = new HashMap<>();
+        String sql = "SELECT * FROM agenda WHERE usuario_id = ?";
+        try (PreparedStatement pstmt = conexao.prepareStatement(sql)){
+            pstmt.setInt(1, userId);
+            try(ResultSet rs = pstmt.executeQuery()){
+                while (rs.next()){
+                    String horaInicioStr = rs.getString("horaInicio");
+                    String horaFimStr = rs.getString("horaFim");
+                    LocalTime horaInicio  = null;
+                    LocalTime horaFim = null;
+
+                    if (horaInicioStr != null){
+                        horaInicio = LocalTime.parse(horaInicioStr);
+                        horaFim = LocalTime.parse(horaFimStr);
+                    
+                    }
+                    Evento e = new Evento(rs.getString("nome"), rs.getString("descricao"), rs.getString("repeticao"), LocalDate.parse(rs.getString("diaInicio")), horaInicio, horaFim);
+                    e.setId(rs.getInt("id"));
+                    hashEventos.putIfAbsent(e.getDiaInicio(), new ArrayList<>());
+                    hashEventos.get(e.getDiaInicio()).add(e);
+                }
+            }
+        }  catch(SQLException e){
             e.printStackTrace();
-            return new ArrayList<>();
+        }
+        return hashEventos;
+    }
+    
+    private ArrayList<Evento> carregarEventosRepetitivos(int userId, Connection conexao){
+        ArrayList<Evento> listaEventos = new ArrayList<>();
+        String sql = "SELECT * FROM agendaRepetitiva WHERE usuario_id = ?";
+                try (PreparedStatement pstmt = conexao.prepareStatement(sql)){
+            pstmt.setInt(1, userId);
+            try(ResultSet rs = pstmt.executeQuery()){
+                while (rs.next()){
+                    String horaInicioStr = rs.getString("horaInicio");
+                    String horaFimStr = rs.getString("horaFim");
+                    LocalTime horaInicio  = null;
+                    LocalTime horaFim = null;
+
+                    if (horaInicioStr != null){
+                        horaInicio = LocalTime.parse(horaInicioStr);
+                        horaFim = LocalTime.parse(horaFimStr);
+                    
+                    }
+                    Evento e = new Evento(rs.getString("nome"), rs.getString("descricao"), rs.getString("repeticao"), LocalDate.parse(rs.getString("diaInicio")), horaInicio, horaFim);
+                    e.setId(rs.getInt("id"));
+                    listaEventos.add(e);
+                }
+            }
+        }  catch(SQLException e){
+            e.printStackTrace();
+        }
+
+
+        return listaEventos;
+    }
+
+    public void inserirUsuario(Usuario usuario) {
+        
+        String sql = "INSERT INTO usuarios (nome, email, telefone, senha) VALUES (?, ?, ?, ?)";
+
+        try (Connection conexao = DriverManager.getConnection(URL_BANCO);
+            PreparedStatement pstmt = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+
+            pstmt.setString(1, usuario.getNome());
+            pstmt.setString(2, usuario.getEmail());
+            pstmt.setString(3, usuario.getTelefone());
+            pstmt.setString(4, usuario.getSenha());
+
+            pstmt.executeUpdate();
+
+            try (ResultSet chavesGeradas = pstmt.getGeneratedKeys()) {
+                if (chavesGeradas.next()) {
+                    usuario.setId(chavesGeradas.getInt(1));
+                }
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Erro ao cadastrar usuário no banco: " + e.getMessage());
+        }
+    }
+
+    public void inserirEvento(int userId, Evento evento){
+        String sql = "";
+        if (evento.getRepeticao().equals("Nunca")){
+            sql = "INSERT INTO agenda (nome, descricao, repeticao, diaInicio, horaInicio, horaFim, usuario_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        } else {
+            sql = "INSERT INTO agendaRepetitiva (nome, descricao, repeticao, diaInicio, horaInicio, horaFim, usuario_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        }
+         try (Connection conexao = DriverManager.getConnection(URL_BANCO);
+            PreparedStatement pstmt = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            pstmt.setString(1, evento.getNome());
+            pstmt.setString(2, evento.getDescricao());
+            pstmt.setString(3, evento.getRepeticao());
+            pstmt.setString(4, evento.getDiaInicio().toString());
+            if (evento.getHoraInicio() == null){
+                pstmt.setNull(5, java.sql.Types.VARCHAR);
+                pstmt.setNull(6, java.sql.Types.VARCHAR);
+            }
+            else{
+                pstmt.setString(5, evento.getHoraInicio().toString());
+                pstmt.setString(6, evento.getHoraFim().toString());
+            }
+
+            pstmt.setInt(7, userId);
+            pstmt.executeUpdate();
+
+            try (ResultSet chavesGeradas = pstmt.getGeneratedKeys()) {
+                if (chavesGeradas.next()) {
+                    evento.setId(chavesGeradas.getInt(1));
+                }
+            }
+
+            }catch(SQLException e){
+                System.err.println(e.getMessage());
+            }
+    }
+
+    public void editarEvento(Evento evento, boolean mudouRepeticao){
+        if (!mudouRepeticao){
+            String sql = "";
+            if (evento.getRepeticao().equals("Nunca")) {
+                sql = "UPDATE agenda SET nome = ?, descricao = ?, repeticao = ?, diaInicio = ?, horaInicio = ?, horaFim = ? WHERE id = ?";
+            } else {
+                sql = "UPDATE agendaRepetitiva SET nome = ?, descricao = ?, repeticao = ?, diaInicio = ?, horaInicio = ?, horaFim = ? WHERE id = ?";
+            }
+
+            try (Connection conexao = DriverManager.getConnection(URL_BANCO);
+                PreparedStatement pstmt = conexao.prepareStatement(sql)) {
+                pstmt.setString(1, evento.getNome());
+                pstmt.setString(2, evento.getDescricao());
+                pstmt.setString(3, evento.getRepeticao());
+                pstmt.setString(4, evento.getDiaInicio().toString());
+                if (evento.getHoraInicio() == null){
+                    pstmt.setNull(5, java.sql.Types.VARCHAR);
+                    pstmt.setNull(6, java.sql.Types.VARCHAR);
+                }
+                else{
+                    pstmt.setString(5, evento.getHoraInicio().toString());
+                    pstmt.setString(6, evento.getHoraFim().toString());
+                }
+
+                pstmt.setInt(7, evento.getId());
+                pstmt.executeUpdate();
+
+                }catch(SQLException e){
+                    System.err.println(e.getMessage());
+                }
+        }
+        else{
+            removerEvento(evento, mudouRepeticao);
+            inserirEvento(App.usuarioaAtivo.getId(), evento);
+        }
+    }
+
+    public void removerEvento(Evento evento, boolean mudouRepeticao){
+        String sql = "";
+        if (!mudouRepeticao){
+            if (evento.getRepeticao().equals("Nunca")) {
+                sql = "DELETE FROM agenda WHERE id = ?";
+            } else {
+                sql = "DELETE FROM agendaRepetitiva WHERE id = ?";
+            }
+
+            try (Connection conexao = DriverManager.getConnection(URL_BANCO);
+                PreparedStatement pstmt = conexao.prepareStatement(sql)) {
+
+                pstmt.setInt(1, evento.getId());
+
+                pstmt.executeUpdate();
+
+            } catch (SQLException e) {
+                System.err.println("Erro ao remover evento: " + e.getMessage());
+            }
+        }
+
+        else{
+            if (evento.getRepeticao().equals("Nunca")) {
+                sql = "DELETE FROM agendaRepetitiva WHERE id = ?";
+            } else {
+                sql = "DELETE FROM agenda WHERE id = ?";
+            }
+
+            try (Connection conexao = DriverManager.getConnection(URL_BANCO);
+                PreparedStatement pstmt = conexao.prepareStatement(sql)) {
+
+                pstmt.setInt(1, evento.getId());
+
+                pstmt.executeUpdate();
+
+            } catch (SQLException e) {
+                System.err.println("Erro ao remover evento: " + e.getMessage());
+            }
         }
     }
 }

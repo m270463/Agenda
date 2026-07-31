@@ -149,7 +149,7 @@ public class CriacontaController implements Validavel {
             erroEmail.setVisible(true); 
             valido = false;
         }
-        else if(!validaEmail(email)){
+        else if(!validaEmail(email) || !ValidadorDominio.dominioPossuiServidorEmail(email)){
             erroEmail.setText("*Email inválido!");
             erroEmail.setVisible(true);
             valido = false;
@@ -279,7 +279,7 @@ public class CriacontaController implements Validavel {
         
         Usuario newUser = new Usuario(nome, email, telefone, senha);
         App.listaUsuarios.add(newUser);
-        
+        App.gerenciadorDados.inserirUsuario(newUser);
         confirmaCadastro.setText("Conta criada!");
         confirmaCadastro.setVisible(true);
         

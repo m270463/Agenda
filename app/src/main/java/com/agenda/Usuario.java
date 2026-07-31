@@ -43,6 +43,7 @@ public class Usuario {
      */
     private ArrayList<Evento> agendaRepetitiva = new ArrayList<>();
 
+    private int id;
     /**
      * Constrói uma nova instância de Usuario com as informações de cadastro obrigatórias.
      * <p>
@@ -122,5 +123,22 @@ public class Usuario {
      */
     public ArrayList<Evento> getAgendaRepetitiva() {
         return this.agendaRepetitiva;
+    }
+
+
+    public void setId(int id){
+        this.id = id;
+    }
+
+    public int getId(){
+        return this.id;
+    }
+
+    public void setAgenda(Map<LocalDate, ArrayList<Evento>> agenda){
+        this.agenda = agenda;
+    }
+
+    public void setAgendaRepetitiva(ArrayList<Evento> agendaRep){
+        this.agendaRepetitiva = agendaRep;
     }
 }
