@@ -374,4 +374,23 @@ public class calendarioController {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    private void botaoEditar(){
+                try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("editarusuario.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) comboAno.getScene().getWindow();
+            stage.getScene().setRoot(root);
+            root.applyCss();
+            root.layout();
+            stage.setTitle("Agenda - Novo Evento");
+
+        } catch (IOException e) {
+            System.err.println("Erro crítico ao carregar o arquivo da nova cena!");
+            e.printStackTrace();
+        }
+    }
+
 }

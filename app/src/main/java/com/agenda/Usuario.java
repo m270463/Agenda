@@ -72,6 +72,10 @@ public class Usuario {
         return nome;
     }
 
+    public void setNome(String nome){
+        this.nome = nome;
+    }
+
     /**
      * Obtém o endereço de e-mail do usuário.
      *
@@ -79,6 +83,10 @@ public class Usuario {
      */
     public String getEmail() {
         return email;
+    }
+
+    public void setEmail(String email){
+        this.email = email;
     }
 
     /**
@@ -89,6 +97,10 @@ public class Usuario {
     public String getTelefone() {
         return telefone;
     }
+
+    public void SetTelefone(String telefone){
+        this.telefone = telefone;
+    }
     
     /**
      * Obtém a senha de acesso do usuário.
@@ -97,6 +109,10 @@ public class Usuario {
      */
     public String getSenha() {
         return senha;
+    }
+
+    public void setSenha(String senha){
+        this.senha = senha;
     }
 
     /**

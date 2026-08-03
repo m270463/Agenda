@@ -35,7 +35,7 @@ test {
 jacocoTestReport {
     dependsOn test
     reports {
-    html.required = true 
+     html.required = true 
     }
 }
 
