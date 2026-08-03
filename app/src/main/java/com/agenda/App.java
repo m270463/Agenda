@@ -39,7 +39,7 @@ public class App extends Application {
     public static Usuario usuarioaAtivo;
 
 
-    private LocalDate ultimaVarredura = LocalDate.now().minusDays(2);
+    private LocalDate ultimaVarredura = LocalDate.now();
 
     /**
      * Inicializa o palco (Stage) principal da aplicação JavaFX.

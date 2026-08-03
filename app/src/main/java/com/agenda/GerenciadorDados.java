@@ -178,6 +178,27 @@ public class GerenciadorDados implements Persistivel<Usuario> {
         }
     }
 
+
+    public void editarUsuario(Usuario usuario){
+        String sql = "UPDATE usuarios SET nome = ?, email = ?, telefone = ?, senha = ? WHERE id = ?";
+        try (Connection conexao = DriverManager.getConnection(URL_BANCO);
+            PreparedStatement pstmt = conexao.prepareStatement(sql)) {
+            pstmt.setString(1, usuario.getNome());
+            pstmt.setString(2, usuario.getEmail());
+            pstmt.setString(3, usuario.getTelefone());
+            pstmt.setString(4, usuario.getSenha());
+            pstmt.setInt(5, usuario.getId());
+            pstmt.executeUpdate();
+
+            }catch(SQLException e){
+                System.err.println(e.getMessage());
+            }
+
+    }
+
+
+    
+
     public void inserirEvento(int userId, Evento evento){
         String sql = "";
         if (evento.getRepeticao().equals("Nunca")){

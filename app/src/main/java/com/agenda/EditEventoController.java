@@ -390,7 +390,7 @@ public class EditEventoController extends controllerEventos implements Validavel
             vbox.setDisable(true);
             descricao.setDisable(true);
             confirmar.setDisable(true);
-        }
+        }   
         else{
             vbox.setDisable(false);
             descricao.setDisable(false);

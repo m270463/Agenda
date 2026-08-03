@@ -38,6 +38,8 @@ public interface Persistivel<T> {
 
     void inserirUsuario(Usuario user);
 
+    void editarUsuario(Usuario user);
+
     void inserirEvento(int idUser, Evento evento);
 
     void editarEvento(Evento evento, boolean mudouRepeticao);
