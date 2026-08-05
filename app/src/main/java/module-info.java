@@ -33,6 +33,8 @@ module com.agenda {
 
 
     requires java.sql;
+
+    requires java.desktop;
     
     requires org.xerial.sqlitejdbc;
     /**
