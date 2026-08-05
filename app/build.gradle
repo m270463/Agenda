@@ -35,7 +35,7 @@ test {
 jacocoTestReport {
     dependsOn test
     reports {
-    html.required = true 
+     html.required = true 
     }
 }
 
@@ -47,4 +47,20 @@ javafx {
 
 application {
     mainClass = 'com.agenda.App'
+}
+
+
+ext.mainClassName = 'com.agenda.MainLauncher'
+
+jar {
+    manifest {
+        attributes(
+            'Main-Class': mainClassName
+        )
+    }
+    // Junta todas as dependências dentro do próprio .jar
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }

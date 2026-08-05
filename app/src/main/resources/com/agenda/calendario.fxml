@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -11,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="783.0" prefWidth="1098.0" style="-fx-background-color: #121212;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.agenda.calendarioController">
+<AnchorPane prefHeight="847.0" prefWidth="1131.0" style="-fx-background-color: #121212;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.agenda.calendarioController">
    <children>
       
       <Button fx:id="voltar" mnemonicParsing="false" onAction="#botaoVoltar" prefHeight="35.0" prefWidth="45.0" style="-fx-background-color: transparent; -fx-cursor: hand;" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
@@ -83,9 +84,19 @@
 
       <HBox alignment="CENTER" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#botaovoltarInicio" style="-fx-background-color: transparent; -fx-cursor: hand;" text="Voltar" textFill="WHITE" />
+            <Button mnemonicParsing="false" onAction="#botaovoltarInicio" prefHeight="35.0" prefWidth="95.0" style="-fx-background-color: transparent; -fx-cursor: hand;" text="Voltar" textFill="WHITE" />
          </children>
       </HBox>
+      
+      <Button mnemonicParsing="false" onAction="#botaoEditar" prefHeight="35.0" prefWidth="45.0" style="-fx-background-color: transparent; -fx-cursor: hand;" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0">
+         <graphic>
+            <ImageView fitHeight="35.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../imagens_agenda/person_41dp_FFFFFF_FILL0_wght400_GRAD200_opsz48.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
 
    </children>
 </AnchorPane>

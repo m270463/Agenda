@@ -1,5 +1,6 @@
 package com.agenda;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -36,11 +37,17 @@ public interface Persistivel<T> {
      */
     ArrayList<T> carregar();
 
+    LocalDate carregarUltimaVerificacao();
+
     void inserirUsuario(Usuario user);
+
+    void editarUsuario(Usuario user);
 
     void inserirEvento(int idUser, Evento evento);
 
     void editarEvento(Evento evento, boolean mudouRepeticao);
 
     void removerEvento(Evento evento,boolean  mudouRepeticao);
+
+    void inserirUltimaVerificacao(LocalDate ultimaVerificacao);
 }
