@@ -53,12 +53,17 @@ public class GerenciadorDados implements Persistivel<Usuario> {
                 "FOREIGN KEY (usuario_id) REFERENCES usuarios(id)" +
                 ");";
 
+        String sqlConfigurarcoes = "CREATE TABLE IF NOT EXISTS verificacoes (" +
+                "ultimaVerificacao VARCHAR(20)" +
+                ");";
+
         try (Connection conexao = DriverManager.getConnection(URL_BANCO);
              Statement stmt = conexao.createStatement()) {
             
             stmt.execute(sqlUsuarios);
             stmt.execute(sqlAgenda);
             stmt.execute(sqlAgendaRepetitiva);
+            stmt.execute(sqlConfigurarcoes);
             
             System.out.println("Banco de dados inicializado e tabelas verificadas com sucesso!");
 
@@ -73,7 +78,6 @@ public class GerenciadorDados implements Persistivel<Usuario> {
         ArrayList<Usuario> listaUsuarios = new ArrayList<>();
 
         
-
         try (Connection conexao = DriverManager.getConnection(URL_BANCO);
             Statement stmt = conexao.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM usuarios")) { 
@@ -89,9 +93,26 @@ public class GerenciadorDados implements Persistivel<Usuario> {
             System.err.println("erro!");
         }
 
-
-
         return listaUsuarios;
+    }
+
+    public LocalDate carregarUltimaVerificacao(){
+        LocalDate ultimaVerificacao = null;
+        try(Connection conexao = DriverManager.getConnection(URL_BANCO);
+            Statement stmt = conexao.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM verificacoes")) {
+            while (rs.next()){
+                String ultima = rs.getString("ultimaVerificacao");
+                ultimaVerificacao = LocalDate.parse(ultima);
+            }
+
+
+            }catch(SQLException e){
+            System.err.println("erro!");
+        }    
+
+
+        return ultimaVerificacao;
     }
 
     private HashMap<LocalDate,ArrayList<Evento>> carregarEventosFixos(int userId,Connection conexao){
@@ -152,6 +173,23 @@ public class GerenciadorDados implements Persistivel<Usuario> {
 
         return listaEventos;
     }
+
+    public void inserirUltimaVerificacao(LocalDate ultimaVerificacao){
+        String sql = "INSERT INTO verificacoes(ultimaVerificacao) VALUES (?)";
+                
+
+        try (Connection conexao = DriverManager.getConnection(URL_BANCO);
+            PreparedStatement pstmt = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+
+            pstmt.setString(1, ultimaVerificacao.toString());
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            System.err.println("Erro ao cadastrar usuário no banco: " + e.getMessage());
+        }
+
+    }
+
 
     public void inserirUsuario(Usuario usuario) {
         
@@ -312,4 +350,7 @@ public class GerenciadorDados implements Persistivel<Usuario> {
             }
         }
     }
+
+
+
 }
