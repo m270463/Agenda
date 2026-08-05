@@ -1,0 +1,8 @@
+package com.agenda;
+
+
+public class MainLauncher {
+    public static void main(String[] args) {
+        App.main(args); 
+    }
+}
