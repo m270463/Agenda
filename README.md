@@ -125,7 +125,6 @@ Durante a execução da sua agenda pessoal:
 
 ## 4. Tecnologias Utilizadas
 
-```
 | Tecnologia | Finalidade |
 |---|---|
 | Java 17+ | Switch Expressions, java.time API |
@@ -139,7 +138,6 @@ Durante a execução da sua agenda pessoal:
 | JUnit 5 & TestFX | Testes automatizados de ponta a ponta simulando interação real do usuário |
 | JaCoCo | Relatório de cobertura de código integrado ao build |
 
-```
 
 Durante o desenvolvimento, também foi utilizado apoio de **Inteligência Artificial** como ferramenta de produtividade em três frentes específicas: elaboração e depuração dos testes automatizados (JUnit + TestFX), geração da documentação Javadoc das classes, e apoio na estruturação de partes da interface gráfica (telas `.fxml` e estilização).
 
