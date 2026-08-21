@@ -16,6 +16,7 @@ dependencies {
     implementation 'org.controlsfx:controlsfx:11.1.2+' 
     implementation 'com.sun.mail:jakarta.mail:2.0.1'
     implementation 'org.xerial:sqlite-jdbc:3.46.0.0'
+    implementation 'io.github.cdimascio:dotenv-java:3.2.0'
     testImplementation platform('org.junit:junit-bom:5.10.2')
     testImplementation 'org.testfx:testfx-core:4.0.18'
     testImplementation 'org.testfx:testfx-junit5:4.0.18'

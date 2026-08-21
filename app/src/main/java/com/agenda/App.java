@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
+import io.github.cdimascio.dotenv.Dotenv;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +21,7 @@ import javafx.stage.Stage;
 
 
 public class App extends Application {
-
+    public static final Dotenv dotenv = Dotenv.load();     
     public static Persistivel<Usuario> gerenciadorDados = new GerenciadorDados();
     public static ArrayList<Usuario> listaUsuarios = gerenciadorDados.carregar();
     public static Usuario usuarioaAtivo;
