@@ -126,17 +126,18 @@ Durante a execução da sua agenda pessoal:
 ## 4. Tecnologias Utilizadas
 
 ```
-| Tecnologia | Finalidade |
-| Java 17+ | Switch Expressions, java.time API |
-| JavaFX 21 | Ambiente de janelas e componentes gráficos de interface |
-| ControlsFX | Componentes adicionais de interface, como o ToggleSwitch |
-| Scene Builder | Prototipagem e montagem visual das telas `.fxml` da interface gráfica |
-| Gradle | Automação de compilação, ciclo de execução e dependências |
-| SQLite (JDBC) | Banco de dados relacional local para persistência de usuários e eventos |
-| Jakarta Mail | Envio de e-mails de notificação e códigos de confirmação via SMTP |
-| Dotenv (java-dotenv) | Gerenciamento seguro de variáveis de ambiente e credenciais |
-| JUnit 5 & TestFX | Testes automatizados de ponta a ponta simulando interação real do usuário |
-| JaCoCo | Relatório de cobertura de código integrado ao build |
+ Tecnologia 	Finalidade
+Java 17+ 	Switch Expressions, java.time API
+JavaFX 21 	Ambiente de janelas e componentes gráficos de interface
+ControlsFX 	Componentes adicionais de interface, como o ToggleSwitch
+Scene Builder 	Prototipagem e montagem visual das telas .fxml da interface gráfica
+Gradle 	Automação de compilação, ciclo de execução e dependências
+SQLite (JDBC) 	Banco de dados relacional local para persistência de usuários e eventos
+Jakarta Mail 	Envio de e-mails de notificação e códigos de confirmação via SMTP
+Dotenv (java-dotenv) 	Gerenciamento seguro de variáveis de ambiente e credenciais
+JUnit 5 & TestFX 	Testes automatizados de ponta a ponta simulando interação real do usuário
+JaCoCo 	Relatório de cobertura de código integrado ao build
+
 
 ```
 
