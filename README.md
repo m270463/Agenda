@@ -8,7 +8,7 @@ O projeto foi desenvolvido em **Java 17+** utilizando **JavaFX 21** para a inter
 
 ## Demo
 
-> 🎥 [Insira aqui o link da demonstração do aplicativo]
+> [Assista à demonstração em vídeo](https://youtu.be/_z0snyaSMT8)
 
 - [1. Estrutura do Projeto](#1-estrutura-do-projeto)
 - [2. Como Compilar e Executar o Projeto](#2-como-compilar-e-executar-o-projeto)
@@ -20,7 +20,46 @@ O projeto foi desenvolvido em **Java 17+** utilizando **JavaFX 21** para a inter
 
 O projeto segue a estrutura padrão do **Gradle para projetos Java e JavaFX**, dividindo as responsabilidades em pacotes lógicos:
 
-. ├─ app/ │ ├─ src/ │ │ ├─ main/ │ │ │ ├─ java/com/agenda/ │ │ │ │ ├─ App.java # Classe principal (Inicializadora da GUI e System Tray) │ │ │ │ ├─ MainLauncher.java # Ponto de entrada alternativo da aplicação │ │ │ │ ├─ LoginController.java # Controle de login e autenticação │ │ │ │ ├─ CriacontaController.java # Controle do cadastro de novos usuários │ │ │ │ ├─ editarUsuarioController.java # Edição de dados da conta com confirmação por e-mail │ │ │ │ ├─ calendarioController.java # Visualização mensal do calendário │ │ │ │ ├─ verEventoController.java # Exibição e gestão diária de compromissos │ │ │ │ ├─ controllerEventos.java # Classe abstrata base (Criar/Editar evento) │ │ │ │ ├─ CriaeventoController.java # Criação de compromissos │ │ │ │ ├─ EditEventoController.java # Edição e remoção de compromissos │ │ │ │ ├─ Usuario.java # Entidade de usuário e credenciais │ │ │ │ ├─ ItemAgenda.java # Classe abstrata base de itens da agenda │ │ │ │ ├─ Evento.java # Entidade do compromisso/evento │ │ │ │ ├─ Repetivel.java # Interface de regras de recorrência de data │ │ │ │ ├─ Validavel.java # Interface para validação de formulários │ │ │ │ ├─ Persistivel.java # Interface para padronização de persistência │ │ │ │ ├─ GerenciadorDados.java # Persistência via SQLite (JDBC) │ │ │ │ ├─ Notificador.java # Agendamento e disparo de lembretes diários │ │ │ │ ├─ ServicoEmail.java # Envio de e-mails via SMTP (Jakarta Mail) │ │ │ │ ├─ ValidadorDominio.java # Validação de domínio de e-mail (registros MX) │ │ │ │ └─ Config.java # Leitura de credenciais via variáveis de ambiente │ │ │ └─ resources/com/agenda/ # Telas visuais .fxml (teste, criarconta, editarusuario, │ │ │ # calendario, criaevento, editevento, verevento) │ │ └─ test/ │ │ └─ java/com/agenda/ │ │ ├─ TesteFluxoEventos.java # Testes de fluxo: calendário → criação de evento │ │ └─ TesteInterface.java # Testes de fluxo: login e criação de conta ├─ build.gradle # Configurações do build, dependências e plugins ├─ settings.gradle # Módulos ativos do projeto Gradle ├─ agenda.db # Banco de dados SQLite local ├─ .env # Variáveis de ambiente (credenciais de e-mail) ├─ gradlew # Wrapper do Gradle para Linux/macOS ├─ gradlew.bat # Wrapper do Gradle para Windows └─ README.md
+```
+├─ app/
+│  ├─ src/
+│  │  ├─ main/
+│  │  │  ├─ java/com/agenda/
+│  │  │  │  ├─ App.java                     # Classe principal (Inicializadora da GUI e System Tray)
+│  │  │  │  ├─ MainLauncher.java             # Ponto de entrada alternativo da aplicação
+│  │  │  │  ├─ LoginController.java          # Controle de login e autenticação
+│  │  │  │  ├─ CriacontaController.java      # Controle do cadastro de novos usuários
+│  │  │  │  ├─ editarUsuarioController.java  # Edição de dados da conta com confirmação por e-mail
+│  │  │  │  ├─ calendarioController.java     # Visualização mensal do calendário
+│  │  │  │  ├─ verEventoController.java      # Exibição e gestão diária de compromissos
+│  │  │  │  ├─ controllerEventos.java        # Classe abstrata base (Criar/Editar evento)
+│  │  │  │  ├─ CriaeventoController.java     # Criação de compromissos
+│  │  │  │  ├─ EditEventoController.java     # Edição e remoção de compromissos
+│  │  │  │  ├─ Usuario.java                  # Entidade de usuário e credenciais
+│  │  │  │  ├─ ItemAgenda.java               # Classe abstrata base de itens da agenda
+│  │  │  │  ├─ Evento.java                   # Entidade do compromisso/evento
+│  │  │  │  ├─ Repetivel.java                # Interface de regras de recorrência de data
+│  │  │  │  ├─ Validavel.java                # Interface para validação de formulários
+│  │  │  │  ├─ Persistivel.java              # Interface para padronização de persistência
+│  │  │  │  ├─ GerenciadorDados.java         # Persistência via SQLite (JDBC)
+│  │  │  │  ├─ Notificador.java              # Agendamento e disparo de lembretes diários
+│  │  │  │  ├─ ServicoEmail.java             # Envio de e-mails via SMTP (Jakarta Mail)
+│  │  │  │  ├─ ValidadorDominio.java         # Validação de domínio de e-mail (registros MX)
+│  │  │  │  └─ Config.java                   # Leitura de credenciais via variáveis de ambiente
+│  │  │  └─ resources/com/agenda/            # Telas visuais .fxml (teste, criarconta, editarusuario,
+│  │  │                                      # calendario, criaevento, editevento, verevento)
+│  │  └─ test/
+│  │     └─ java/com/agenda/
+│  │        ├─ TesteFluxoEventos.java        # Testes de fluxo: calendário → criação de evento
+│  │        └─ TesteInterface.java           # Testes de fluxo: login e criação de conta
+├─ build.gradle                              # Configurações do build, dependências e plugins
+├─ settings.gradle                           # Módulos ativos do projeto Gradle
+├─ agenda.db                                 # Banco de dados SQLite local
+├─ .env                                      # Variáveis de ambiente (credenciais de e-mail)
+├─ gradlew                                   # Wrapper do Gradle para Linux/macOS
+├─ gradlew.bat                               # Wrapper do Gradle para Windows
+└─ README.md
+```
 
 Onde:
 
@@ -35,25 +74,25 @@ Onde:
 
 No diretório raiz do projeto, execute o comando abaixo no terminal para rodar os testes (recomenda-se `clean` antes, para garantir que nenhum recurso antigo de builds anteriores fique em cache):
 
-./gradlew clean test
+    ./gradlew clean test
 
 Para rodar os testes e gerar o relatório de cobertura JaCoCo:
 
-./gradlew clean test jacocoTestReport
+    ./gradlew clean test jacocoTestReport
 
 O relatório é gerado em `/app/build/reports/jacoco/test/html/index.html`.
 
 Para gerar a documentação das classes (Javadoc), disponibilizado em `/app/build/docs/javadoc/index.html`:
 
-./gradlew javadoc
+    ./gradlew javadoc
 
 Para **abrir o aplicativo** de verdade (janela JavaFX, sem rodar testes):
 
-./gradlew run
+    ./gradlew run
 
 Para compilar e empacotar o projeto por completo (compila, roda os testes e gera o `.jar`):
 
-./gradlew build
+    ./gradlew build
 
 O Gradle irá:
 
@@ -62,7 +101,7 @@ O Gradle irá:
 - Rodar a suíte de testes de interface (login, cadastro e fluxo completo de criação de eventos).
 - Gerar o site estático com o relatório de cobertura em `/app/build/reports/jacoco/test/html/index.html`.
 
-**Observação:** para que o envio de e-mails (notificações e códigos de confirmação) funcione corretamente, é necessário configurar um arquivo `.env` na raiz do projeto com as variáveis `EMAIL` e `SENHA`, correspondentes às credenciais de uma conta de e-mail habilitada para envio via SMTP, conforme o arquivo `.env.example`.
+**Observação:** para que o envio de e-mails (notificações e códigos de confirmação) funcione corretamente, é necessário configurar um arquivo `.env` na raiz do projeto com as variáveis `EMAIL` e `SENHA`, correspondentes às credenciais de uma conta de e-mail habilitada para envio via SMTP e sua respectiva senha de app, conforme o arquivo `.env.example`.
 
 ## 3. Como Usar o Sistema
 
@@ -86,16 +125,19 @@ Durante a execução da sua agenda pessoal:
 
 ## 4. Tecnologias Utilizadas
 
-- **Java 17+** (Switch Expressions, java.time API)
-- **JavaFX 21** (Ambiente de janelas e componentes gráficos de interface)
-- **ControlsFX** (Componentes adicionais de interface, como o ToggleSwitch)
-- **Scene Builder** (Prototipagem e montagem visual das telas `.fxml` da interface gráfica)
-- **Gradle** (Automação de compilação, ciclo de execução e dependências)
-- **SQLite (JDBC)** (Banco de dados relacional local para persistência de usuários e eventos)
-- **Jakarta Mail** (Envio de e-mails de notificação e códigos de confirmação via SMTP)
-- **Dotenv (java-dotenv)** (Gerenciamento seguro de variáveis de ambiente e credenciais)
-- **JUnit 5 & TestFX** (Testes automatizados de ponta a ponta simulando interação real do usuário)
-- **JaCoCo** (Relatório de cobertura de código integrado ao build)
+| Tecnologia | Finalidade |
+|---|---|
+| Java 17+ | Switch Expressions, java.time API |
+| JavaFX 21 | Ambiente de janelas e componentes gráficos de interface |
+| ControlsFX | Componentes adicionais de interface, como o ToggleSwitch |
+| Scene Builder | Prototipagem e montagem visual das telas `.fxml` da interface gráfica |
+| Gradle | Automação de compilação, ciclo de execução e dependências |
+| SQLite (JDBC) | Banco de dados relacional local para persistência de usuários e eventos |
+| Jakarta Mail | Envio de e-mails de notificação e códigos de confirmação via SMTP |
+| Dotenv (java-dotenv) | Gerenciamento seguro de variáveis de ambiente e credenciais |
+| JUnit 5 & TestFX | Testes automatizados de ponta a ponta simulando interação real do usuário |
+| JaCoCo | Relatório de cobertura de código integrado ao build |
+
 
 Durante o desenvolvimento, também foi utilizado apoio de **Inteligência Artificial** como ferramenta de produtividade em três frentes específicas: elaboração e depuração dos testes automatizados (JUnit + TestFX), geração da documentação Javadoc das classes, e apoio na estruturação de partes da interface gráfica (telas `.fxml` e estilização).
 
