@@ -101,7 +101,7 @@ O Gradle irá:
 - Rodar a suíte de testes de interface (login, cadastro e fluxo completo de criação de eventos).
 - Gerar o site estático com o relatório de cobertura em `/app/build/reports/jacoco/test/html/index.html`.
 
-**Observação:** para que o envio de e-mails (notificações e códigos de confirmação) funcione corretamente, é necessário configurar um arquivo `.env` na raiz do projeto com as variáveis `EMAIL` e `SENHA`, correspondentes às credenciais de uma conta de e-mail habilitada para envio via SMTP.
+**Observação:** para que o envio de e-mails (notificações e códigos de confirmação) funcione corretamente, é necessário configurar um arquivo `.env` na raiz do projeto com as variáveis `EMAIL` e `SENHA`, correspondentes às credenciais de uma conta de e-mail habilitada para envio via SMTP e sua respectiva senha de app, conforme o arquivo `.env.example`.
 
 ## 3. Como Usar o Sistema
 
