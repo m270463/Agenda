@@ -8,7 +8,7 @@ O projeto foi desenvolvido em **Java 17+** utilizando **JavaFX 21** para a inter
 
 ## Demo
 
-> 🎥 [Assista à demonstração em vídeo] (https://youtu.be/_z0snyaSMT8)
+> [Assista à demonstração em vídeo](https://youtu.be/_z0snyaSMT8)
 
 - [1. Estrutura do Projeto](#1-estrutura-do-projeto)
 - [2. Como Compilar e Executar o Projeto](#2-como-compilar-e-executar-o-projeto)
