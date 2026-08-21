@@ -10,8 +10,8 @@ import jakarta.mail.internet.MimeMessage;
 
 public class ServicoEmail {
 
-    private static final String MEU_EMAIL = "alvaroteste21@gmail.com";
-    private static final String MINHA_SENHA = "utpc uiwj yash wowb"; 
+    private static final String MEU_EMAIL = Config.getEmail();
+    private static final String MINHA_SENHA = Config.getSenha(); 
 
     public static void enviarAlerta(String emailDestinatario, String assunto, String mensagem) {
 
@@ -43,7 +43,7 @@ public class ServicoEmail {
             message.setContent(mensagem, "text/html; charset=utf-8");
 
             Transport.send(message);
-
+            
             System.out.println("✅ E-mail enviado com sucesso para: " + emailDestinatario);
 
         } catch (MessagingException e) {

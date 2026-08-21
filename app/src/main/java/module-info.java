@@ -31,7 +31,8 @@ module com.agenda {
     
     requires java.naming;
 
-
+    requires io.github.cdimascio.dotenv.java;
+    
     requires java.sql;
 
     requires java.desktop;
