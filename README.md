@@ -8,7 +8,7 @@ O projeto foi desenvolvido em **Java 17+** utilizando **JavaFX 21** para a inter
 
 ## Demo
 
-> 🎥 Assista à demonstração em vídeo [(https://youtu.be/_z0snyaSMT8)]
+> 🎥 Assista à demonstração em vídeo (https://youtu.be/_z0snyaSMT8)
 
 - [1. Estrutura do Projeto](#1-estrutura-do-projeto)
 - [2. Como Compilar e Executar o Projeto](#2-como-compilar-e-executar-o-projeto)
@@ -124,9 +124,9 @@ Durante a execução da sua agenda pessoal:
 - **Persistência Automática:** os dados dos usuários e eventos são salvos automaticamente no banco de dados SQLite local a cada operação, garantindo que nada seja perdido entre execuções.
 
 ## 4. Tecnologias Utilizadas
+
 ```
 | Tecnologia | Finalidade |
-|---|---|
 | Java 17+ | Switch Expressions, java.time API |
 | JavaFX 21 | Ambiente de janelas e componentes gráficos de interface |
 | ControlsFX | Componentes adicionais de interface, como o ToggleSwitch |
@@ -137,6 +137,7 @@ Durante a execução da sua agenda pessoal:
 | Dotenv (java-dotenv) | Gerenciamento seguro de variáveis de ambiente e credenciais |
 | JUnit 5 & TestFX | Testes automatizados de ponta a ponta simulando interação real do usuário |
 | JaCoCo | Relatório de cobertura de código integrado ao build |
+
 ```
 
 Durante o desenvolvimento, também foi utilizado apoio de **Inteligência Artificial** como ferramenta de produtividade em três frentes específicas: elaboração e depuração dos testes automatizados (JUnit + TestFX), geração da documentação Javadoc das classes, e apoio na estruturação de partes da interface gráfica (telas `.fxml` e estilização).
